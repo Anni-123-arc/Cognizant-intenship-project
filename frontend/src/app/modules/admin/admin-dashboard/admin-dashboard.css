@@ -1,0 +1,26 @@
+body{
+    padding: 0;
+    margin: 0;
+    background-color: rgb(55, 47, 47);
+}
+
+#dashboard{
+    background-color: #FFFFFF ;
+    /* border: 5px solid; */
+    /* margin: 10px; */
+}
+
+#order-review-container {
+    display: flex;
+    width: 70%;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    margin-left: auto;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2%;
+}
+
+#placeholder-nav{
+    margin-bottom: 2%;
+}

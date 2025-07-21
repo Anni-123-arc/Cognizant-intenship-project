@@ -1,0 +1,18 @@
+
+<div id="order-card-container">
+    
+  <div id="orderID">{{ order.OrderId }}</div>
+  <div id="customerID">{{ order.CustomerId }}</div>
+  <div id="productName">{{ order.ProductId }}</div>
+  <div
+    id="deliveryStatus"
+    [ngStyle]="{
+      color: order.DeliveryStatus === 'Delivered' ? 'green' :
+             order.DeliveryStatus === 'Pending' ? '#e6b800' :
+             order.DeliveryStatus === 'Shipped' ? 'orange' : 'red'
+    }"
+  >
+    {{ order.DeliveryStatus }}
+  </div>
+  <div id="totalAmount">₹{{ order.TotalAmount }}</div>
+</div>

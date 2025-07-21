@@ -1,0 +1,13 @@
+<div id="main-message-container">
+    <div id="heading">
+        <div id="message-icon">
+            <img src="../../../../../assets/AdminAssets/icons8-message-48.png" alt="message-icon">
+        </div>
+        <h2>User Messages</h2>
+    </div>
+    
+    @for(msg of messages; track msg.id) {
+        <app-review-card [messages]="msg"></app-review-card>
+    }
+   
+</div>

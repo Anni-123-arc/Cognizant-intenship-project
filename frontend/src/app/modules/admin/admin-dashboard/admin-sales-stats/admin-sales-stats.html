@@ -1,0 +1,34 @@
+<!-- <p>admin-sales-stats works!</p> -->
+
+<div class="admin-stats-container">
+    <div class="stats-inner-container">
+        <div class="img-heading">
+            <img src="../../../../../assets/AdminAssets/Sales.png" alt="sales logo">
+            <span>Total sales</span>
+        </div>
+        <div class="value-container">
+           <h3> {{getTotalSales()}}</h3>
+
+        </div>
+    </div>
+    <div class="stats-inner-container">
+        <div class="img-heading">
+            <img src="../../../../../assets/AdminAssets/crowd-icon.png" alt="users logo">
+            <span>Active Users</span>
+        </div>
+        <div class="value-container">
+           <h3> {{ActiveUserCount}}</h3>
+        </div>
+
+    </div>
+    <div class="stats-inner-container">
+        <div class="img-heading">
+            <img src="../../../../../assets/AdminAssets/check-out-icon.png" alt="order logo">
+            <span>Total Order Placed</span>
+        </div>
+        <div class="value-container">
+           <h3> {{getOrderPlace()}}</h3>
+        </div>
+
+    </div>
+</div>

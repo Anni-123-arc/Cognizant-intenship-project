@@ -1,0 +1,33 @@
+<!-- <p>admin-sidebar works!</p> -->
+<!-- <div id="sidebar-main-container">
+
+</div> -->
+
+<div id="sidebar-main-container">
+  <div id="sidebar-btn-group">
+    <app-admin-sidebar-btns
+      [btnText]="'Add to inventory'"
+      [btnStyle]="{ backgroundColor: 'blue' }"
+    ></app-admin-sidebar-btns>
+    <app-admin-sidebar-btns
+      [btnText]="'Update inventory'"
+      [btnStyle]="{ backgroundColor: 'green' }"
+    ></app-admin-sidebar-btns>
+    <app-admin-sidebar-btns
+      [btnText]="'Delete Items'"
+      [btnStyle]="{ backgroundColor: 'orange' }"
+    ></app-admin-sidebar-btns>
+  </div>
+
+  <div id="sidebar-inventory">
+    <h2>Inventory</h2>
+     @for (items of inventory; track items.product_id) {
+      <app-inventory-card
+        [product_id]="items.product_id"
+        [product_name]="items.product_name"
+        [category]="items.category"
+        [price]="items.price"
+      ></app-inventory-card>
+     }
+  </div>
+</div>

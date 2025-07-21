@@ -1,0 +1,54 @@
+#admin-header{
+    background-color: #4d5154 ;
+    border: 2px solid #DEE2E6 ;
+    padding:10px;
+    padding: 15px 0px;
+    
+}
+
+#navbar{
+    display: flex;
+    flex: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#brand-logo{
+    border: 2px solid rgb(203, 171, 171);
+    border-radius: 50%;
+    padding: 2px;
+    cursor: pointer;
+   
+}
+
+#brand-logo img{
+    width: 35px;
+    height: 35px;
+}
+
+#admin-logo{
+    background-color: black;
+    border: 2px solid #DEE2E6;
+    border-radius:35%;
+    cursor: pointer;
+    
+}
+
+#admin-logo img{
+    width: 35px;
+    height: 35px;
+   
+}
+
+#brand-title{
+  width: 50%;
+  padding: 0px 15px;
+  /* border: 2px solid #DEE2E6; */
+  cursor: pointer;
+}
+
+#brand-title h1{
+    /* border: 2px solid; */
+    text-align: center;
+    font-size: 22px;
+}

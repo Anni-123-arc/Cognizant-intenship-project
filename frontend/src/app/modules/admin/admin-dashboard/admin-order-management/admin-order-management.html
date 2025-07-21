@@ -1,0 +1,25 @@
+<div id="main-order-container">
+  <div id="heading">
+    <h3>Orders</h3>
+    <div id="filter-btn">
+      <select name="order-filter" id="order-filter" [(ngModel)]="selectedFilter" (change)="filterOrders()">
+        <option value="">All</option>
+        <option value="delivered">Delivered</option>
+        <option value="pending">Pending</option>
+        <option value="shipped">Shipped</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="order-header">
+    <div class="field">Order ID</div>
+    <div class="field">Customer ID</div>
+    <div class="field">Product ID</div>
+    <div class="field">Delivery Status</div>
+    <div class="field">Total Amount</div>
+  </div>
+
+  @for (order of orderList; track order.OrderID){
+    <app-order-card [order]="order" />
+  }
+</div>
