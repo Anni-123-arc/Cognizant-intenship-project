@@ -12,6 +12,9 @@ export class AdminOrderManagement {
   orderList: any[] = []
   selectedFilter: string = ''
   allOrders: any[] = [];
+  hideHeading = false;
+  private lastScrollTop = 0;
+
   constructor(private orderManagement: OrderManagement) {
     this.allOrders = this.orderManagement.getOrders();
     this.orderList = [...this.allOrders]; // clone
@@ -27,5 +30,11 @@ export class AdminOrderManagement {
     }
   }
 
-  
+  onScroll(event: Event) {
+    const container = event.target as HTMLElement;
+    const scrollTop = container.scrollTop;
+
+    this.hideHeading = scrollTop > this.lastScrollTop;
+    this.lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+  }
 }

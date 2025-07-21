@@ -1,5 +1,5 @@
-<div id="main-message-container">
-    <div id="heading">
+<div id="main-message-container" (scroll)="onScroll($event)">
+    <div id="heading" [class.hide]="hideHeading">
         <div id="message-icon">
             <img src="../../../../../assets/AdminAssets/icons8-message-48.png" alt="message-icon">
         </div>

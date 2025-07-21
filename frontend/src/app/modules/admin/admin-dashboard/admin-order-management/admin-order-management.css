@@ -12,6 +12,8 @@
   flex-direction: column;
 }
 
+
+
 #heading {
   position: sticky;
   top: 0;
@@ -42,10 +44,18 @@
   border-radius: 10px;
   margin-bottom: 8px;
   border: 1px solid #ccc;
+  position:fixed
 }
 
 .field {
   flex: 1;
   text-align: center;
   padding: 4px;
+}
+
+
+.hide {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
 }

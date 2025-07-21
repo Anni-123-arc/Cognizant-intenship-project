@@ -1,5 +1,5 @@
-<div id="main-order-container">
-  <div id="heading">
+<div id="main-order-container" (scroll)="onScroll($event)">
+  <div id="heading" [class.hide]="hideHeading">
     <h3>Orders</h3>
     <div id="filter-btn">
       <select name="order-filter" id="order-filter" [(ngModel)]="selectedFilter" (change)="filterOrders()">
@@ -11,7 +11,7 @@
     </div>
   </div>
 
-  <div class="order-header">
+  <div class="order-header" >
     <div class="field">Order ID</div>
     <div class="field">Customer ID</div>
     <div class="field">Product ID</div>
