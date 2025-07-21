@@ -1,11 +1,15 @@
 import { Component } from '@angular/core';
-import { AdminDashboard } from './modules/admin/admin-dashboard/admin-dashboard';
+import { RouterOutlet } from '@angular/router';
+
 @Component({
   selector: 'app-root',
-  imports: [AdminDashboard],
+  standalone: true,
+  imports: [RouterOutlet],
+  //imports: [RouterModule.forRoot(routes)],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
+
 export class App {
-  protected title = 'Ecom-FrontEnd';
+  protected title = 'Ecommerce';
 }

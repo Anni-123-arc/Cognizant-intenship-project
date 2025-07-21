@@ -1,1 +1,1 @@
-added products folder inside frontend/src/app/modules... directory
+adding products folder inside frontend/src/app/modules... directory
