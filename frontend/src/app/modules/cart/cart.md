@@ -1,1 +1,1 @@
-added cart folder inside frontend/src/app/modules... directory
+added cart folder inside frontend/src/app/modules... directory.

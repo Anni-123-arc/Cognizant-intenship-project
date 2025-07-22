@@ -1,0 +1,22 @@
+<app-navbar></app-navbar>
+<div class="cart-container">
+
+  <main class="cart-main">
+    <div class="cart-items-section">
+      <div class="cart-items-header">
+        <span>Product Details</span>
+        <span>Quantity</span>
+        <span>Total Amount</span>
+        <span>Action</span>
+      </div>
+      <app-cart-item 
+        *ngFor="let item of cartItems" 
+        [item]="item">
+      </app-cart-item>
+    </div>
+
+    <app-order-summary></app-order-summary>
+  </main>
+
+</div>
+<app-footer></app-footer>

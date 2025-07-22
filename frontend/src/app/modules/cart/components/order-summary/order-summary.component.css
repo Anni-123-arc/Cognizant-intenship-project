@@ -1,0 +1,79 @@
+.order-summary {
+  flex: 1;
+  background-color: #F8F9FA; /* Card Background */
+  padding: 20px;
+  border-radius: 8px;
+  height: fit-content;
+  border: 1px solid #DEE2E6;
+}
+
+.order-summary h2 {
+  font-size: 24px; /* Section Title */
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #212529;
+  font-weight: 600;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #DEE2E6;
+  font-size: 16px; /* Body Text */
+}
+
+.summary-item.total {
+  font-weight: 600;
+  font-size: 18px; /* Subheading */
+  border-bottom: none;
+  color: #212529;
+}
+
+.coupon-section {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.coupon-section input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #DEE2E6;
+  border-radius: 4px;
+  background-color: #FFFFFF;
+  font-size: 14px; /* Small Text */
+}
+
+.apply-btn {
+  background-color: #0D6EFD; /* Primary color */
+  color: white;
+  border: none;
+  padding: 0 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px; /* Buttons (CTA) */
+  font-weight: 600;
+}
+
+.apply-btn:hover {
+  background-color: #0B5ED7;
+}
+
+.order-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #198754; /* Success color */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 20px;
+  font-size: 16px; /* Buttons (CTA) */
+}
+
+.order-btn:hover {
+  background-color: #157347;
+}
