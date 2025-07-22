@@ -24,3 +24,12 @@ body{
 #placeholder-nav{
     margin-bottom: 2%;
 }
+
+
+@media screen and (max-width:1350px) {
+    #order-review-container{
+        display: flex;
+        flex-direction: column;
+        width: 65%;
+    }
+}

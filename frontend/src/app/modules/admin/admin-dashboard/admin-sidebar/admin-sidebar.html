@@ -6,10 +6,12 @@
 <div id="sidebar-main-container">
   <div id="sidebar-btn-group">
     <app-admin-sidebar-btns
+      (click)="addProduct()"
       [btnText]="'Add to inventory'"
       [btnStyle]="{ backgroundColor: 'blue' }"
     ></app-admin-sidebar-btns>
     <app-admin-sidebar-btns
+      (click)="updateInventory()"
       [btnText]="'Update inventory'"
       [btnStyle]="{ backgroundColor: 'green' }"
     ></app-admin-sidebar-btns>
@@ -27,6 +29,7 @@
         [product_name]="items.product_name"
         [category]="items.category"
         [price]="items.price"
+        (dltProduct)="dlt($event)"
       ></app-inventory-card>
      }
   </div>
