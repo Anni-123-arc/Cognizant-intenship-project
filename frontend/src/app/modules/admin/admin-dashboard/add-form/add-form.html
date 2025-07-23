@@ -1,7 +1,7 @@
-<div class="modal-overlay" (ngSubmit)="onSubmit()">
+<div class="modal-overlay" >
   <div class="modal">
     <h2>Add Products</h2>
-    <form>
+    <form (ngSubmit)="onSubmit()"> 
       <div class="form-row">
         <label for="Product_Name">Product Name:</label>
         <input type="text" id="Product_Name" [(ngModel)]="Product_Name" name="Product_Name" required />
@@ -19,7 +19,7 @@
 
       <div class="actions">
         <button type="submit">Add</button>
-        <button type="button">Cancel</button>
+        <button type="button" (click)="hideModal()">Cancel</button>
       </div>
     </form>
   </div>

@@ -19,7 +19,7 @@
     <div class="field">Total Amount</div>
   </div>
 
-  @for (order of orderList; track order.OrderID){
+  @for (order of orderList; track order.OrderId) {
     <app-order-card [order]="order" />
   }
 </div>
