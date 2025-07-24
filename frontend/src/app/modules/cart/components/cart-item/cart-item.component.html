@@ -1,1 +1,22 @@
-<p>cart-item works!</p>
+<div class="cart-item">
+  <div class="product-details">
+    <img [src]="'assets/images/' + item.image" alt="{{item.name}}" class="product-image">
+    <div class="product-info">
+      <h3 class="product-name">{{item.name}}</h3>
+      <p class="product-description">{{item.description}}</p>
+    </div>
+  </div>
+  
+  <div class="quantity-section">
+    <div class="quantity-control">
+      <button class="quantity-btn" (click)="updateQuantity(-1)">-</button>
+      <span class="quantity">{{item.quantity}}</span>
+      <button class="quantity-btn" (click)="updateQuantity(1)">+</button>
+    </div>
+  </div>
+  
+  <div class="price-section">
+    <div class="total-amount">${{(item.price * item.quantity).toFixed(2)}}</div>
+    <button class="remove-btn">Remove</button>
+  </div>
+</div>

@@ -9,15 +9,18 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./cart-item.component.css']
 })
 export class CartItemComponent {
-  @Input() item: any; // Make sure this line exists and is properly decorated
-  
-  updateQuantity(newQuantity: number) {
+  @Input() item: any = {
+    image: 'product-image.jpg',
+    name: 'Product Name',
+    description: 'Product description goes here with important details about the product features.',
+    price: 99.99,
+    quantity: 1
+  };
+
+  updateQuantity(change: number) {
+    const newQuantity = this.item.quantity + change;
     if (newQuantity > 0) {
       this.item.quantity = newQuantity;
     }
-  }
-  
-  removeItem() {
-    // Implement remove functionality
   }
 }
