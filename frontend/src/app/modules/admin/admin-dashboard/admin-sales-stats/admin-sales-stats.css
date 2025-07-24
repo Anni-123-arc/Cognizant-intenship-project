@@ -53,3 +53,13 @@
     color: #198754; /* Bootstrap success green */
 }
 
+@media screen  and (max-width:1350px){
+        .admin-stats-container{
+             width: 60%;
+           
+        }
+
+        .stats-inner-container{
+            width: 45%;
+        }
+}

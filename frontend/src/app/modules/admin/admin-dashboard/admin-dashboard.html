@@ -2,10 +2,13 @@
   <!-- <div id="placeholder-nav">
     <app-admin-nav></app-admin-nav>
   </div> -->
-  <app-admin-sidebar> </app-admin-sidebar>
+  <app-admin-sidebar (isVisible)="setVisibility($event)"> </app-admin-sidebar>
   <app-admin-sales-stats></app-admin-sales-stats>
   <div id="order-review-container">
     <app-admin-order-management></app-admin-order-management>
     <app-admin-user-reviews></app-admin-user-reviews>
   </div>
+  @if (isVisible){
+    <app-add-form (hideM)="setVisibility($event)" (productToAdd)="AddToInventory($event)"></app-add-form>
+  }
 </section>

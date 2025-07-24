@@ -3,36 +3,82 @@
   align-items: center;
   justify-content: space-between;
   border: 1px solid #e0e0e0;
-  border-radius: 10px;
-  padding: 12px 18px;
+  border-radius: 12px; /* Slightly larger radius for smoother edges */
+  padding: 14px 18px; /* Slightly more padding for better spacing */
   margin-bottom: 16px;
   background-color: #fff;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* Softer shadow for depth */
   width: 100%;
   box-sizing: border-box;
+  transition: box-shadow 0.2s ease; /* Smooth hover effect */
+}
+
+.card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Enhanced shadow on hover */
 }
 
 .card-content {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
-  gap: 24px;
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  align-items: center;
+  gap: 10px; /* Adds consistent spacing between rows */
 }
 
+img {
+  width: 25px;
+  height: 25px;
+  object-fit: contain; /* Ensures icons scale properly */
+}
+
+#row-1, #row-2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  gap: 8px; /* Adds spacing between columns */
+}
+
+#row-1 > div, #row-2 > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  min-width: 0; /* Prevents text overflow */
+}
+
+/* Optional: Improve text readability */
+#row-1 > div > strong, #row-2 > div > strong {
+  font-size: 12px;
+  color: #666; /* Softer color for labels */
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+#row-1 > div > span, #row-2 > div > span {
+  font-size: 14px;
+  font-weight: 600;
+  color: #222; /* Darker for better contrast */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+/* 
 .card-content div {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-width: 0; /* Prevent overflow */
-}
+  min-width: 0; /* Prevent overflow 
+}*/
 
-.card-content div strong {
+ /* .card-content div strong {
   font-size: 12px;
   color: #777;
   font-weight: 500;
   margin-bottom: 4px;
-}
+} 
 
 .card-content div span {
   font-size: 14px;
@@ -41,4 +87,5 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
+}  */
+
