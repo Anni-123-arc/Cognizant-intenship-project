@@ -10,7 +10,7 @@
       [btnText]="'Add to inventory'"
       [btnStyle]="{ backgroundColor: 'blue' }"
     ></app-admin-sidebar-btns>
-    <app-admin-sidebar-btns
+    <app-admin-sidebar-btns 
       (click)="updateInventory()"
       [btnText]="'Update inventory'"
       [btnStyle]="{ backgroundColor: 'green' }"
@@ -21,7 +21,7 @@
     ></app-admin-sidebar-btns>
   </div>
 
-  <div id="sidebar-inventory">
+  <div id="sidebar-inventory" >
     <h2>Inventory</h2>
      @for (items of inventory; track items.product_id) {
       <app-inventory-card
