@@ -5,6 +5,11 @@ import { ProductDetailComponent } from './modules/products/product-detail/produc
 import { AdminDashboard } from './modules/admin/admin-dashboard/admin-dashboard';
 import { CartPageComponent } from './modules/cart/pages/cart-page/cart-page.component';
 import { WishlistPageComponent } from './modules/cart/pages/wishlist-page/wishlist-page.component';
+import { Login } from './modules/auth/login/login';
+import { RegisterComponent } from './modules/auth/register/register';
+import { Bio } from './modules/profile/bio/bio';
+import { ChangePasswordComponent } from './modules/auth/change-password/change-password';
+
 //import { HttpClientModule } from '@angular/common/http';
 
 export const routes: Routes = [
@@ -14,4 +19,8 @@ export const routes: Routes = [
   { path: 'admin', component: AdminDashboard },
   { path: 'cart',component:CartPageComponent},
   { path: 'Wishlist',component:WishlistPageComponent},
+  { path: 'login', component: Login },
+  { path: 'register',component:RegisterComponent},
+  { path: 'change-password',component:ChangePasswordComponent},
+  { path: 'bio', component: Bio }
 ];

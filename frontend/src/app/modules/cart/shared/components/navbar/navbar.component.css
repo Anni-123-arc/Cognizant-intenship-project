@@ -94,6 +94,16 @@
   color: #0D6EFD;
 }
 
+.logo-section {
+  flex: 0 0 auto;
+  margin: 0 1rem;
+}
+
+.logo {
+  height: 40px; /* Adjust based on your logo */
+  width: auto;
+}
+
 .help-link {
   font-weight: 600;
   text-transform: uppercase;
@@ -103,6 +113,13 @@
   color: #DC3545;
 }
 
+.logo {
+  transition: transform 0.2s;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
 /* Responsive Adjustments */
 @media (max-width: 768px) {
   .navbar {
