@@ -1,0 +1,25 @@
+<app-navbar></app-navbar>
+<div class="wishlist-container">
+  <div class="header">
+    <h2>My Wishlist ({{wishlistItems.length}})</h2>
+    <a routerLink="/Cart" class="view-cart-btn">View Cart</a>
+  </div>
+
+  <div class="wishlist-items" *ngIf="wishlistItems.length > 0; else emptyState">
+    <app-wishlist-item 
+      *ngFor="let item of wishlistItems"
+      [item]="item"
+      (remove)="handleRemove($event)"
+      (moveToCart)="handleMoveToCart($event)">
+    </app-wishlist-item>
+  </div>
+
+  <ng-template #emptyState>
+    <div class="empty-wishlist">
+      <img src="assets/images/empty-wishlist.svg" alt="Empty wishlist">
+      <h3>Your wishlist is empty</h3>
+      <a routerLink="/products" class="shop-btn">Browse Products</a>
+    </div>
+  </ng-template>
+</div>
+<app-footer></app-footer>

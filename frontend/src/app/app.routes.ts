@@ -4,6 +4,7 @@ import { ProductListComponent } from './modules/products/product-list/product-li
 import { ProductDetailComponent } from './modules/products/product-detail/product-detail.component';
 import { AdminDashboard } from './modules/admin/admin-dashboard/admin-dashboard';
 import { CartPageComponent } from './modules/cart/pages/cart-page/cart-page.component';
+import { WishlistPageComponent } from './modules/cart/pages/wishlist-page/wishlist-page.component';
 //import { HttpClientModule } from '@angular/common/http';
 
 export const routes: Routes = [
@@ -12,4 +13,5 @@ export const routes: Routes = [
   { path: 'products/:id', component: ProductDetailComponent },
   { path: 'admin', component: AdminDashboard },
   { path: 'cart',component:CartPageComponent},
+  { path: 'Wishlist',component:WishlistPageComponent},
 ];

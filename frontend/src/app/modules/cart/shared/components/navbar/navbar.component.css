@@ -86,6 +86,10 @@
   color: #6610F2;
 }
 
+.Wishlist-link:hover {
+  color: #0D6EFD;
+}
+
 .cart-link:hover {
   color: #0D6EFD;
 }

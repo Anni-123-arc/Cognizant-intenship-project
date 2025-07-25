@@ -4,9 +4,7 @@
   <main class="cart-main">
     <div class="cart-items-section">
       <div class="cart-items-header">
-        <span>Product Details</span>
-        <span>Quantity</span>
-        <span>Total Amount</span>
+      <h2>My Cart ({{cartItems.length}})</h2>
       </div>
       <app-cart-item 
         *ngFor="let item of cartItems" 

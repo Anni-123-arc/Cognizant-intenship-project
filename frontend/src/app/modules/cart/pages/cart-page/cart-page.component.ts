@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CartItemComponent } from '../../components/cart-item/cart-item.component';
 import { OrderSummaryComponent } from '../../components/order-summary/order-summary.component';
-import { Navbar } from '../../shared/components/navbar/navbar.component';
+import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 
 @Component({
@@ -10,7 +10,7 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
   standalone: true,
   imports: [
     CommonModule,
-    Navbar,
+    NavbarComponent,
     FooterComponent,
     CartItemComponent, 
     OrderSummaryComponent
@@ -20,7 +20,25 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
 })
 export class CartPageComponent {
   cartItems = [
-    { id: 1, name: 'Product 1', price: 29.99, quantity: 2, image: 'product1.jpg' },
-    { id: 2, name: 'Product 2', price: 49.99, quantity: 1, image: 'product2.jpg' }
+    { 
+      id: 1, 
+      name: 'Product 1', 
+      price: 29.99, 
+      quantity: 2, 
+      image: 'product1.jpg' 
+    },
+    { 
+      id: 2, 
+      name: 'Product 2', 
+      price: 49.99, 
+      quantity: 1, 
+      image: 'product2.jpg' 
+    }
   ];
+
+  handleRemove(itemId: number) {
+    console.log('Item removed:', itemId);
+    // UI-only removal for demo
+    this.cartItems = this.cartItems.filter(item => item.id !== itemId);
+  }
 }
