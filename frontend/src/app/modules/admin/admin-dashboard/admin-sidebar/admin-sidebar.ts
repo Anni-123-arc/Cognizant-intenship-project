@@ -19,6 +19,7 @@ export class AdminSidebar {
   }
 
   isVisible = output<boolean>();
+  isUpdateVisible = output<boolean>()
   
   dlt(product_id: string) {
     this.inventory = this.inventoryService.dltItem(product_id);
@@ -31,6 +32,6 @@ export class AdminSidebar {
 
   updateInventory() {
     // Logic to update the inventory
-    this.isVisible.emit(true);
+    this.isUpdateVisible.emit(true);
   }
 }

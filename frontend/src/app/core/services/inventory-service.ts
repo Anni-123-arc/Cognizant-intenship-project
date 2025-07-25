@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { type PRO } from '../../modules/admin/admin-dashboard/admin-type.model'
-import {type Item} from  '../../modules/admin/admin-dashboard/admin-type.model'
-import {type UPRO} from '../../modules/admin/admin-dashboard/admin-type.model'
+import { type Item } from '../../modules/admin/admin-dashboard/admin-type.model'
+import { type UPRO } from '../../modules/admin/admin-dashboard/admin-type.model'
 
 
 @Injectable({
@@ -53,9 +53,9 @@ export class InventoryService {
     const newItem: Item = {
       product_id: `000000 + ${this.inventory.length}`,
       product_name: product.Product_Name,
-      category: 'Electronics', 
+      category: 'Electronics',
       price: product.Price,
-      Quantity:product.Quantity
+      Quantity: product.Quantity
     };
 
     this.inventory.push(newItem);
@@ -71,14 +71,23 @@ export class InventoryService {
     return this.inventory
   }
 
-  updateItem(product:UPRO){
-    this.inventory = this.inventory.filter((item)=>{
-      if(item.product_id===product.Product_Id){
-        item.Quantity = product.Quantity;
-        item.price = product.Price
-        return item;
+updateItem(product: UPRO) {
+    let itemFound = false;
+    
+    this.inventory = this.inventory.map((item) => {
+      if (item.product_id === product.Product_Id) {
+        itemFound = true;
+        return {
+          ...item,
+          Quantity: product.Quantity,
+          price: product.Price
+        };
       }
       return item;
-    })
+    });
+
+    if (!itemFound) {
+      throw new Error(`Item with id ${product.Product_Id} is not available.`);
+    }
   }
 }
