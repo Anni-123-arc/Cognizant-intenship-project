@@ -1,6 +1,6 @@
 import { Component, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { PRO } from '../admin-type.model';
+import {type PRO } from '../admin-type.model';
 
 @Component({
   selector: 'app-add-form',
@@ -13,6 +13,7 @@ export class AddForm {
   Product_Name: string = '';
   Quantity: number = 0;
   Price: number = 0;
+  error!:string
 
   product: PRO = {
     Product_Name: this.Product_Name,
@@ -25,11 +26,19 @@ export class AddForm {
   hideM = output<boolean>();  // output signal to hide the modal
 
   onSubmit() {
+
+
+    if(this.Product_Name===''||this.Quantity<=0||this.Price<=0){
+        this.error = 'all fields are mandatory'
+        return
+    }
+
     const product: PRO = {
       Product_Name: this.Product_Name,
       Quantity: this.Quantity,
       Price: this.Price
     };
+
 
     this.productToAdd.emit(product);
 
