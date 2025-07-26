@@ -1,0 +1,166 @@
+.order-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100vh; /* Full viewport height */
+  overflow: hidden; /* Prevent page scroll */
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #f7f7f7;
+  padding: 20px;
+  border-right: 1px solid #ccc;
+  flex-shrink: 0;
+  overflow-y: auto; /* Optional: scroll sidebar if content exceeds */
+}
+
+.sidebar h4 {
+  margin-bottom: 10px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  margin-bottom: 8px;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.sidebar li.active,
+.sidebar li:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 16px;
+  height: 100vh; /* Ensure full height */
+  box-sizing: border-box;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.search-bar {
+  flex: 1;
+  padding: 8px;
+  min-width: 200px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.year-dropdown {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  min-width: 150px;
+}
+
+/* ✅ Scrollable Orders Section */
+.orders-scrollable {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.order-card {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.product-image {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.order-info {
+  flex-grow: 1;
+}
+
+.status {
+  font-weight: bold;
+
+}
+.status-delivered {
+  color: green;
+}
+
+.status-pending {
+  color: orange;
+}
+
+.status-cancelled {
+  color: red;
+}
+
+.status-returned {
+  color: #ff1493; 
+}
+
+.view-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.view-btn:hover {
+  background-color: #0056b3;
+}
+
+@media screen and (max-width: 768px) {
+  .order-container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    max-width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .toolbar {
+    flex-direction: column;
+  }
+
+  .search-bar,
+  .year-dropdown {
+    width: 100%;
+  }
+
+  .order-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .view-btn {
+    align-self: flex-end;
+  }
+}

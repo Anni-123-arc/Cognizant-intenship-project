@@ -1,0 +1,128 @@
+.order-details-container {
+  padding: 20px;
+}
+
+.page-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.order-details-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+/* Left Column */
+.left-column {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Product Card */
+.product-details {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f9f9f9;
+  padding: 24px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  gap: 20px;
+}
+
+.product-info {
+  flex: 2;
+  min-width: 250px;
+}
+
+.product-info h4,
+.product-info p {
+  margin: 10px 0;
+}
+
+/* Buttons Row */
+.action-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.track-btn,
+.rating-btn {
+  padding: 10px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.track-btn {
+  background-color: #28a745;
+  color: white;
+}
+
+.rating-btn {
+  background-color: #ffc107;
+  color: black;
+}
+
+.product-image-box {
+  flex: 0 0 auto;
+  align-self: flex-start;
+}
+
+.product-image-box img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Delivery Card */
+.delivery-details-card {
+  background-color: #f1f1f1;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.delivery-details-card h4 {
+  margin-bottom: 12px;
+}
+
+/* Right Column */
+.price-section {
+  flex: 1;
+  background-color: #fff;
+  padding: 24px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.download-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.price-box h4 {
+  margin-bottom: 10px;
+}
+
+.bill-box p {
+  margin: 6px 0;
+}
+
+.payment-mode {
+  margin-top: 20px;
+  font-style: italic;
+}

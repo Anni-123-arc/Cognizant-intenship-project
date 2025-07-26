@@ -5,6 +5,8 @@ import { ProductDetailComponent } from './modules/products/product-detail/produc
 import { AdminDashboard } from './modules/admin/admin-dashboard/admin-dashboard';
 import { CartPageComponent } from './modules/cart/pages/cart-page/cart-page.component';
 import { WishlistPageComponent } from './modules/cart/pages/wishlist-page/wishlist-page.component';
+import { OrderSummary } from './modules/orders/order-summary/order-summary';
+import { OrderDetails } from './modules/orders/order-details/order-details';
 import { Login } from './modules/auth/login/login';
 import { RegisterComponent } from './modules/auth/register/register';
 import { Bio } from './modules/profile/bio/bio';
@@ -22,5 +24,7 @@ export const routes: Routes = [
   { path: 'login', component: Login },
   { path: 'register',component:RegisterComponent},
   { path: 'change-password',component:ChangePasswordComponent},
-  { path: 'bio', component: Bio }
+  { path: 'bio', component: Bio },
+   {path: 'orders', component:OrderSummary},
+  {path: 'orders/:id',component:OrderDetails}
 ];
