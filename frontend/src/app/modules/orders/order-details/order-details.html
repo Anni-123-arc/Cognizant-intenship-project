@@ -1,0 +1,54 @@
+<div class="order-details-container">
+  <h2 class="page-title">Order Details</h2>
+
+  <div class="order-details-wrapper">
+    <!-- Left Column: Order Details + Delivery Info -->
+    <div class="left-column">
+
+      <!-- Order Card -->
+      <div class="product-details">
+        <div class="product-info">
+          <h4>Product Name: {{ order.productName }}</h4>
+          <p>Product Price: ₹{{ order.price }}</p>
+          <p>Seller Brand: {{ order.seller }}</p>
+
+          <!-- Buttons -->
+          <div class="action-buttons">
+            <button class="track-btn">Track Order</button>
+            <button class="rating-btn">★ Rate this Product</button>
+          </div>
+        </div>
+
+        <div class="product-image-box">
+          <img [src]="order.imageUrl" alt="Product" />
+        </div>
+      </div>
+
+      <!-- Delivery Details Card -->
+      <div class="delivery-details-card">
+        <h4>Delivery Details</h4>
+        <p><strong>Recipient:</strong> {{ order.recipientName }}</p>
+        <p><strong>Address:</strong> {{ order.deliveryAddress }}</p>
+        <p><strong>Phone:</strong> {{ order.phone }}</p>
+        <p><strong>Expected Delivery:</strong> {{ order.deliveryDate }}</p>
+      </div>
+    </div>
+
+    <!-- Right Column: Price Section -->
+    <div class="price-section">
+      <button class="download-btn">Download Invoice</button>
+
+      <div class="price-box">
+        <h4>Price Details</h4>
+        <div class="bill-box">
+          <p>Item Price: ₹{{ order.price }}</p>
+          <p>Tax: ₹{{ order.price * 0.18 | number: '1.2-2' }}</p>
+          <hr />
+          <p><strong>Total: ₹{{ order.price * 1.18 | number: '1.2-2' }}</strong></p>
+        </div>
+
+        <p class="payment-mode">Mode of Payment: {{ order.paymentMode }}</p>
+      </div>
+    </div>
+  </div>
+</div>
