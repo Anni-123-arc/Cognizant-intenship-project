@@ -4,7 +4,22 @@
 </div> -->
 
 <div id="sidebar-main-container">
-  <div id="sidebar-btn-group">
+  <div id="sidebar-inventory" >
+    <h2>Inventory</h2>
+     @for (items of inventory; track items.product_id) {
+      <app-inventory-card
+        [product_id]="items.product_id"
+        [product_name]="items.product_name"
+        [category]="items.category"
+        [price]="items.price"
+        [stock]="items.Quantity"
+        (dltProduct)="dlt($event)"
+      ></app-inventory-card>
+     }
+     
+  
+  </div>
+   <div id="sidebar-btn-group">
     <app-admin-sidebar-btns
       (click)="addProduct()"
       [btnText]="'Add to inventory'"
@@ -15,22 +30,7 @@
       [btnText]="'Update inventory'"
       [btnStyle]="{ backgroundColor: 'green' }"
     ></app-admin-sidebar-btns>
-    <app-admin-sidebar-btns
-      [btnText]="'Delete Items'"
-      [btnStyle]="{ backgroundColor: 'orange' }"
-    ></app-admin-sidebar-btns>
+
   </div>
 
-  <div id="sidebar-inventory" >
-    <h2>Inventory</h2>
-     @for (items of inventory; track items.product_id) {
-      <app-inventory-card
-        [product_id]="items.product_id"
-        [product_name]="items.product_name"
-        [category]="items.category"
-        [price]="items.price"
-        (dltProduct)="dlt($event)"
-      ></app-inventory-card>
-     }
-  </div>
 </div>

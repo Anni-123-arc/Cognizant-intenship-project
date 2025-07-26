@@ -6,13 +6,27 @@ body{
 
 #dashboard{
     background-color: #FFFFFF ;
+    display: flex;
+    flex-direction: row;
     /* border: 5px solid; */
     /* margin: 10px; */
 }
 
+#right{
+    width: 35%;
+}
+
+#left{
+    width: 70%;
+}
+
+#stats{
+    width: 100%;
+}
+
 #order-review-container {
     display: flex;
-    width: 70%;
+    width: 100%;
     flex-direction: row-reverse;
     justify-content: space-between;
     margin-left: auto;
@@ -30,6 +44,6 @@ body{
     #order-review-container{
         display: flex;
         flex-direction: column;
-        width: 65%;
+        width: 100%;
     }
 }

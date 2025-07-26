@@ -3,6 +3,7 @@ import { AdminSidebarBtns } from './admin-sidebar-btns/admin-sidebar-btns';
 import { InventoryCard } from './inventory-card/inventory-card';
 import { InventoryService } from '../../../../core/services/inventory-service';
 import { Inventory } from '../admin-type.model';
+import {type Item} from '../../../admin/admin-dashboard/admin-type.model'
 
 @Component({
   selector: 'app-admin-sidebar',
@@ -11,13 +12,14 @@ import { Inventory } from '../admin-type.model';
   styleUrl: './admin-sidebar.css'
 })
 export class AdminSidebar {
-    inventory :Inventory[] = []
+    inventory :Item[] = []
 
   constructor(private inventoryService:InventoryService){
     this.inventory = inventoryService.getInventoryItems()
   }
 
   isVisible = output<boolean>();
+  isUpdateVisible = output<boolean>()
   
   dlt(product_id: string) {
     this.inventory = this.inventoryService.dltItem(product_id);
@@ -30,6 +32,6 @@ export class AdminSidebar {
 
   updateInventory() {
     // Logic to update the inventory
-   alert('Update Inventory button clicked');
+    this.isUpdateVisible.emit(true);
   }
 }
