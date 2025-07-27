@@ -1,0 +1,38 @@
+<div class="product-card">
+  <div class="product-img-container">
+    <div id="productImg">
+      <img [src]="image_items()?.url" [alt]="image_items()?.alt" class="product-img" />
+    </div>
+    <div class="product-actions">
+      <button class="action-btn wishlist-btn" aria-label="Add to wishlist">
+        <i class="fa fa-heart"></i>
+      </button>
+      <button class="action-btn quick-view-btn" aria-label="Quick view">
+        <i class="fa fa-eye"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="product-details">
+    <h3 class="product-title">Premium Wireless Headphones</h3>
+
+    <div class="product-rating">
+      <i class="fa fa-star"></i>
+      <i class="fa fa-star"></i>
+      <i class="fa fa-star"></i>
+      <i class="fa fa-star"></i>
+      <i class="fa fa-star-half-alt"></i>
+      <span class="rating-count">(128)</span>
+    </div>
+
+    <div class="product-price">
+      <span class="current-price">₹2,499 <i class="fa fa-rupee"></i></span>
+      <span class="original-price">₹3,999</span>
+      <span class="discount">38% OFF</span>
+    </div>
+
+    <button class="add-to-cart-btn">
+      <i class="fa fa-shopping-cart"></i> Add to Cart
+    </button>
+  </div>
+</div>

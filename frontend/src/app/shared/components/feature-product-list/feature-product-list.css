@@ -1,0 +1,17 @@
+#featured-items {
+    /* border: 5px solid; */
+    padding: 10px;
+
+}
+#featured-items h3{
+    font-size: 30px;
+    text-align: center;
+}
+
+.featured-product-container {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    justify-content: space-between;
+    align-items: center;
+}

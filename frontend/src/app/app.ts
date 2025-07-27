@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { RouterModule } from '@angular/router';
-// import { AdminDashboard } from './modules/admin/admin-dashboard/admin-dashboard';
-
+import { Carousal } from './shared/components/carousal/carousal';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet ,RouterModule],
-  //imports: [RouterModule.forRoot(routes)],
+  imports: [RouterOutlet ,RouterModule,Carousal],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
