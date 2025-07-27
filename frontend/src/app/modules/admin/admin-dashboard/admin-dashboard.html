@@ -1,28 +1,43 @@
-<p>{{msg}}</p>
+<section class="admin-dashboard">
+  <!-- Sidebar Navigation -->
+  <aside class="dashboard-sidebar">
+    <app-admin-sidebar 
+      (isVisible)="setVisibility($event)" 
+      (isUpdateVisible)="setIsUpdateVisible($event)">
+    </app-admin-sidebar>
+  </aside>
 
-<section id="dashboard">
-  <!-- <div id="placeholder-nav">
+  <!-- Main Content Area -->
+  <main class="dashboard-content">
     <app-admin-nav></app-admin-nav>
-  </div> -->
-
-  <div id="right">
-      <app-admin-sidebar (isVisible)="setVisibility($event)" (isUpdateVisible)="setIsUpdateVisible($event)"> </app-admin-sidebar>
-
-  </div>
-  <div id="left">
-      <div id="stats">
+    <!-- Stats Overview Section -->
+    <section class="stats-section">
       <app-admin-sales-stats></app-admin-sales-stats>
+    </section>
 
-  </div>
-  <div id="order-review-container">
-    <app-admin-order-management></app-admin-order-management>
-    <app-admin-user-reviews></app-admin-user-reviews>
-  </div>
-  </div>
-  @if (isVisible){
-    <app-add-form (hideM)="setVisibility($event)" (productToAdd)="AddToInventory($event)"></app-add-form>
+    <!-- Data Visualization Section -->
+    <section class="data-section">
+      <div class="orders-container">
+        <app-admin-order-management></app-admin-order-management>
+      </div>
+      <div class="messages-container">
+        <app-admin-user-reviews></app-admin-user-reviews>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal Forms -->
+  @if (isVisible) {
+    <app-add-form 
+      (hideM)="setVisibility($event)" 
+      (productToAdd)="AddToInventory($event)">
+    </app-add-form>
   }
-    @if (isUpdateVisible){
-    <app-update-form (hideM)="setIsUpdateVisible($event)" (productToUpdate)="UpdateToInventory($event)"></app-update-form>
+  
+  @if (isUpdateVisible) {
+    <app-update-form 
+      (hideM)="setIsUpdateVisible($event)" 
+      (productToUpdate)="UpdateToInventory($event)">
+    </app-update-form>
   }
 </section>

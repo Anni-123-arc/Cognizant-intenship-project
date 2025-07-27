@@ -1,34 +1,52 @@
-<!-- <p>admin-sales-stats works!</p> -->
-
 <div class="admin-stats-container">
-    <div class="stats-inner-container">
-        <div class="img-heading">
-            <img src="../../../../../assets/AdminAssets/Sales.png" alt="sales logo">
-            <span>Total sales</span>
+    <!-- Total Sales Card -->
+    <div class="stats-card sales-card">
+        <div class="card-header">
+            <div class="card-icon">
+                <img src="../../../../../assets/AdminAssets/Sales.png" alt="sales icon">
+            </div>
+            <div class="card-title">Total Sales</div>
+            <div class="card-trend positive-trend">
+                <i class="fas fa-arrow-up"></i> 12.5%
+            </div>
         </div>
-        <div class="value-container">
-           <h3> {{getTotalSales()}}</h3>
-
+        <div class="card-value">₹{{getTotalSales()}}</div>
+        <div class="card-footer">
+            <span class="period-comparison">↑ ₹15,800 vs last month</span>
         </div>
     </div>
-    <div class="stats-inner-container">
-        <div class="img-heading">
-            <img src="../../../../../assets/AdminAssets/crowd-icon.png" alt="users logo">
-            <span>Active Users</span>
-        </div>
-        <div class="value-container">
-           <h3> {{ActiveUserCount}}</h3>
-        </div>
 
+    <!-- Active Users Card -->
+    <div class="stats-card users-card">
+        <div class="card-header">
+            <div class="card-icon">
+                <img src="../../../../../assets/AdminAssets/crowd-icon.png" alt="users icon">
+            </div>
+            <div class="card-title">Active Users</div>
+            <div class="card-trend positive-trend">
+                <i class="fas fa-arrow-up"></i> 8.2%
+            </div>
+        </div>
+        <div class="card-value">{{ActiveUserCount}}</div>
+        <div class="card-footer">
+            <span class="period-comparison">↑ 178 vs last month</span>
+        </div>
     </div>
-    <div class="stats-inner-container">
-        <div class="img-heading">
-            <img src="../../../../../assets/AdminAssets/check-out-icon.png" alt="order logo">
-            <span>Total Order Placed</span>
-        </div>
-        <div class="value-container">
-           <h3> {{getOrderPlace()}}</h3>
-        </div>
 
+    <!-- Orders Card -->
+    <div class="stats-card orders-card">
+        <div class="card-header">
+            <div class="card-icon">
+                <img src="../../../../../assets/AdminAssets/check-out-icon.png" alt="orders icon">
+            </div>
+            <div class="card-title">Total Orders</div>
+            <div class="card-trend negative-trend">
+                <i class="fas fa-arrow-down"></i> 3.4%
+            </div>
+        </div>
+        <div class="card-value">{{getOrderPlace()}}</div>
+        <div class="card-footer">
+            <span class="period-comparison">↓ 42 vs last month</span>
+        </div>
     </div>
 </div>

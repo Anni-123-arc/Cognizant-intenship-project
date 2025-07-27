@@ -16,4 +16,9 @@ export class OrderCard {
     DeliveryStatus: string;
     TotalAmount: number;
   };
+
+
+  viewOrder(){
+    
+  }
 }

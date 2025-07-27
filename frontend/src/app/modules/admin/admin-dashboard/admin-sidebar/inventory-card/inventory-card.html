@@ -1,31 +1,26 @@
-<div class="card">
-  <div class="card-content">
-    <div id="row-1">
-      <div>
-        <strong>Product ID</strong>
-        <span>{{ product_id }}</span>
-      </div>
-      <div>
-        <strong>Name</strong>
-        <span>{{ product_name }}</span>
-      </div>
-      <div>
-        <strong>Category</strong>
-        <span>{{ category }}</span>
-      </div>
+<!-- inventory-card.component.html -->
+<div class="inventory-card">
+  <div class="card-header">
+    <span class="product-id">#{{ product_id }}</span>
+    <span class="product-category">{{ category }}</span>
+  </div>
+  
+  <h3 class="product-name">{{ product_name }}</h3>
+  
+  <div class="card-details">
+    <div class="detail-item">
+      <span class="detail-label">Price</span>
+      <span class="detail-value">₹{{ price }}</span>
     </div>
-    <div id="row-2">
-      <div>
-        <strong>Price</strong>
-        <span>₹{{ price }}</span>
-      </div>
-      <div>
-        <strong>Stock</strong>
-        <span>{{stock}}</span>
-      </div>
-      <div>
-          <span (click)="onDelete()"><img src="../../../../../../assets/AdminAssets/delete.png" alt=""></span>
-      </div>
+    
+    <div class="detail-item stock-item" [class.low-stock]="stock < 10">
+      <span class="detail-label">Stock</span>
+      <span class="detail-value">{{ stock }}</span>
+      <span class="stock-indicator"></span>
     </div>
   </div>
+  
+  <button class="delete-btn" (click)="onDelete()">
+    <i class="fas fa-trash-alt"></i>
+  </button>
 </div>

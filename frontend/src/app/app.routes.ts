@@ -11,11 +11,12 @@ import { Login } from './modules/auth/login/login';
 import { RegisterComponent } from './modules/auth/register/register';
 import { Bio } from './modules/profile/bio/bio';
 import { ChangePasswordComponent } from './modules/auth/change-password/change-password';
+import { LandingPage } from './modules/landing-page/landing-page';
 
 //import { HttpClientModule } from '@angular/common/http';
 
 export const routes: Routes = [
-  // { path: '', redirectTo: 'products', pathMatch: 'full' },
+  { path: '', component:LandingPage},
   { path: 'products', component: ProductListComponent },
   { path: 'products/:id', component: ProductDetailComponent },
   { path: 'admin', component: AdminDashboard },
