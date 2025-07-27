@@ -1,12 +1,30 @@
-<!-- <p>admin-sidebar works!</p> -->
-<!-- <div id="sidebar-main-container">
+<!-- admin-sidebar.component.html -->
+<div class="admin-sidebar">
+  <div class="sidebar-header">
+    <h2><i class="fas fa-boxes"></i> Inventory Management</h2>
+    <div class="sidebar-actions">
+      <app-admin-sidebar-btns 
+        (click)="addProduct()"
+        [btnText]="'Add Product'"
+        [btnStyle]="{ 
+          backgroundColor: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+          color: 'white'
+        }"
+      ></app-admin-sidebar-btns>
+      
+      <app-admin-sidebar-btns 
+        (click)="updateInventory()"
+        [btnText]="'Update Inventory'"
+        [btnStyle]="{ 
+          backgroundColor: 'linear-gradient(135deg, #2bde8c 0%, #1e8f4a 100%)',
+          color: 'white'
+        }"
+      ></app-admin-sidebar-btns>
+    </div>
+  </div>
 
-</div> -->
-
-<div id="sidebar-main-container">
-  <div id="sidebar-inventory" >
-    <h2>Inventory</h2>
-     @for (items of inventory; track items.product_id) {
+  <div class="inventory-list">
+    @for (items of inventory; track items.product_id) {
       <app-inventory-card
         [product_id]="items.product_id"
         [product_name]="items.product_name"
@@ -15,22 +33,6 @@
         [stock]="items.Quantity"
         (dltProduct)="dlt($event)"
       ></app-inventory-card>
-     }
-     
-  
+    }
   </div>
-   <div id="sidebar-btn-group">
-    <app-admin-sidebar-btns
-      (click)="addProduct()"
-      [btnText]="'Add to inventory'"
-      [btnStyle]="{ backgroundColor: 'blue' }"
-    ></app-admin-sidebar-btns>
-    <app-admin-sidebar-btns 
-      (click)="updateInventory()"
-      [btnText]="'Update inventory'"
-      [btnStyle]="{ backgroundColor: 'green' }"
-    ></app-admin-sidebar-btns>
-
-  </div>
-
 </div>

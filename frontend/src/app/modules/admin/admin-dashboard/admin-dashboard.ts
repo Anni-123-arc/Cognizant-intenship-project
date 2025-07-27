@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-// import { AdminNav } from './admin-nav/admin-nav';
+import { AdminNav } from './admin-nav/admin-nav';
 import { AdminSidebar } from './admin-sidebar/admin-sidebar';
 import { AdminSalesStats } from './admin-sales-stats/admin-sales-stats';
 import { AdminOrderManagement } from './admin-order-management/admin-order-management';
@@ -12,7 +12,7 @@ import { type UPRO } from '../admin-dashboard/admin-type.model'
 
 @Component({
   selector: 'app-admin-dashboard',
-  imports: [AdminSidebar, AdminSalesStats, AdminOrderManagement, AdminUserReviews, AddForm, UpdateForm],
+  imports: [AdminSidebar, AdminSalesStats, AdminOrderManagement, AdminUserReviews, AddForm, UpdateForm, AdminNav],
   templateUrl: './admin-dashboard.html',
   styleUrl: './admin-dashboard.css'
 })

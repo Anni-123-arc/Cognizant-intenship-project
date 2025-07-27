@@ -9,6 +9,6 @@ import { CommonModule } from '@angular/common';
 })
 export class AdminSidebarBtns {
       btnText = input('');
-      btnStyle = input({backgroundColor: ''});
+      btnStyle = input({backgroundColor: '' , color:''});
 
 }

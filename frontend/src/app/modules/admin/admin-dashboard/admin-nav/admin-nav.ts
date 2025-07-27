@@ -7,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrl: './admin-nav.css'
 })
 export class AdminNav {
-      
+      isSyncing = false
+      lastSyncTime = '10:00am'
+
+      syncData(){
+
+      }
 }
