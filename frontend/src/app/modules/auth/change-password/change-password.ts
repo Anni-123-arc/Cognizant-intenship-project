@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-change-password',
+  imports: [ReactiveFormsModule, CommonModule],
+  standalone: true,
   templateUrl: './change-password.html',
   styleUrls: ['./change-password.css']
 })
@@ -18,11 +21,21 @@ export class ChangePasswordComponent {
   }
 
   onChangePassword() {
-    if (this.passwordForm.valid && this.passwordForm.value.newPassword === this.passwordForm.value.confirmPassword) {
+    const { newPassword, confirmPassword } = this.passwordForm.value;
+
+    if (this.passwordForm.valid && newPassword === confirmPassword) {
       alert('Password changed successfully!');
-      this.router.navigate(['/profile']);
+      this.router.navigate(['/login']); // redirect to login
     } else {
       alert('Passwords do not match!');
     }
+  }
+
+  get newPassword() {
+    return this.passwordForm.get('newPassword');
+  }
+
+  get confirmPassword() {
+    return this.passwordForm.get('confirmPassword');
   }
 }
