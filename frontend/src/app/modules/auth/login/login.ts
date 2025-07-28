@@ -21,10 +21,11 @@ export class Login {
   }
 
   onSubmit(): void {
-    if (this.loginForm.valid) {
-      this.router.navigate(['/home']);
-    }
+  if (this.loginForm.valid) {
+    alert('Login successful!');
+    this.router.navigate(['/']);
   }
+}
 
   goToRegister(): void {
     this.router.navigate(['/register']);
