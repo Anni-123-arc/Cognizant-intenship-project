@@ -21,7 +21,7 @@ export const routes: Routes = [
   { path: 'products/:id', component: ProductDetailComponent },
   { path: 'admin', component: AdminDashboard },
   { path: 'cart',component:CartPageComponent},
-  { path: 'Wishlist',component:WishlistPageComponent},
+  { path: 'wishlist',component:WishlistPageComponent},
   { path: 'login', component: Login },
   { path: 'register',component:RegisterComponent},
   { path: 'change-password',component:ChangePasswordComponent},

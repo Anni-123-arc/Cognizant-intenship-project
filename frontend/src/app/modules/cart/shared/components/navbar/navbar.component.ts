@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router'; // Must be imported
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
+  imports: [RouterModule], // Must include RouterModule
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent {
-  // Add any navbar logic here if needed
-}
+export class NavbarComponent {}

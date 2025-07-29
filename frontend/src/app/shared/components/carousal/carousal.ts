@@ -8,9 +8,9 @@ import { Component, output } from '@angular/core';
 })
 export class Carousal {
      images = [
-      {id:1 , url:'../../../../assets/carousel-images/pexels-momentos-reales-931333-2181192.jpg' , alt:'carousel images'},
-      {id:2 , url:'../../../../assets/carousel-images/pexels-picjumbo-com-55570-225238.jpg' , alt:'carousel images'},
-      {id:3 , url:'../../../../assets/carousel-images/pexels-vlasceanu-1403653.jpg' , alt:'carousel images'},
+      {id:1 , url:'../../../../assets/carousel-images/flash-sale1.jpg' , alt:'carousel images'},
+      {id:2 , url:'../../../../assets/carousel-images/flash-sale2.jpg' , alt:'carousel images'},
+      {id:3 , url:'../../../../assets/carousel-images/flash-sale3.jpg' , alt:'carousel images'},
      ]
 
      length = this.images.length
