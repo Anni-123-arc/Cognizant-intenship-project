@@ -1,9 +1,38 @@
 <div class="container">
-  <h2>Login</h2>
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <input formControlName="email" placeholder="Email" type="email" />
-    <input formControlName="password" placeholder="Password" type="password" />
-    <button type="submit">Login</button>
+  <h2 class="login-heading">Login</h2>
+
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
+    <!-- Email Field -->
+    <input
+      formControlName="email"
+      placeholder="example@xyz.com"
+      type="email"
+      [class.invalid]="email?.invalid && email?.touched"
+    />
+    <div *ngIf="email?.touched && email?.invalid" class="error-message">
+      <div *ngIf="email?.errors?.['required']">Please enter your email address.</div>
+      <div *ngIf="email?.errors?.['email']">Enter a valid email address.</div>
+    </div>
+
+    <!-- Password Field -->
+    <input
+      formControlName="password"
+      placeholder="Password sholuld be at least 6 characters"
+      type="password"
+      [class.invalid]="password?.invalid && password?.touched"
+    />
+    <div *ngIf="password?.touched && password?.invalid" class="error-message">
+      <div *ngIf="password?.errors?.['required']">Please enter your password.</div>
+      <div *ngIf="password?.errors?.['minlength']">Password must be at least 6 characters.</div>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" [disabled]="loginForm.invalid">Login</button>
   </form>
-  <p>Don't have an account? <a (click)="goToRegister()">Register</a></p>
+
+  <!-- Link to Register -->
+  <p>
+    Don't have an account?
+    <a class="register-link" (click)="goToRegister()">Register</a>
+  </p>
 </div>

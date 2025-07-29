@@ -3,12 +3,6 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
-function passwordsMatchValidator(form: FormGroup) {
-  const password = form.get('password')?.value;
-  const confirmPassword = form.get('confirmPassword')?.value;
-  return password === confirmPassword ? null : { passwordMismatch: true };
-}
-
 @Component({
   selector: 'app-register',
   standalone: true,
@@ -18,23 +12,39 @@ function passwordsMatchValidator(form: FormGroup) {
 })
 export class RegisterComponent {
   registerForm: FormGroup;
-  submitted = false;
 
   constructor(private fb: FormBuilder, private router: Router) {
-    this.registerForm = this.fb.group(
-      {
-        name: ['', Validators.required],
-        email: ['', [Validators.required, Validators.email]],
-        password: ['', Validators.required],
-        confirmPassword: ['', Validators.required]
-      },
-      { validators: passwordsMatchValidator }
-    );
+    this.registerForm = this.fb.group({
+      name: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', [Validators.required]]
+    }, { validators: this.passwordMatchValidator });
+  }
+
+  get name() {
+    return this.registerForm.get('name');
+  }
+
+  get email() {
+    return this.registerForm.get('email');
+  }
+
+  get password() {
+    return this.registerForm.get('password');
+  }
+
+  get confirmPassword() {
+    return this.registerForm.get('confirmPassword');
+  }
+
+  passwordMatchValidator(group: FormGroup) {
+    const pass = group.get('password')?.value;
+    const confirm = group.get('confirmPassword')?.value;
+    return pass === confirm ? null : { mismatch: true };
   }
 
   onSubmit(): void {
-    this.submitted = true;
-
     if (this.registerForm.valid) {
       alert('Registration successful!');
       this.router.navigate(['/login']);

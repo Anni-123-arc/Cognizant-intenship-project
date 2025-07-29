@@ -1,28 +1,56 @@
 <div class="container">
-  <h2>Register</h2>
+  <h2 class="register-heading">Register</h2>
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-
-    <input formControlName="name" placeholder="Name" type="text" />
-    <div *ngIf="submitted && registerForm.get('name')?.invalid" class="error">Name is required</div>
-
-    <input formControlName="email" placeholder="Email" type="email" />
-    <div *ngIf="submitted && registerForm.get('email')?.invalid" class="error">
-      {{ registerForm.get('email')?.errors?.['required'] ? 'Email is required' : 'Enter a valid email' }}
+    
+    <input
+      type="text"
+      placeholder="Full Name"
+      formControlName="name"
+      [class.invalid]="name?.invalid && name?.touched"
+    />
+    <div class="error-message" *ngIf="name?.touched && name?.invalid">
+      Full name is required.
     </div>
 
-    <input formControlName="password" placeholder="Password" type="password" />
-    <div *ngIf="submitted && registerForm.get('password')?.invalid" class="error">Password is required</div>
-
-    <input formControlName="confirmPassword" placeholder="Confirm Password" type="password" />
-    <div *ngIf="submitted && registerForm.get('confirmPassword')?.invalid" class="error">
-      Confirm Password is required
+    <input
+      type="email"
+      placeholder="Email Address"
+      formControlName="email"
+      [class.invalid]="email?.invalid && email?.touched"
+    />
+    <div class="error-message" *ngIf="email?.touched && email?.invalid">
+      <div *ngIf="email?.errors?.['required']">Email is required.</div>
+      <div *ngIf="email?.errors?.['email']">Enter a valid email address.</div>
     </div>
 
-    <div *ngIf="submitted && registerForm.errors?.['passwordMismatch']" class="error">
-      Passwords do not match
+    <input
+      type="password"
+      placeholder="Password"
+      formControlName="password"
+      [class.invalid]="password?.invalid && password?.touched"
+    />
+    <div class="error-message" *ngIf="password?.touched && password?.invalid">
+      <div *ngIf="password?.errors?.['required']">Password is required.</div>
+      <div *ngIf="password?.errors?.['minlength']">
+        Password must be at least 6 characters.
+      </div>
     </div>
 
-    <button type="submit">Register</button>
+    <input
+      type="password"
+      placeholder="Confirm Password"
+      formControlName="confirmPassword"
+      [class.invalid]="confirmPassword?.invalid && confirmPassword?.touched || registerForm.errors?.['mismatch']"
+    />
+    <div class="error-message" *ngIf="confirmPassword?.touched && (confirmPassword?.invalid || registerForm.errors?.['mismatch'])">
+      <div *ngIf="confirmPassword?.errors?.['required']">Confirm your password.</div>
+      <div *ngIf="registerForm.errors?.['mismatch']">Passwords do not match.</div>
+    </div>
+
+    <button type="submit" [disabled]="registerForm.invalid">Register</button>
   </form>
-  <p>Already have an account? <a (click)="goToLogin()">Login</a></p>
+
+  <p>Already have an account? 
+    <a class="login-link" (click)="goToLogin()">Login</a>
+  </p>
 </div>
