@@ -34,6 +34,7 @@
 .product-img-container {
     position: relative;
     overflow: hidden;
+    padding: 10px;
 }
 
 .product-img {
