@@ -1,5 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { ProductCard } from './product-card/product-card';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-feature-product-list',
@@ -31,4 +32,11 @@ export class FeatureProductList {
       alt: 'product img'
     }
   ]);
+
+  constructor(private router:Router){}
+
+
+  onClick(){
+       this.router.navigate(['/products'])
+  }
 }
