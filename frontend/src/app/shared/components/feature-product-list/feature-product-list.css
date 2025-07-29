@@ -15,3 +15,16 @@
     justify-content: space-between;
     align-items: center;
 }
+
+#more-op-btn{
+    padding: 10px;
+    position: relative;
+    left: 90%;
+    margin: 10px;
+   background: linear-gradient(to right, #1a2a6c, #3a7bd5);
+   color: white;
+   font: italic;
+   cursor: pointer;
+   border-radius: 15px;
+
+}
