@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, output } from '@angular/core';
 import { UserMessagesService } from '../../../../../core/services/user-messages-service';
 
 @Component({
@@ -14,7 +14,17 @@ export class ReviewCard {
   profileImage: string;
   date: string; // ISO format date, e.g., "2025-07-19"
   message: string;
+  reply:string
 };
 
+   replyH = output<{id:number , isVisibleBox:boolean}>()
+
     constructor(){}
+
+    onReply(){
+      const Header =  {id:this.messages.id , isVisibleBox:true}
+      this.replyH.emit(Header)
+       
+    }
+
 }

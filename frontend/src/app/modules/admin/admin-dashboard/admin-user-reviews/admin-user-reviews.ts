@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component , OnInit, output } from '@angular/core';
 import { ReviewCard } from './review-card/review-card';
 import { UserMessagesService } from '../../../../core/services/user-messages-service';
 
@@ -9,13 +9,19 @@ import { UserMessagesService } from '../../../../core/services/user-messages-ser
   templateUrl: './admin-user-reviews.html',
   styleUrl: './admin-user-reviews.css'
 })
-export class AdminUserReviews {
+export class AdminUserReviews implements OnInit {
   messages: any[] = [];
   hideHeading = false;
   private lastScrollTop = 0;
 
+  replyH = output<{id:number , isVisibleBox:boolean}>()
+
   constructor(private userMessagesService: UserMessagesService) {
     this.messages = this.userMessagesService.getCustomerMessages();
+  }
+
+  ngOnInit(): void {
+      this.messages = this.userMessagesService.getCustomerMessages();
   }
 
   onScroll(event: Event) {
@@ -25,4 +31,10 @@ export class AdminUserReviews {
     this.hideHeading = scrollTop > this.lastScrollTop;
     // this.lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
   }
+
+  setHeader(header:any){
+       const replyObj = {id:header.id , isVisibleBox:header.isVisibleBox}
+       this.replyH.emit(replyObj)
+  }
 }
+
