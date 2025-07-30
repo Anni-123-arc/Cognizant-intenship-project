@@ -9,7 +9,7 @@
     </div>
 
     @for(msg of messages; track msg.id) {
-    <app-review-card [messages]="msg"></app-review-card>
+    <app-review-card [messages]="msg" (replyH)="setHeader($event)"></app-review-card>
     }
 
     @if(messages.length ===0){

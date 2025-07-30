@@ -21,7 +21,9 @@
         <app-admin-order-management></app-admin-order-management>
       </div>
       <div class="messages-container">
-        <app-admin-user-reviews></app-admin-user-reviews>
+        <app-admin-user-reviews
+         (replyH)="setReplyHeade($event)"
+        ></app-admin-user-reviews>
       </div>
     </section>
   </main>
@@ -39,5 +41,12 @@
       (hideM)="setIsUpdateVisible($event)" 
       (productToUpdate)="UpdateToInventory($event)">
     </app-update-form>
+  }
+
+  @if (isReplyBoxVisible){
+    <app-reply-box
+    (replyS)="setReply($event)"
+       (isClose)="closeReplyBox($event)"
+    ></app-reply-box>
   }
 </section>
