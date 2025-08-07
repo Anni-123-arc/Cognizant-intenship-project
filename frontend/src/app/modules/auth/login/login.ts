@@ -16,21 +16,9 @@ export class Login {
   constructor(private fb: FormBuilder, private router: Router) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      role: ['', Validators.required]
     });
-  }
-
-  onSubmit(): void {
-    if (this.loginForm.valid) {
-      alert('Login successful!');
-      this.router.navigate(['/']);
-    } else {
-      this.loginForm.markAllAsTouched();
-    }
-  }
-
-  goToRegister(): void {
-    this.router.navigate(['/register']);
   }
 
   get email() {
@@ -40,4 +28,27 @@ export class Login {
   get password() {
     return this.loginForm.get('password');
   }
+
+  onSubmit() {
+    if (this.loginForm.valid) {
+      const role = this.loginForm.value.role;
+      if (role === 'admin') {
+        alert('Admin login successfully!!!');
+        this.router.navigate(['/admin-dashboard']);
+      } else {
+        alert('User login successfully!!!');
+        this.router.navigate(['/home']);
+      }
+    }
+  }
+
+  goToRegister() {
+    this.router.navigate(['/register']);
+  }
+
+ goToForgotPassword() {
+  this.router.navigate(['/forgot-password']);
 }
+
+}
+  
