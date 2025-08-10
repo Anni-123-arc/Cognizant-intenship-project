@@ -1,0 +1,65 @@
+<section id="help-center">
+  <div class="help-container">
+    <!-- Header Section -->
+    <div class="help-header">
+      <h2>Customer Support</h2>
+      <div class="search-bar">
+        <input type="text" placeholder="Search messages..." [(ngModel)]="searchQuery" (input)="filterMessages()">
+        <button><fa-icon [icon]="faSearch"></fa-icon></button>
+      </div>
+    </div>
+
+    <!-- Messages List -->
+    <div class="messages-list">
+      <div *ngFor="let message of filteredConversation" class="message-card">
+        <div class="message-header">
+          <img [src]="message.profileImage" alt="Profile" class="profile-img">
+          <div class="message-info">
+            <h4>{{message.name}}</h4>
+            <span class="date">{{formatDate(message.date)}}</span>
+          </div>
+          <div class="reply-count" (click)="toggleThread(message.id)">
+            {{getReplyCount(message.replies)}}
+            <fa-icon [icon]="isThreadExpanded(message.id) ? faChevronUp : faChevronDown"></fa-icon>
+          </div>
+        </div>
+        
+        <div class="message-content">
+          <p>{{message.message}}</p>
+        </div>
+        
+        <!-- Reply Input -->
+        <div class="reply-input">
+          <input type="text" placeholder="Reply to this message..." [(ngModel)]="replyMsg">
+          <button (click)="sendReply(message.id)">
+            <fa-icon [icon]="faReply"></fa-icon> Reply
+          </button>
+        </div>
+        
+        <!-- Thread Section -->
+        <div *ngIf="isThreadExpanded(message.id) && message.replies.length > 0" class="thread-section">
+          <div *ngFor="let reply of message.replies" class="reply-message" [class.admin-reply]="reply.isAdmin">
+            <div class="reply-header">
+              <img [src]="reply.profileImage" alt="Profile" class="profile-img small">
+              <div class="reply-info">
+                <h5>{{reply.name}} <span *ngIf="reply.isAdmin" class="badge">Admin</span></h5>
+                <span class="date">{{formatDate(reply.date)}}</span>
+              </div>
+            </div>
+            <div class="reply-content">
+              <p>{{reply.message}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- New Message Input -->
+    <div class="new-message">
+      <input type="text" placeholder="Type your message here..." [(ngModel)]="msg" (keyup.enter)="sendMessage()">
+      <button (click)="sendMessage()">
+        <fa-icon [icon]="faPaperPlane"></fa-icon>
+      </button>
+    </div>
+  </div>
+</section>

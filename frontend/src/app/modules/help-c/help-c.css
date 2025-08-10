@@ -1,0 +1,268 @@
+#help-center {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.help-container {
+  display: flex;
+  flex-direction: column;
+  height: 80vh;
+}
+
+.help-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.help-header h2 {
+  color: #2c3e50;
+  margin: 0;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+}
+
+.search-bar input {
+  padding: 8px 15px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  margin-right: 10px;
+  width: 200px;
+  transition: all 0.3s;
+}
+
+.search-bar input:focus {
+  outline: none;
+  border-color: #3498db;
+  width: 250px;
+}
+
+.search-bar button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #7f8c8d;
+}
+
+.messages-list {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 10px;
+  margin-bottom: 20px;
+}
+
+.message-card {
+  background: white;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s;
+}
+
+.message-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.message-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.profile-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 12px;
+}
+
+.profile-img.small {
+  width: 32px;
+  height: 32px;
+}
+
+.message-info {
+  flex: 1;
+}
+
+.message-info h4 {
+  margin: 0;
+  color: #2c3e50;
+  font-size: 15px;
+}
+
+.message-info .date {
+  color: #7f8c8d;
+  font-size: 12px;
+}
+
+.reply-count {
+  color: #3498db;
+  font-size: 13px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.reply-count:hover {
+  text-decoration: underline;
+}
+
+.message-content p {
+  margin: 0;
+  color: #34495e;
+  line-height: 1.5;
+  padding: 0 52px; /* Align with profile image */
+}
+
+.reply-input {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px dashed #eee;
+}
+
+.reply-input input {
+  flex: 1;
+  padding: 8px 15px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  margin-right: 10px;
+}
+
+.reply-input button {
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 15px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.reply-input button:hover {
+  background: #2980b9;
+}
+
+.thread-section {
+  margin-top: 15px;
+  border-top: 1px solid #f0f0f0;
+  padding-top: 15px;
+}
+
+.reply-message {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 10px;
+}
+
+.reply-message.admin-reply {
+  background: #e3f2fd;
+  border-left: 3px solid #2196f3;
+}
+
+.reply-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.reply-info {
+  flex: 1;
+}
+
+.reply-info h5 {
+  margin: 0;
+  font-size: 14px;
+  color: #2c3e50;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.reply-info .date {
+  color: #7f8c8d;
+  font-size: 11px;
+}
+
+.reply-info .badge {
+  background: #2196f3;
+  color: white;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 10px;
+}
+
+.reply-content p {
+  margin: 0;
+  color: #34495e;
+  font-size: 14px;
+  line-height: 1.5;
+  padding-left: 44px; /* Align with small profile image */
+}
+
+.new-message {
+  display: flex;
+  align-items: center;
+  padding-top: 15px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.new-message input {
+  flex: 1;
+  padding: 12px 20px;
+  border: 1px solid #ddd;
+  border-radius: 30px;
+  margin-right: 10px;
+  font-size: 14px;
+}
+
+.new-message button {
+  background: #3498db;
+  color: white;
+  border: none;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.new-message button:hover {
+  background: #2980b9;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}

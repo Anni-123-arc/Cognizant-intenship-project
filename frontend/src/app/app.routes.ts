@@ -12,6 +12,7 @@ import { RegisterComponent } from './modules/auth/register/register';
 import { Bio } from './modules/profile/bio/bio';
 import { ChangePasswordComponent } from './modules/auth/change-password/change-password';
 import { LandingPage } from './modules/landing-page/landing-page';
+import { HelpC } from './modules/help-c/help-c';
 
 //import { HttpClientModule } from '@angular/common/http';
 
@@ -27,5 +28,6 @@ export const routes: Routes = [
   { path: 'change-password',component:ChangePasswordComponent},
   { path: 'bio', component: Bio },
    {path: 'orders', component:OrderSummary},
-  {path: 'orders/:id',component:OrderDetails}
+  {path: 'orders/:id',component:OrderDetails},
+  {path: 'help', component:HelpC}
 ];

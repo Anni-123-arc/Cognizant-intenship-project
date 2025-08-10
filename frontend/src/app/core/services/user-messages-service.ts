@@ -20,7 +20,7 @@ export class UserMessagesService {
     "profileImage": "https://randomuser.me/api/portraits/women/44.jpg",
     "date": "2025-07-18",
     "message": "I reached out to customer support and received help within minutes. Great experience overall!",
-        "reply": ""
+    "reply": ""
 
   },
   {
@@ -71,5 +71,28 @@ export class UserMessagesService {
 
         }
     })
+    return this.customerMessages;
+  }
+
+
+    addReplyToMessage(messageId: number, reply: string, isAdmin: boolean = true) {
+    const message = this.customerMessages.find(m => m.id === messageId);
+    if (message) {
+      if (!message.replies) {
+        message.replies = [];
+      }
+      const newReply = {
+        id: message.replies.length + 1,
+        name: isAdmin ? "Admin" : "User",
+        profileImage: isAdmin 
+          ? "https://randomuser.me/api/portraits/men/1.jpg" 
+          : "https://randomuser.me/api/portraits/women/1.jpg",
+        date: new Date().toISOString().split('T')[0],
+        message: reply,
+        isAdmin: isAdmin
+      };
+      message.replies.push(newReply);
+    }
+    return this.customerMessages;
   }
 }
