@@ -104,7 +104,18 @@ async getOrderDetails(orderID: string) {
 }
 
 
-  getOrderHistory(customerId: string) {
-    return this.orderList.filter(order => order.CustomerId === customerId);
+async getOrderHistory(email: string) {
+
+   try {
+    const response = await axios.get(`http://localhost:3000/history/${email}`).then(res => res.data);
+
+    // This will store only your res.json object
+    console.log('Order history fetched successfully:', response);
+    return response;
+  } catch (error) {
+    console.error('Error fetching order history:', error);
+    return null;
+  }
+
   }
 }

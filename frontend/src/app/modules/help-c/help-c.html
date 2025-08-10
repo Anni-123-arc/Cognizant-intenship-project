@@ -85,11 +85,11 @@
     @if(flag === 3){
       <div class="content-card">
         <h3>Order History</h3>
-        <p>Enter your Customer ID to receive your complete order history</p>
+        <p>Enter your Email to receive your complete order history</p>
         <div class="input-group">
-          <input type="text" [(ngModel)]="customerId" placeholder="Customer ID (e.g. CUST1001)">
+          <input type="email" [(ngModel)]="email" placeholder="Email (e.g. abc@example.com)">
           <button class="primary-btn" (click)="onGetHistory()">
-            <fa-icon [icon]="faPaperPlane"></fa-icon> Send History
+            <fa-icon [icon]="faPaperPlane"></fa-icon> Order History
           </button>
         </div>
       </div>
@@ -111,6 +111,7 @@
       <thead>
         <tr>
           <th>Order ID</th>
+          <th>Product Name</th>
           <th>Status</th>
           <th>Total</th>
         </tr>
@@ -118,11 +119,12 @@
       <tbody>
         @for(order of orderHistory; track order.OrderID){
           <tr>
-            <td>{{order.OrderId}}</td>
-            <td [class]="'status-' + order.DeliveryStatus.toLowerCase()">
-              {{order.DeliveryStatus}}
+            <td>{{order.orderID}}</td>
+            <td>{{order.productName}}</td>
+            <td [class]="'status-' + order.status.toLowerCase()">
+              {{order.status}}
             </td>
-            <td>{{order.TotalAmount}} RS</td>
+            <td>{{order.price}} RS</td>
           </tr>
         }
       </tbody>

@@ -22,9 +22,9 @@ import { Router } from '@angular/router';
 export class HelpC {
   flag = 0;
   orderId = '';
-  customerId = '';
+  email = '';
   response: {success: boolean, message: string, details?: string} | null = null;
-  orderHistory: any[] = [];
+  orderHistory:any[] = [];
 
   // Icons
   faPaperPlane = faPaperPlane;
@@ -88,8 +88,8 @@ onTrack() {
     });
 }
 
-  onGetHistory() {
-    if (!this.customerId) {
+  async onGetHistory() {
+    if (!this.email) {
       this.response = {
         success: false,
         message: 'Please enter a valid email address'
@@ -98,7 +98,17 @@ onTrack() {
     }
 
     // Simulate API call
-    this.orderHistory = this.orderManagement.getOrderHistory(this.customerId);
+    await this.orderManagement.getOrderHistory(this.email).then((result) => {
+      this.orderHistory = result.data;
+      console.log('Order history:', this.orderHistory);
+    }).catch((err) => {
+      console.error(err);
+      this.response = {
+        success: false,
+        message: 'Error retrieving order history',
+        details: err.message || err.toString()
+      };
+    });
   }
 
   navigateToAccount() {
