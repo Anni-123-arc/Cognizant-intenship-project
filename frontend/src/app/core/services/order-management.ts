@@ -85,4 +85,12 @@ export class OrderManagement {
     return this.orderList
   }
 
+
+  getOrderDetails(orderID:string){
+     return this.orderList.find(order => order.OrderId === orderID);
+  }
+
+  getOrderHistory(customerId: string) {
+    return this.orderList.filter(order => order.CustomerId === customerId);
+  }
 }
