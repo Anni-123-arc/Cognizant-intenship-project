@@ -11,6 +11,7 @@ import {
 import { OrderManagement } from '../../core/services/order-management';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-help-c',
   standalone: true,
@@ -37,6 +38,7 @@ export class HelpC {
   faTablet = faTablet;
   faCheckCircle = faCheckCircle;
   faExclamationCircle = faExclamationCircle;
+  status: string | null = null;
 
   constructor(
     private userMessagesService: UserMessagesService,
@@ -49,32 +51,42 @@ export class HelpC {
     this.response = null; // Clear previous responses when changing option
   }
 
-  onTrack() {
-    if (!this.orderId) {
-      this.response = {
-        success: false,
-        message: 'Please enter an order ID'
-      };
-      return;
-    }
-
-    const status = this.orderManagement.getOrderDetails(this.orderId);
-    console.log(status)
-    
-    if (status) {
-      this.response = {
-        success: true,
-        message: `Order #${this.orderId}`,
-        details: `Status: ${status}`
-      };
-    } else {
-      this.response = {
-        success: false,
-        message: `Order not found`,
-        details: 'Please check your order ID and try again'
-      };
-    }
+onTrack() {
+  if (!this.orderId) {
+    this.response = {
+      success: false,
+      message: 'Please enter an order ID'
+    };
+    return;
   }
+
+  this.orderManagement.getOrderDetails(this.orderId)
+    .then((result) => {
+      this.status = result.data[0]?.status || null;
+
+      if (this.status !== null) {
+        this.response = {
+          success: true,
+          message: `Order #${this.orderId}`,
+          details: `Status: ${this.status}`
+        };
+      } else {
+        this.response = {
+          success: false,
+          message: `Order not found`,
+          details: 'Please check your order ID and try again'
+        };
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      this.response = {
+        success: false,
+        message: 'Error retrieving order details',
+        details: err.message || err.toString()
+      };
+    });
+}
 
   onGetHistory() {
     if (!this.customerId) {

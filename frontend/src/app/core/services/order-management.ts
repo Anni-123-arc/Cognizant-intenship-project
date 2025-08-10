@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import axios from 'axios'
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -81,7 +82,7 @@ export class OrderManagement {
   }
 ]
 
-  constructor() { }
+  constructor( ) { }
 
 
   getOrders(){
@@ -91,11 +92,11 @@ export class OrderManagement {
 
 async getOrderDetails(orderID: string) {
   try {
-    const response = await axios.get(`http://localhost:3000/track/${orderID}`);
-    
+    const response = await axios.get(`http://localhost:3000/track/${orderID}`).then(res => res.data);
+
     // This will store only your res.json object
-    console.log('Order details fetched successfully:', response.data.data[0].status);
-    return response.data.data.data.status;
+    console.log('Order details fetched successfully:', response);
+    return response;
   } catch (error) {
     console.error('Error fetching order details:', error);
     return null;
