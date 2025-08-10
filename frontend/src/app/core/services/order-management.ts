@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
+import axios from 'axios'
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderManagement {
+
+  orderDetails = {}
 
   orderList:any[] =[
   {
@@ -86,9 +89,19 @@ export class OrderManagement {
   }
 
 
-  getOrderDetails(orderID:string){
-     return this.orderList.find(order => order.OrderId === orderID);
+async getOrderDetails(orderID: string) {
+  try {
+    const response = await axios.get(`http://localhost:3000/track/${orderID}`);
+    
+    // This will store only your res.json object
+    console.log('Order details fetched successfully:', response.data.data[0].status);
+    return response.data.data.data.status;
+  } catch (error) {
+    console.error('Error fetching order details:', error);
+    return null;
   }
+}
+
 
   getOrderHistory(customerId: string) {
     return this.orderList.filter(order => order.CustomerId === customerId);

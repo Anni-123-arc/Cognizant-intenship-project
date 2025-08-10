@@ -58,13 +58,14 @@ export class HelpC {
       return;
     }
 
-    const orderDetails = this.orderManagement.getOrderDetails(this.orderId);
+    const status = this.orderManagement.getOrderDetails(this.orderId);
+    console.log(status)
     
-    if (orderDetails) {
+    if (status) {
       this.response = {
         success: true,
         message: `Order #${this.orderId}`,
-        details: `Status: ${orderDetails.DeliveryStatus}\nEstimated Delivery: ${orderDetails.EstimatedDelivery || 'N/A'}`
+        details: `Status: ${status}`
       };
     } else {
       this.response = {
