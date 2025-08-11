@@ -1,7 +1,8 @@
 <div class="container">
   <h2 class="register-heading">Register</h2>
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-    
+
+    <!-- Full Name -->
     <input
       type="text"
       placeholder="Full Name"
@@ -12,6 +13,7 @@
       Full name is required.
     </div>
 
+    <!-- Email -->
     <input
       type="email"
       placeholder="Email Address"
@@ -23,6 +25,7 @@
       <div *ngIf="email?.errors?.['email']">Enter a valid email address.</div>
     </div>
 
+    <!-- Password -->
     <input
       type="password"
       placeholder="Password"
@@ -36,6 +39,7 @@
       </div>
     </div>
 
+    <!-- Confirm Password -->
     <input
       type="password"
       placeholder="Confirm Password"
@@ -47,10 +51,22 @@
       <div *ngIf="registerForm.errors?.['mismatch']">Passwords do not match.</div>
     </div>
 
+    <!-- Role Dropdown -->
+    <select formControlName="role" [class.invalid]="role?.invalid && role?.touched">
+      <option value="" disabled selected>Select Role</option>
+      <option value="admin">Admin</option>
+      <option value="user">User</option>
+    </select>
+    <div class="error-message" *ngIf="role?.touched && role?.invalid">
+      Please select a role.
+    </div>
+
+    <!-- Submit Button -->
     <button type="submit" [disabled]="registerForm.invalid">Register</button>
   </form>
 
-  <p>Already have an account? 
+  <!-- Login Link -->
+  <p style="text-align: center;">Already have an account? 
     <a class="login-link" (click)="goToLogin()">Login</a>
   </p>
 </div>

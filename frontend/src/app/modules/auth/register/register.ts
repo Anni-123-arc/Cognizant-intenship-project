@@ -15,10 +15,11 @@ export class RegisterComponent {
 
   constructor(private fb: FormBuilder, private router: Router) {
     this.registerForm = this.fb.group({
-      name: ['', [Validators.required]],
+      name: ['', [Validators.required,Validators.minLength(5)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', [Validators.required]]
+      confirmPassword: ['', [Validators.required]],
+      role: ['', [Validators.required]] 
     }, { validators: this.passwordMatchValidator });
   }
 
@@ -38,6 +39,10 @@ export class RegisterComponent {
     return this.registerForm.get('confirmPassword');
   }
 
+  get role() {
+    return this.registerForm.get('role');
+  }
+
   passwordMatchValidator(group: FormGroup) {
     const pass = group.get('password')?.value;
     const confirm = group.get('confirmPassword')?.value;
@@ -46,7 +51,9 @@ export class RegisterComponent {
 
   onSubmit(): void {
     if (this.registerForm.valid) {
-      alert('Registration successful!');
+      const formData = this.registerForm.value;
+      console.log('Registration successful with data:', formData);
+      alert(`Registration successful as ${formData.role}!`);
       this.router.navigate(['/login']);
     }
   }

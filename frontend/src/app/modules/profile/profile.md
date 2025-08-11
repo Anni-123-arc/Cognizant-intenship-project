@@ -1,1 +1,0 @@
-added profile folder inside frontend/src/app/modules... directory

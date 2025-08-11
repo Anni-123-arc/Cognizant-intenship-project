@@ -1,50 +1,43 @@
-import { Component, output } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-carousal',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './carousal.html',
-  styleUrl: './carousal.css'
+  styleUrl: './carousal.css',
 })
 export class Carousal {
-     images = [
-      {id:1 , url:'../../../../assets/carousel-images/flash-sale1.jpg' , alt:'carousel images'},
-      {id:2 , url:'../../../../assets/carousel-images/flash-sale2.jpg' , alt:'carousel images'},
-      {id:3 , url:'../../../../assets/carousel-images/flash-sale3.jpg' , alt:'carousel images'},
-     ]
+  images = [
+    { id: 1, url: '../../../../assets/carousel-images/flash-sale1.jpg', alt: 'carousel image 1' },
+    { id: 2, url: '../../../../assets/carousel-images/flash-sale2.jpg', alt: 'carousel image 2' },
+    { id: 3, url: '../../../../assets/carousel-images/flash-sale3.jpg', alt: 'carousel image 3' }
+  ];
 
-     length = this.images.length
-     currentId = 0
+  currentId = 0;
+  url: string = this.images[this.currentId].url;
+  alt: string = this.images[this.currentId].alt;
 
-     url:string =this.images[this.currentId].url;
-     alt:string =this.images[this.currentId].alt;
+  constructor() {
+    // Auto-slide every 5 seconds
+    setInterval(() => {
+      this.nextSlide(1);
+    }, 5000);
+  }
 
-  //   ngOnInit(): void {
-  //      setInterval(()=>{
-  //           this.nextSlide(1)
-  //      },2000)
-  //  }
+  nextSlide(n: number): void {
+    this.currentId = (this.currentId + n + this.images.length) % this.images.length;
+    this.updateSlide();
+  }
 
-     nextSlide(n:number){
-        this.currentId = (this.currentId + n)%this.length
-        if(this.currentId<0){
-          this,this.currentId = this.length -1;
-        }
-        this.url = this.images[this.currentId].url;
-        this.alt = this.images[this.currentId].alt;
+  currentSlide(index: number): void {
+    this.currentId = index;
+    this.updateSlide();
+  }
 
-        console.log(this.url)
-       
-     }
-
-     currentSlide(n:number){
-      this.currentId = n -1
-        this.url = this.images[this.currentId].url;
-        this.alt = this.images[this.currentId].alt;
-     }
-
-     
-
-
-   
+  private updateSlide(): void {
+    this.url = this.images[this.currentId].url;
+    this.alt = this.images[this.currentId].alt;
+  }
 }

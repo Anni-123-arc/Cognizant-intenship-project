@@ -1,0 +1,27 @@
+<app-home-header></app-home-header>
+
+<div class="bio-form-container">
+  <h3>Edit Information</h3>
+
+  <label>First Name</label>
+  <input type="text" [(ngModel)]="editableUser.firstName">
+
+  <label>Last Name</label>
+  <input type="text" [(ngModel)]="editableUser.lastName">
+
+  <label>Email</label>
+  <input type="email" [(ngModel)]="editableUser.email">
+
+  <label>Phone</label>
+  <input type="text" [(ngModel)]="editableUser.phone" maxlength="10">
+
+  <label>Address Line 1</label>
+  <input type="text" [(ngModel)]="editableUser.address1">
+
+  <label>Address Line 2</label>
+  <input type="text" [(ngModel)]="editableUser.address2">
+
+  <button (click)="saveChanges()">Save Changes</button>
+</div>
+
+<app-footer></app-footer>
