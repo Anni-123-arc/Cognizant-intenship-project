@@ -1,9 +1,13 @@
 import { Injectable } from '@angular/core';
+import axios from 'axios'
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderManagement {
+
+  orderDetails = {}
 
   orderList:any[] =[
   {
@@ -78,11 +82,40 @@ export class OrderManagement {
   }
 ]
 
-  constructor() { }
+  constructor( ) { }
 
 
   getOrders(){
     return this.orderList
   }
 
+
+async getOrderDetails(orderID: string) {
+  try {
+    const response = await axios.get(`http://localhost:3000/track/${orderID}`).then(res => res.data);
+
+    // This will store only your res.json object
+    console.log('Order details fetched successfully:', response);
+    return response;
+  } catch (error) {
+    console.error('Error fetching order details:', error);
+    return null;
+  }
+}
+
+
+async getOrderHistory(email: string) {
+
+   try {
+    const response = await axios.get(`http://localhost:3000/history/${email}`).then(res => res.data);
+
+    // This will store only your res.json object
+    console.log('Order history fetched successfully:', response);
+    return response;
+  } catch (error) {
+    console.error('Error fetching order history:', error);
+    return null;
+  }
+
+  }
 }
