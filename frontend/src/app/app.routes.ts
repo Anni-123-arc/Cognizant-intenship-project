@@ -9,11 +9,19 @@ import { OrderSummary } from './modules/orders/order-summary/order-summary';
 import { OrderDetails } from './modules/orders/order-details/order-details';
 import { Login } from './modules/auth/login/login';
 import { RegisterComponent } from './modules/auth/register/register';
-import { Bio } from './modules/profile/bio/bio';
+import {Bio} from '././shared/components/bio/bio';
 import { ChangePasswordComponent } from './modules/auth/change-password/change-password';
 import { LandingPage } from './modules/landing-page/landing-page';
 import { ForgotPasswordComponent } from './modules/auth/forgot-password/forgot-password';
 import { ResetPasswordComponent } from './modules/auth/reset-password/reset-password';
+import { HomeHeader } from './shared/components/home-header/home-header';
+import { ScrollableMenuBar } from './shared/components/scrollable-menu-bar/scrollable-menu-bar';
+import { SideBar } from './shared/components/side-bar/side-bar';
+import { Home } from './modules/home/home';
+import { HelplineComponent } from './shared/components/helpline/helpline';
+import { ProfileComponent } from './modules/profile/profile';
+import { AccountInfoComponent } from './shared/components/account-info/account-info';
+import { Address } from './shared/components/address/address';
 
 export const routes: Routes = [
   { path: '', component: LandingPage },
@@ -30,4 +38,12 @@ export const routes: Routes = [
   { path: 'orders/:id', component: OrderDetails },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'reset-password', component: ResetPasswordComponent },
+  {path: 'home-header', component: HomeHeader}, 
+  {path: 'scrollable-menu-bar', component: ScrollableMenuBar},
+  {path: 'side-bar', component: SideBar},
+  {path: 'home', component: Home},
+  {path:'helpline',component: HelplineComponent },
+  {path: 'profile', component: ProfileComponent},
+  {path: 'account-info', component: AccountInfoComponent},
+  {path:'address', component: Address},
 ];

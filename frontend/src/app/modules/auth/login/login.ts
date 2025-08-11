@@ -34,7 +34,7 @@ export class Login {
       const role = this.loginForm.value.role;
       if (role === 'admin') {
         alert('Admin login successfully!!!');
-        this.router.navigate(['/admin-dashboard']);
+        this.router.navigate(['/admin']);
       } else {
         alert('User login successfully!!!');
         this.router.navigate(['/home']);

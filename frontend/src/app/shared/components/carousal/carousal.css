@@ -1,88 +1,101 @@
-#carousel-container {
-  width: 100%;
-  height: 550px;
-  display: flex;
-  flex-direction: row;
+:host {
+  display: block;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   overflow: hidden;
-  margin: auto;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
 
-
+#carousel-container {
+  position: relative;
+  width: 100%;
+  height: 450px;
+  overflow: hidden;
 }
 
 .carousel-slides {
   width: 100%;
-  overflow: hidden;
-  margin: auto;
-  overflow-y: unset;
+  height: 100%;
 }
 
 .carousel-slides img {
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
 
-/* #controllers{
-  width: 90%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  position: absolute;
-  border: 5px solid;
-  margin: auto;
-} */
-
+/* Navigation Arrows */
 .prev,
 .next {
-  cursor: pointer;
   position: absolute;
-  top: 45%;
-  width: auto;
-  margin-top: -22px;
-  height: 30px;
-  padding: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.3);
   color: white;
-  font-weight: bold;
-  font-size: 25px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
+  font-size: 30px;
+  padding: 12px;
+  cursor: pointer;
   user-select: none;
+  z-index: 1;
+  transition: background-color 0.3s;
 }
 
-/* Position the "next button" to the right */
-.next {
-  right: 6px;
-  border-radius: 3px 0 0 3px;
-}
-
-
-/* On hover, add a black background color with a little bit see-through */
 .prev:hover,
 .next:hover {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
+.prev {
+  left: 10px;
+}
+.next {
+  right: 10px;
+}
 
+/* Indicator Dots */
 #indicator-group {
-  position: relative;
-  bottom: 25px;
-  left: 48%;
-  width: fit-content;
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
-  flex-direction: row;
-  gap: 5px;
+  gap: 8px;
 }
-
 
 .indicator {
-  width: 25px;
-  height: 5px;
-  background-color: black;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
   cursor: pointer;
-
+  transition: background-color 0.3s;
 }
 
-.indicator:hover{
-  background-color: white;
+.indicator.active,
+.indicator:hover {
+  background-color: #0059b3; /* Blue shade */
 }
 
+/* Responsive */
+@media (max-width: 768px) {
+  #carousel-container {
+    height: 300px;
+  }
+
+  .prev,
+  .next {
+    font-size: 24px;
+    padding: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  #carousel-container {
+    height: 220px;
+  }
+
+  .indicator {
+    width: 10px;
+    height: 10px;
+  }
+}

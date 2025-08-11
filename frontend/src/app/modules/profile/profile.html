@@ -1,0 +1,40 @@
+<app-home-header></app-home-header>
+
+<div class="profile-container">
+  <div class="profile-greeting">
+    <span class="avatar">😊</span>
+    <h2>Hello, {{ userData.firstName }}!</h2>
+  </div>
+
+  <div class="card" (click)="navigateTo('/account-info')">
+    <h3>Account Info</h3>
+    <p>View your personal details</p>
+  </div>
+
+  <div class="card" (click)="navigateTo('/bio')">
+    <h3>Edit Info</h3>
+    <p>Update your profile details</p>
+  </div>
+
+  <div class="card" (click)="navigateTo('/address')">
+    <h3>Saved Addresses</h3>
+    <p>Manage your delivery locations</p>
+  </div>
+
+  <div class="card" (click)="navigateTo('/orders')">
+    <h3>Orders</h3>
+    <p>Check your order history</p>
+  </div>
+
+  <div class="card" (click)="navigateTo('/wishlist')">
+    <h3>Wishlist</h3>
+    <p>View saved items</p>
+  </div>
+
+  <div class="card logout" (click)="logout()" style="text-align: center;">
+    <h3 style=" font-size: 30px;">Logout</h3>
+    <p>Sign out from your account</p>
+  </div>
+</div>
+
+<app-footer></app-footer>
