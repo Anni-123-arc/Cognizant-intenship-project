@@ -22,6 +22,9 @@ import { HelplineComponent } from './shared/components/helpline/helpline';
 import { ProfileComponent } from './modules/profile/profile';
 import { AccountInfoComponent } from './shared/components/account-info/account-info';
 import { Address } from './shared/components/address/address';
+import { CancelOrderComponent } from './modules/orders/cancel-order/cancel-order';
+import { ReturnOrderComponent } from './modules/orders/return-order/return-order';
+import { TrackOrder } from './modules/orders/track-order/track-order';
 
 export const routes: Routes = [
   { path: '', component: LandingPage },
@@ -46,4 +49,8 @@ export const routes: Routes = [
   {path: 'profile', component: ProfileComponent},
   {path: 'account-info', component: AccountInfoComponent},
   {path:'address', component: Address},
+  {path: 'orders/:id',component:OrderDetails},
+  {path: 'orders/:id/cancel',component:CancelOrderComponent},
+  {path:'orders/:id/return',component:ReturnOrderComponent},
+  {path:'orders/:id/track-order', component:TrackOrder}
 ];
