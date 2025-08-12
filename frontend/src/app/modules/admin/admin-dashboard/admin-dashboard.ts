@@ -27,7 +27,7 @@ export class AdminDashboard {
   isReplyBoxVisible = false
   msg = ''
   reply =""
-  id!:number
+  id!:string;
 
   constructor(private inventoryService: InventoryService , private userMessagesService:UserMessagesService) { }
 
@@ -56,7 +56,7 @@ export class AdminDashboard {
     this.isReplyBoxVisible = isReplyBoxVisible
   }
 
-  setReply(  reply:string  ){
+  setReply( reply:string ){
       this.userMessagesService.setReply(this.id ,reply)
       
   }

@@ -9,7 +9,7 @@ import { UserMessagesService } from '../../../../../core/services/user-messages-
 })
 export class ReviewCard {
     @Input({required: true}) messages!: {
-  id: number;
+  id: string;
   name: string;
   profileImage: string;
   date: string; // ISO format date, e.g., "2025-07-19"
@@ -17,7 +17,7 @@ export class ReviewCard {
   reply:string
 };
 
-   replyH = output<{id:number , isVisibleBox:boolean}>()
+   replyH = output<{id:string , isVisibleBox:boolean}>()
 
     constructor(){}
 

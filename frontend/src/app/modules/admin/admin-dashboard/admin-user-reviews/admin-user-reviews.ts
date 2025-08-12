@@ -14,7 +14,7 @@ export class AdminUserReviews implements OnInit {
   hideHeading = false;
   private lastScrollTop = 0;
 
-  replyH = output<{id:number , isVisibleBox:boolean}>()
+  replyH = output<{id:string , isVisibleBox:boolean}>()
 
   constructor(private userMessagesService: UserMessagesService) {
     this.messages = this.userMessagesService.getCustomerMessages();
