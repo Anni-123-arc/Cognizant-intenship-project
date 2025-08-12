@@ -1,3 +1,4 @@
+<app-home-header></app-home-header>
 <div class="order-container">
   <!-- Left Sidebar Filters -->
   <div class="sidebar">
@@ -19,7 +20,7 @@
     <div class="toolbar">
       <input type="text"
              [(ngModel)]="searchText"
-             placeholder="Search products..."
+             placeholder="Search orders..."
              class="search-bar" />
 
       <select [(ngModel)]="selectedYear" class="year-dropdown">
@@ -36,8 +37,8 @@
           <p>Price: ₹{{ order.price }}</p>
           <p>Status: <span class="status" [ngClass]="{
           'status-delivered': order.status === 'Delivered',
-          'status-pending': order.status === 'Pending',
           'status-cancelled': order.status === 'Cancelled',
+          'status-shipped': order.status === 'Shipped',
           'status-returned': order.status === 'Returned'
         }">{{ order.status }}</span></p>
           <p>Year: {{ order.year }}</p>
@@ -47,3 +48,4 @@
     </div>
   </div>
 </div>
+<app-footer></app-footer>

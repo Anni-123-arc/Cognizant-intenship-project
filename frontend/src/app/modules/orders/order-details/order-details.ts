@@ -1,86 +1,78 @@
 import { Component, OnInit} from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute , Router} from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { OrderService } from '../../../core/services/orderdata.service';
+import { HomeHeader } from '../../../shared/components/home-header/home-header';
+import { Footer } from '../../../shared/components/footer/footer';
 @Component({
   selector: 'app-order-details',
-  imports: [FormsModule,CommonModule, RouterModule],
+  imports: [FormsModule,CommonModule,HomeHeader,Footer],
   templateUrl: './order-details.html',
   styleUrl: './order-details.css'
 })
 export class OrderDetails implements OnInit {
 orderId: string = '';
   order: any;
+  showRatingModal = false;
+  stars = Array(5).fill(0);
+  selectedRating = 0;
+  hoveredRating = 0;
+  reviewText = '';
+
+  constructor(private route: ActivatedRoute, private router: Router, private orderService: OrderService) {}
 
   ngOnInit(): void {
     this.orderId = this.route.snapshot.paramMap.get('id') || '';
-
-    // Simulated static data for UI
-    const sampleOrders = [
-      {
-        id: 'ORD001',
-        productName: 'Maxi Girls Long Frock for Women',
-        price: 899.99,
-        imageUrl: '../assets/Prod1.jpg',
-        seller: 'Siri Fashions',
-        status: 'Delivered',
-        paymentMode: 'UPI'
-      },
-      {
-        id: 'ORD002',
-        productName: 'Maxi Tiered Frock for Women',
-        price: 999.99,
-        imageUrl: '../assets/Prod2.jpg',
-        seller: 'Fashion Collections',
-        status: 'Pending',
-        paymentMode: 'Credit Card'
-      },
-      {
-        id: 'ORD003',
-        productName: 'Long Dress for Women Traditional',
-        price: 799.99,
-        imageUrl: '../assets/Prod3.jpg',
-        seller: 'Sunray Limited',
-        status: 'Cancelled',
-        paymentMode: 'UPI'
-      },
-      {
-        id: 'ORD004',
-        productName: 'Fit Knitted Black Shirt For Men',
-        price: 999.99,
-        imageUrl: '../assets/Prod4.jpg',
-        seller: 'Knits and Clothes Ltd',
-        status: 'Delivered',
-        paymentMode: 'Cash on Delivery'
-      },
-      {
-        id: 'ORD005',
-        productName: 'Silk Saree for Women',
-        price: 999.99,
-        imageUrl: '../assets/Prod5.jpg',
-        seller: 'Savera Sarees',
-        status: 'Returned',
-        paymentMode: 'Cash on Delivery',
-        recipientName: 'Rahul Kumar',
-        deliveryAddress: '123 MG Road, Hyderabad, Telangana - 500081',
-        phone: '9876543210',
-        deliveryDate: 'August 3, 2025'
-      },
-      {
-        id: 'ORD006',
-        productName: 'Beige Banarasi Kurta For Men',
-        price: 1199.99,
-        imageUrl: '../assets/Prod6.jpg',
-        seller: 'Hub of Fashion',
-        status: 'Pending',
-        paymentMode: 'Debit Card'
-      }
-
-    ];
-
-    this.order = sampleOrders.find(o => o.id === this.orderId);
+    this.order = this.orderService.getOrderById(this.orderId);
+  }
+  canCancelOrder(): boolean {
+    if (!this.order || this.order.status === 'Cancelled' || this.order.status === 'Returned') return false;
+    const orderDate = new Date(this.order.placedDate);
+    const currentDate = new Date();
+    return (currentDate.getTime() - orderDate.getTime()) / (1000 * 3600 * 24) <= 1;
   }
 
-  constructor(private route: ActivatedRoute) {}
+  canReturnOrder(): boolean {
+    if (!this.order || this.order.status === 'Cancelled' || this.order.status === 'Returned') return false;
+    if (this.order.status !== 'Delivered') return false;
+    const deliveredDate = new Date(this.order.deliveredDate);
+    const currentDate = new Date();
+    return (currentDate.getTime() - deliveredDate.getTime()) / (1000 * 3600 * 24) <= 7;
+  }
+   goToCancelPage() {
+    this.router.navigate(['/orders', this.orderId, 'cancel']); // use orderId from route
+  }
+
+  goToReturnPage() {
+    this.router.navigate(['/orders', this.orderId, 'return']); // use orderId from route
+  }
+  openRatingModal() {
+    this.showRatingModal = true;
+  }
+
+  closeRatingModal() {
+    this.showRatingModal = false;
+    this.selectedRating = 0;
+    this.hoveredRating = 0;
+    this.reviewText = '';
+  }
+
+  selectStar(star: number) {
+    this.selectedRating = star;
+  }
+
+  hoverStar(star: number) {
+    this.hoveredRating = star;
+  }
+
+  submitRating() {
+    console.log('Rating submitted:', this.selectedRating);
+    console.log('Review:', this.reviewText);
+    alert(`Thanks for rating ${this.selectedRating} stars!`);
+    this.closeRatingModal();
+  }
+  TrackOrder(){
+     this.router.navigate(['/orders', this.orderId, 'track-order']);
+  }
 }
