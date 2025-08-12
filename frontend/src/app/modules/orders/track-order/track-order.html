@@ -1,0 +1,30 @@
+<div class="track-order-page" *ngIf="!error; else errorTpl">
+  <h2>Track Order - #{{ orderId }}</h2>
+
+  <div class="timeline" *ngIf="orderSteps.length > 0; else noStepsTpl">
+    <div *ngFor="let step of orderSteps; let i = index" class="timeline-item">
+      <div
+        class="circle"
+        [ngClass]="{'cancelled': step.status === 'Cancelled'}"
+      ></div>
+      <div class="content">
+        <p class="status">{{ step.status }}</p>
+        <p class="date">{{ step.date }}</p>
+      </div>
+      <div
+        *ngIf="i !== orderSteps.length - 1"
+        class="line"
+        [ngClass]="{'cancelled': orderSteps[i + 1].status === 'Cancelled'}"
+      ></div>
+    </div>
+  </div>
+</div>
+
+<ng-template #errorTpl>
+  <div class="error">{{ error }}</div>
+</ng-template>
+
+<ng-template #noStepsTpl>
+  <p>No tracking steps available.</p>
+</ng-template>
+
