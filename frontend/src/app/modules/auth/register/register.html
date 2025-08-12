@@ -2,15 +2,26 @@
   <h2 class="register-heading">Register</h2>
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
-    <!-- Full Name -->
+    <!-- First Name -->
     <input
       type="text"
-      placeholder="Full Name"
-      formControlName="name"
-      [class.invalid]="name?.invalid && name?.touched"
+      placeholder="First Name"
+      formControlName="firstName"
+      [class.invalid]="firstName?.invalid && firstName?.touched"
     />
-    <div class="error-message" *ngIf="name?.touched && name?.invalid">
-      Full name is required.
+    <div class="error-message" *ngIf="firstName?.touched && firstName?.invalid">
+      First name is required.
+    </div>
+
+    <!-- Last Name -->
+    <input
+      type="text"
+      placeholder="Last Name"
+      formControlName="lastName"
+      [class.invalid]="lastName?.invalid && lastName?.touched"
+    />
+    <div class="error-message" *ngIf="lastName?.touched && lastName?.invalid">
+      Last name is required.
     </div>
 
     <!-- Email -->
@@ -23,6 +34,18 @@
     <div class="error-message" *ngIf="email?.touched && email?.invalid">
       <div *ngIf="email?.errors?.['required']">Email is required.</div>
       <div *ngIf="email?.errors?.['email']">Enter a valid email address.</div>
+    </div>
+
+    <!-- Mobile Number -->
+    <input
+      type="text"
+      placeholder="Mobile Number"
+      formControlName="mobile"
+      [class.invalid]="mobile?.invalid && mobile?.touched"
+    />
+    <div class="error-message" *ngIf="mobile?.touched && mobile?.invalid">
+      <div *ngIf="mobile?.errors?.['required']">Mobile number is required.</div>
+      <div *ngIf="mobile?.errors?.['pattern']">Enter a valid 10-digit mobile number.</div>
     </div>
 
     <!-- Password -->
@@ -53,7 +76,7 @@
 
     <!-- Role Dropdown -->
     <select formControlName="role" [class.invalid]="role?.invalid && role?.touched">
-      <option value="" disabled selected>Select Role</option>
+      <option value="" disabled>Select Role</option>
       <option value="admin">Admin</option>
       <option value="user">User</option>
     </select>
@@ -66,7 +89,7 @@
   </form>
 
   <!-- Login Link -->
-  <p style="text-align: center;">Already have an account? 
+  <p style="text-align: center;">Already have an account?
     <a class="login-link" (click)="goToLogin()">Login</a>
   </p>
 </div>

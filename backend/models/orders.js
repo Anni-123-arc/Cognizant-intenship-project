@@ -13,6 +13,6 @@ const orderSchema = new mongoose.Schema({
         enum: ['Pending', 'Shipped', 'Delivered', 'Cancelled'],
         default: 'Pending'
     }
-}, { collection: 'orders' });
+}, { collection: 'orders'});
 
 export const Order = mongoose.model('Order', orderSchema);

@@ -1,5 +1,9 @@
-import { Routes } from '@angular/router';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes} from '@angular/router';
+//import { HttpClientModule } from '@angular/common/http';
+//import { Routes } from '@angular/router';
 
+// Import components
 import { ProductListComponent } from './modules/products/product-list/product-list.component';
 import { ProductDetailComponent } from './modules/products/product-detail/product-detail.component';
 import { AdminDashboard } from './modules/admin/admin-dashboard/admin-dashboard';
@@ -9,7 +13,7 @@ import { OrderSummary } from './modules/orders/order-summary/order-summary';
 import { OrderDetails } from './modules/orders/order-details/order-details';
 import { Login } from './modules/auth/login/login';
 import { RegisterComponent } from './modules/auth/register/register';
-import {Bio} from '././shared/components/bio/bio';
+import { Bio } from './shared/components/bio/bio';
 import { ChangePasswordComponent } from './modules/auth/change-password/change-password';
 import { LandingPage } from './modules/landing-page/landing-page';
 import { ForgotPasswordComponent } from './modules/auth/forgot-password/forgot-password';
@@ -22,9 +26,10 @@ import { HelplineComponent } from './shared/components/helpline/helpline';
 import { ProfileComponent } from './modules/profile/profile';
 import { AccountInfoComponent } from './shared/components/account-info/account-info';
 import { Address } from './shared/components/address/address';
-import { CancelOrderComponent } from './modules/orders/cancel-order/cancel-order';
-import { ReturnOrderComponent } from './modules/orders/return-order/return-order';
-import { TrackOrder } from './modules/orders/track-order/track-order';
+import { HelpC } from './modules/help-c/help-c';
+
+// Import AuthGuard
+import { AuthGuard } from './core/guards/auth.guards';
 
 export const routes: Routes = [
   { path: '', component: LandingPage },
@@ -35,22 +40,31 @@ export const routes: Routes = [
   { path: 'wishlist', component: WishlistPageComponent },
   { path: 'login', component: Login },
   { path: 'register', component: RegisterComponent },
-  { path: 'change-password', component: ChangePasswordComponent },
+  { path: 'forgot-password', component: ForgotPasswordComponent },
+  { path: 'reset-password', component: ResetPasswordComponent },
+
+  // Protected routes with AuthGuard
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: 'address', component: Address, canActivate: [AuthGuard] },
+  { path: 'change-password', component: ChangePasswordComponent, canActivate: [AuthGuard] },
+  { path: 'account-info', component: AccountInfoComponent, canActivate: [AuthGuard] },
+
   { path: 'bio', component: Bio },
   { path: 'orders', component: OrderSummary },
   { path: 'orders/:id', component: OrderDetails },
-  { path: 'forgot-password', component: ForgotPasswordComponent },
-  { path: 'reset-password', component: ResetPasswordComponent },
-  {path: 'home-header', component: HomeHeader}, 
-  {path: 'scrollable-menu-bar', component: ScrollableMenuBar},
-  {path: 'side-bar', component: SideBar},
-  {path: 'home', component: Home},
-  {path:'helpline',component: HelplineComponent },
-  {path: 'profile', component: ProfileComponent},
-  {path: 'account-info', component: AccountInfoComponent},
-  {path:'address', component: Address},
-  {path: 'orders/:id',component:OrderDetails},
-  {path: 'orders/:id/cancel',component:CancelOrderComponent},
-  {path:'orders/:id/return',component:ReturnOrderComponent},
-  {path:'orders/:id/track-order', component:TrackOrder}
+  { path: 'home-header', component: HomeHeader },
+  { path: 'scrollable-menu-bar', component: ScrollableMenuBar },
+  { path: 'side-bar', component: SideBar },
+  { path: 'home', component: Home },
+  { path: 'helpline', component: HelplineComponent },
+  { path: 'help', component: HelpC },
+
+  // Wildcard route for 404 or redirect to home
+  { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule {}

@@ -112,6 +112,6 @@ onTrack() {
   }
 
   navigateToAccount() {
-    this.router.navigate(['/account/settings']);
+    this.router.navigate(['/profile']);
   }
 }
