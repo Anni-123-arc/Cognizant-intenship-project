@@ -1,9 +1,21 @@
 import { Injectable } from '@angular/core';
+import axios from 'axios';
+
+type Message ={
+    id:string, 
+    name:string ,
+    profileImage:string ,
+    date:string , 
+    message:string ,
+    reply:string
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserMessagesService {
+
+  DBcustomerMessages:Message[] = []
 
   customerMessages:any[] =[
   {
@@ -53,18 +65,58 @@ export class UserMessagesService {
   }
 ]
 
-
-  constructor() { }
-
-  getCustomerMessages() {
-    return this.customerMessages;
+ // constructor for UserMessagesService
+  constructor() { 
+    //method call to invoke get queries api
+    this.test();
   }
 
-  setReply(id:number , reply:string){
-    this.customerMessages = this.customerMessages.filter((item)=>{
+
+//added function to retrive user messages/queries
+async test(){
+
+      //get api call
+      await axios.get('http://localhost:3000/api/getUserQueries').then((response) => {
+     
+      let res = response.data.data;
+      for(let obj of res){
+        this.DBcustomerMessages.push({
+          id:obj._id,
+          name:obj.userName,
+          profileImage:obj.userImage,
+          date:obj.userQueryDate,
+          message:obj.userMessage,
+          reply:obj.reply
+        })
+      }
+       
+    }).catch((err)=>{
+      console.error('Error fetching queries:', err);  
+    })
+ }
+
+
+ //method to send user queries to admin dashboard
+ getCustomerMessages() {
+    console.log('Fetching customer messages:', this.DBcustomerMessages);
+    return this.DBcustomerMessages;
+
+  }
+
+  async setReply(id:string , reply:string){
+
+    try {
+      const response = await axios.post(`http://localhost:3000/api/reply/${id}`, { reply });
+      //console.log('Reply sent successfully:', response.data);
+    } catch (error) {
+      console.error('Error sending reply:', error);
+    }
+
+    this.DBcustomerMessages = this.DBcustomerMessages.filter((item)=>{
         if(item.id === id){
           item.reply = reply
           console.log(`replied to ${JSON.stringify(item)}`)
+          return 
         }
         else{
         return item

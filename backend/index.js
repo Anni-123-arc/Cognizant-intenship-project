@@ -6,7 +6,6 @@ import helmet from "helmet";
 import morgan from "morgan";
 import rateLimit from "express-rate-limit";
 
-
 // Load environment variables
 dotenv.config();
 
@@ -21,6 +20,10 @@ import addressRoutes from "./routes/addressRoutes.js";
 // Orders routes
 import { orderRouter } from "./routes/ordersRoute.js";
 import { OrderHRoute } from "./routes/orderHistoryRouter.js";
+
+//reply Route
+import { replyToUserQueryRouter } from "./routes/replyToUserQuery.js";
+import {getQueryRouter} from './routes/getUserQueries.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -47,8 +50,10 @@ app.use(limiter);
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/address", addressRoutes);
-app.use("/api/orders", orderRouter);
-app.use("/api/order-history", OrderHRoute);
+app.use("/api", orderRouter);
+app.use("/api", OrderHRoute);
+app.use('/api', replyToUserQueryRouter);
+app.use('/api', getQueryRouter);
 
 // Health check
 app.get("/", (req, res) => res.json({ status: "ok" }));
