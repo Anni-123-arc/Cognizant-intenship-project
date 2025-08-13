@@ -24,35 +24,31 @@ export class RegisterComponent {
         firstName: ['', [Validators.required]],
         lastName: ['', [Validators.required]],
         email: ['', [Validators.required, Validators.email]],
-        mobile: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]], // ✅ Updated name
+        mobile: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
         password: ['', [Validators.required, Validators.minLength(6)]],
         confirmPassword: ['', [Validators.required]],
-        role: ['', [Validators.required]]
+        role: ['user', [Validators.required, Validators.pattern(/^(user|admin)$/)]]
       },
       { validators: this.passwordMatchValidator }
     );
   }
 
-  // Getters for form controls
   get firstName() { return this.registerForm.get('firstName'); }
   get lastName() { return this.registerForm.get('lastName'); }
   get email() { return this.registerForm.get('email'); }
-  get mobile() { return this.registerForm.get('mobile'); } // ✅ Updated
+  get mobile() { return this.registerForm.get('mobile'); }
   get password() { return this.registerForm.get('password'); }
   get confirmPassword() { return this.registerForm.get('confirmPassword'); }
   get role() { return this.registerForm.get('role'); }
 
-  // Password match validator
   passwordMatchValidator(group: FormGroup) {
     const pass = group.get('password')?.value;
     const confirm = group.get('confirmPassword')?.value;
     return pass === confirm ? null : { mismatch: true };
   }
 
-  // Submit form data
   onSubmit(): void {
     if (this.registerForm.valid) {
-      // Trim spaces from string fields before sending
       const formData = { ...this.registerForm.value };
       Object.keys(formData).forEach(key => {
         if (typeof formData[key] === 'string') {

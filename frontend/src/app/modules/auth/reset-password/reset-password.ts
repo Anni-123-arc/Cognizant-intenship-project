@@ -1,52 +1,69 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service';
-
+import { ActivatedRoute, Router } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-reset-password',
+  imports: [ReactiveFormsModule , CommonModule],
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './reset-password.html',
   styleUrls: ['./reset-password.css']
 })
-export class ResetPasswordComponent {
-  resetForm: FormGroup;
-  successMessage = '';
-  errorMessage = '';
+export class ResetPasswordComponent implements OnInit {
+  resetForm!: FormGroup;
+  message: string = '';
+  loading: boolean = false;
+  success: boolean = false;
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private route: ActivatedRoute,
+    private router: Router
   ) {
     this.resetForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
       otp: ['', [Validators.required]],
       newPassword: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required]]
-    }, { validators: this.passwordMatchValidator });
+    });
   }
 
-  passwordMatchValidator(group: FormGroup) {
-    const pass = group.get('newPassword')?.value;
-    const confirm = group.get('confirmPassword')?.value;
-    return pass === confirm ? null : { mismatch: true };
+  ngOnInit() {
+    // Pre-fill email if passed via query param
+    this.route.queryParams.subscribe(params => {
+      if (params['email']) {
+        this.resetForm.patchValue({ email: params['email'] });
+      }
+    });
   }
 
   onSubmit() {
-    if (this.resetForm.valid) {
-      const { otp, newPassword } = this.resetForm.value;
+    if (this.resetForm.invalid) return;
 
-      //  API call to backend for OTP-based password reset
-      this.authService.resetPassword({ otp, newPassword }).subscribe({
-        next: () => {
-          this.successMessage = 'Password reset successful!';
-          this.errorMessage = '';
-        },
-        error: (err) => {
-          this.errorMessage = err.error?.message || 'Error resetting password';
-          this.successMessage = '';
-        }
-      });
-    }
+    const data = this.resetForm.value;
+
+    this.loading = true;
+    this.message = '';
+    this.success = false;
+
+    this.authService.resetPassword(data).subscribe({
+      next: (res: any) => {
+        this.message = res.message || 'Password reset successfully!';
+        this.success = true;
+        this.loading = false;
+
+        // Redirect after 3 seconds
+        setTimeout(() => {
+          this.router.navigate(['/login']);
+        }, 3000);
+      },
+      error: (err: any) => {
+        this.message = err.error?.message || 'Something went wrong. Try again later.';
+        this.loading = false;
+      }
+    });
   }
 }
