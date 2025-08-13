@@ -1,0 +1,65 @@
+/* checkout-stepper.component.css */
+.stepper-actions {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.payment-method {
+  margin-bottom: 2rem;
+}
+
+.payment-method mat-radio-button {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.card-details {
+  margin-top: 1rem;
+}
+
+.row {
+  display: flex;
+  gap: 1rem;
+}
+
+.row mat-form-field {
+  flex: 1;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.review-section {
+  padding: 1rem;
+}
+
+.review-section h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.address-review p {
+  margin: 0.25rem 0;
+}
+
+.order-confirmed {
+  text-align: center;
+  padding: 2rem;
+}
+
+.success-icon {
+  font-size: 4rem;
+  height: 4rem;
+  width: 4rem;
+  color: #4CAF50;
+  margin-bottom: 1rem;
+}
+
+.order-confirmed h3 {
+  color: #4CAF50;
+  margin-bottom: 0.5rem;
+}

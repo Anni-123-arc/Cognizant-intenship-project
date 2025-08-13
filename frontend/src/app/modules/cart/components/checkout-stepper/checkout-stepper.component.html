@@ -1,0 +1,36 @@
+<!-- checkout-stepper.component.html -->
+<mat-horizontal-stepper linear>
+  <!-- Address Step -->
+  <mat-step>
+    <ng-template matStepLabel>Address</ng-template>
+    <app-address-selector 
+      (addressSelected)="onAddressSelected($event)">
+    </app-address-selector>
+    <div class="stepper-actions">
+      <button 
+        mat-raised-button 
+        color="primary" 
+        matStepperNext 
+        [disabled]="!selectedAddressId"
+      >
+        Continue to Payment
+      </button>
+    </div>
+  </mat-step>
+
+  <!-- Payment Step -->
+  <mat-step>
+    <ng-template matStepLabel>Payment</ng-template>
+    <!-- Payment form will go here -->
+    <div class="stepper-actions">
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button matStepperNext>Continue</button>
+    </div>
+  </mat-step>
+
+  <!-- Review Step -->
+  <mat-step>
+    <ng-template matStepLabel>Review</ng-template>
+    <button mat-raised-button color="primary">Place Order</button>
+  </mat-step>
+</mat-horizontal-stepper>

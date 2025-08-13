@@ -2,7 +2,7 @@
 <div class="wishlist-container">
   <div class="header">
     <h2>My Wishlist ({{wishlistItems.length}})</h2>
-    <a routerLink="/Cart" class="view-cart-btn">View Cart</a>
+    <button (click)="navigateToCart()" class="view-cart-btn">View Cart</button>
   </div>
 
   <div class="wishlist-items" *ngIf="wishlistItems.length > 0; else emptyState">

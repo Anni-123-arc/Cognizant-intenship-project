@@ -10,6 +10,7 @@ import { AdminDashboard } from './modules/admin/admin-dashboard/admin-dashboard'
 import { CartPageComponent } from './modules/cart/pages/cart-page/cart-page.component';
 import { WishlistPageComponent } from './modules/cart/pages/wishlist-page/wishlist-page.component';
 import { OrderSummary } from './modules/orders/order-summary/order-summary';
+import { CheckoutPageComponent } from './modules/cart/pages/checkout-page/checkout-page.component';
 import { OrderDetails } from './modules/orders/order-details/order-details';
 import { Login } from './modules/auth/login/login';
 import { RegisterComponent } from './modules/auth/register/register';
@@ -38,6 +39,7 @@ export const routes: Routes = [
   { path: 'admin', component: AdminDashboard },
   { path: 'cart', component: CartPageComponent },
   { path: 'wishlist', component: WishlistPageComponent },
+  { path: 'checkout', component: CheckoutPageComponent },
   { path: 'login', component: Login },
   { path: 'register', component: RegisterComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },

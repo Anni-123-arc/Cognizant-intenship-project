@@ -12,7 +12,9 @@ export class Carousal {
   images = [
     { id: 1, url: '../../../../assets/carousel-images/flash-sale1.jpg', alt: 'carousel image 1' },
     { id: 2, url: '../../../../assets/carousel-images/flash-sale2.jpg', alt: 'carousel image 2' },
-    { id: 3, url: '../../../../assets/carousel-images/flash-sale3.jpg', alt: 'carousel image 3' }
+    { id: 3, url: '../../../../assets/carousel-images/flash-sale3.jpg', alt: 'carousel image 3' },
+    { id: 4, url: '../../../../assets/carousel-images/flash-sale4.jpg', alt: 'carousel image 4' },
+    { id: 5, url: '../../../../assets/carousel-images/flash-sale5.jpg', alt: 'carousel image 5' }
   ];
 
   currentId = 0;
