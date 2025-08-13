@@ -4,11 +4,15 @@ import {  ActivatedRoute, RouterModule } from '@angular/router';
 import { ProductService, Product } from '../../../core/services/product.service'; 
 import { ReviewComponent } from '../review/review.component'; 
 //import { HttpClientModule } from '@angular/common/http';
+import { HomeHeader } from '../../../shared/components/home-header/home-header';
+import { Footer } from '../../../shared/components/footer/footer';
+//import { ScrollableMenuBar } from '../../../shared/components/scrollable-menu-bar/scrollable-menu-bar';
+//import { SideBar } from '../../../shared/components/side-bar/side-bar';
 
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [CommonModule, RouterModule, ReviewComponent],
+  imports: [CommonModule, HomeHeader, Footer, RouterModule, ReviewComponent], // ScrollableMenuBar, SideBar,
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.css']
 })
