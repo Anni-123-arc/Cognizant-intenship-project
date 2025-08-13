@@ -7,7 +7,7 @@ import { AuthService } from '../../../core/services/auth.service';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule], // Removed HttpClientModule — now provided globally
+  imports: [CommonModule, ReactiveFormsModule], 
   templateUrl: './login.html',
   styleUrls: ['./login.css']
 })
@@ -33,6 +33,7 @@ export class Login {
   get password() {
     return this.loginForm.get('password');
   }
+  
 
   onSubmit() {
     if (this.loginForm.valid) {
