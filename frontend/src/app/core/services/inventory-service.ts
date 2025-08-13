@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable, SimpleChanges } from '@angular/core';
 import { type PRO } from '../../modules/admin/admin-dashboard/admin-type.model'
 import {type Item} from  '../../modules/admin/admin-dashboard/admin-type.model'
 import {type UPRO} from '../../modules/admin/admin-dashboard/admin-type.model'
+import {type Inventory} from '../../modules/admin/admin-dashboard/admin-type.model'
 import axios from 'axios';
 
 @Injectable({
@@ -10,23 +11,7 @@ import axios from 'axios';
 export class InventoryService {
 
 
-  inventory = [
-    {
-      product_id: 'P1001',
-      product_name: 'iPhone 14 Pro Max',
-      category: 'Electronics',
-      price: 1299.99,
-      Quantity: 250
-    },
-    {
-      product_id: 'P2001',
-      product_name: 'Nike Air Max 270',
-      category: 'Fashion',
-      price: 149.99,
-      Quantity: 69,
-
-    }
-  ];
+  inventory:Inventory[] = [];
 
   dltInventory = [
     {
@@ -47,40 +32,61 @@ export class InventoryService {
   ];
 
 
-  constructor() { }
+  constructor() {
+        
+   }
 
+
+   //Method to retrive order details
+   test(){
+    axios.get('http://localhost:3000/api/get-products').then((response)=>{
+          const items = response.data.data;
+          console.log("Items fetched from backend:", items);
+          for(let item of items) {
+          this.inventory.push({
+            product_id: item.Product_ID ,
+            product_name: item.Product_Name,
+            category: item.Category,
+            price: item.Price,
+            Quantity: item.Quantity
+          });
+        }
+          
+        })
+   }
+
+   // Method to add a new product to the inventory
   addItems(product: any) {
 
     axios.post('http://localhost:3000/api/Uploadproducts', product)
-    // const newItem: Item = {
-    //   product_id: `000000 + ${this.inventory.length}`,
-    //   product_name: product.Product_Name,
-    //   category: 'Electronics', 
-    //   price: product.Price,
-    //   Quantity:product.Quantity
-    // };
 
-    // this.inventory.push(newItem);
 
   }
 
+  //Method to get all the products details from db
   getInventoryItems() {
+
+    this.test()
+
     return this.inventory
+
   }
 
+  //Method to delete a product from the inventory
   dltItem(product_id: string) {
-    this.inventory = this.inventory.filter((item) => item.product_id !== product_id)
+ 
+    axios.post(`http://localhost:3000/api/delete-product/${product_id}`)
+  
     return this.inventory
   }
 
+
+  //Method to update a product in the inventory
   updateItem(product:UPRO){
-    this.inventory = this.inventory.map((item)=>{
-      if(item.product_id===product.Product_Id){
-        item.Quantity = product.Quantity;
-        item.price = product.Price
-        return item;
-      }
-      return item;
-    })
+
+    axios.post(`http://localhost:3000/api/update-product`, product )
+
+
+   
   }
 }

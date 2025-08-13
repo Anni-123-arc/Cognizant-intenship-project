@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-nav',
@@ -7,10 +8,28 @@ import { Component } from '@angular/core';
   styleUrl: './admin-nav.css'
 })
 export class AdminNav {
-      isSyncing = false
-      lastSyncTime = '10:00am'
+  isSyncing = false
+  lastSyncTime = ' time'
 
-      syncData(){
+  constructor(private router: Router) {
+    const lastSync = localStorage.getItem('lastSyncTime');
+    if (lastSync) {
+      this.lastSyncTime = lastSync;
+    }
+  }
 
-      }
+  syncData() {
+    window.location.reload();
+    this.isSyncing = true;
+    const now = new Date().toLocaleTimeString();
+    this.lastSyncTime = now;
+
+    // Save before reload
+    localStorage.setItem('lastSyncTime', now);
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    this.router.navigate(['/']);
+  }
 }

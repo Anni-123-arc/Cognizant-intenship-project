@@ -15,7 +15,7 @@ export class UpdateForm {
   error!: string
 
   product: UPRO = {
-    Product_Id: this.ProductId,
+    Product_ID: this.ProductId,
     Quantity: this.Quantity,
     Price: this.Price
   };
@@ -33,7 +33,7 @@ export class UpdateForm {
     }
 
     const product: UPRO = {
-      Product_Id: this.ProductId,
+      Product_ID: this.ProductId,
       Quantity: this.Quantity,
       Price: this.Price
     };

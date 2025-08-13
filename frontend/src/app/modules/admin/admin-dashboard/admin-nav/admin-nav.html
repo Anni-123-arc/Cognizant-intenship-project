@@ -13,17 +13,20 @@
         </div>
 
         <div class="header-right">
+            <button class="sync-btn" (click)="logout()">
+                 logout
+            </button>
             <button class="sync-btn" (click)="syncData()" [class.syncing]="isSyncing">
                 <i class="fas" [class.fa-sync]="!isSyncing" [class.fa-spinner]="isSyncing"
                     [class.fa-spin]="isSyncing"></i>
                 {{isSyncing ? 'Syncing...' : 'Sync Data'}}
             </button>
-            @if(lastSyncTime){
+           
             <div class="last-sync">
                 Last synced: {{lastSyncTime}}
             </div>
 
-            }
+            
         </div>
     </div>
 </header>

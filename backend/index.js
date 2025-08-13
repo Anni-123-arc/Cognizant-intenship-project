@@ -27,6 +27,12 @@ import {getQueryRouter} from './routes/getUserQueries.js';
 
 //product upload route
 import {uploadProductRoute} from "./routes/uploadProduct.js";
+//router to fetch product details
+import { getProductRoute } from "./routes/getProducts.js";
+//router to delete product from db
+import { deleteProdRoute } from "./routes/deleteProd.js";
+//router to update product details
+import { updateProdRouter } from "./routes/updateProd.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -58,6 +64,9 @@ app.use("/api", OrderHRoute);
 app.use('/api', replyToUserQueryRouter);
 app.use('/api', getQueryRouter);
 app.use('/api', uploadProductRoute);
+app.use('/api', getProductRoute);
+app.use('/api', deleteProdRoute);
+app.use('/api', updateProdRouter);
 
 // Health check
 app.get("/", (req, res) => res.json({ status: "ok" }));

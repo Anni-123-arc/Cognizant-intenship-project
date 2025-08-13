@@ -6,7 +6,7 @@ export type PRO = {
 }
 
 export type UPRO = {
-  Product_Id: string,
+  Product_ID: string,
   Quantity: number,
   Price: number,
 
@@ -18,7 +18,7 @@ export type Inventory = {
       product_name: string,
       category: string ,
       price:number,
-      Quantity: 250
+      Quantity: number
 
 }
 
