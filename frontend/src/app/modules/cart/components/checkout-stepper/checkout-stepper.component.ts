@@ -9,6 +9,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-checkout-stepper',
@@ -30,37 +31,74 @@ import { MatInputModule } from '@angular/material/input';
 export class CheckoutStepperComponent {
   private fb = inject(FormBuilder);
   private router = inject(Router);
+  private snackBar = inject(MatSnackBar);
   
   checkoutForm: FormGroup;
   selectedAddressId?: number;
   orderConfirmed = false;
+  processingPayment = false;
+  selectedMethod = 'credit_card';
+
+  // Demo test cards
+  testCards = [
+    { type: 'Visa', number: '4242 4242 4242 4242' },
+    { type: 'Mastercard', number: '5555 5555 5555 4444' },
+    { type: 'Amex', number: '3782 822463 10005' }
+  ];
 
   constructor() {
     this.checkoutForm = this.fb.group({
       address: [null, Validators.required],
       payment: this.fb.group({
         method: ['credit_card', Validators.required],
-        nameOnCard: ['', Validators.required],
-        cardNumber: ['', [Validators.required,Validators.pattern(/^[\d\s]{16,19}$/)]],
-        expiry: ['', [Validators.required,Validators.pattern(/^(0[1-9]|1[0-2])\/?([0-9]{2}|[0-9]{4})$/) ]], // expiry validator
-        cvv: ['', [Validators.required,Validators.pattern(/^\d{3}$/)]] // CVV validator:
+        nameOnCard: ['DEMO USER', [Validators.required]],
+        cardNumber: ['4242 4242 4242 4242', [
+          Validators.required,
+          Validators.pattern(/^[\d\s]{16,19}$/)
+        ]],
+        expiry: ['12/30', [
+          Validators.required,
+          Validators.pattern(/^(0[1-9]|1[0-2])\/?([0-9]{2})$/)
+        ]],
+        cvv: ['123', [
+          Validators.required,
+          Validators.pattern(/^\d{3,4}$/)
+        ]]
       })
     });
   }
 
   onAddressSelected(address: any) {
-    console.log('Received address:', address);
     this.selectedAddressId = address.id;
     this.checkoutForm.get('address')?.setValue(address);
   }
 
   submitOrder() {
-    if (this.checkoutForm.valid) {
+    this.processingPayment = true;
+    
+    // Simulate payment processing
+    setTimeout(() => {
+      this.processingPayment = false;
       this.orderConfirmed = true;
+      
+      // this.snackBar.open('✅ Payment Successful! This is a demo transaction.', 'Close', {
+      //   duration: 5000,
+      //   panelClass: ['success-snackbar']
+      // });
+
       setTimeout(() => {
-        this.router.navigate(['/order-confirmation']);
+        this.router.navigate(['/home'], {
+          state: {
+            orderId: 'DEMO-' + Math.floor(100000 + Math.random() * 900000),
+            amount: 99.99 // Replace with your actual amount
+          }
+        });
       }, 2000);
-    }
+    }, 3000);
+  }
+
+  selectTestCard(card: any) {
+    this.checkoutForm.get('payment.cardNumber')?.setValue(card.number);
   }
 
   get paymentForm() {
@@ -68,11 +106,11 @@ export class CheckoutStepperComponent {
   }
 
   debugForm() {
-  console.log('Form validity:', this.paymentForm.valid);
-  console.log('Form errors:', this.paymentForm.errors);
-  Object.keys(this.paymentForm.controls).forEach(key => {
-    console.log(`${key} validity:`, this.paymentForm.get(key)?.valid);
-    console.log(`${key} errors:`, this.paymentForm.get(key)?.errors);
-  });
+    console.log('Form validity:', this.paymentForm.valid);
+    console.log('Form errors:', this.paymentForm.errors);
+    Object.keys(this.paymentForm.controls).forEach(key => {
+      console.log(`${key} validity:`, this.paymentForm.get(key)?.valid);
+      console.log(`${key} errors:`, this.paymentForm.get(key)?.errors);
+    });
   }
 }

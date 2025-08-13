@@ -8,7 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 // import { OrderSummaryComponent } from '../../components/order-summary/order-summary.component';
 import { CheckoutStepperComponent } from '../../components/checkout-stepper/checkout-stepper.component';
 import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
-import { FooterComponent } from '../../shared/components/footer/footer.component';
+import { Footer } from '../../../../shared/components/footer/footer';
 
 @Component({
   selector: 'app-checkout-page',
@@ -20,7 +20,7 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
     MatCardModule,
     ReactiveFormsModule,
     NavbarComponent ,
-    FooterComponent,
+    Footer,
     // OrderSummaryComponent,
     CheckoutStepperComponent
   ],

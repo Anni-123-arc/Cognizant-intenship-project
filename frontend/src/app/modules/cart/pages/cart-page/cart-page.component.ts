@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CartItemComponent } from '../../components/cart-item/cart-item.component';
 import { OrderSummaryComponent } from '../../components/order-summary/order-summary.component';
 import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
-import { FooterComponent } from '../../shared/components/footer/footer.component';
+import { Footer } from '../../../../shared/components/footer/footer';
 
 @Component({
   selector: 'app-cart-page',
@@ -11,7 +11,7 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
   imports: [
     CommonModule,
     NavbarComponent,
-    FooterComponent,
+    Footer,
     CartItemComponent, 
     OrderSummaryComponent
   ],

@@ -1,4 +1,62 @@
-/* Main stepper container */
+/* Demo Banner */
+.demo-banner {
+  background: #ffeb3b;
+  color: #000;
+  padding: 10px 15px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+}
+
+/* Test Cards Selector */
+.test-cards {
+  margin: 15px 0;
+  padding: 15px;
+  background: #f5f5f5;
+  border-radius: 4px;
+}
+
+.test-cards h4 {
+  margin: 0 0 10px 0;
+  font-size: 14px;
+}
+
+.test-card-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.test-card-buttons button {
+  font-size: 12px;
+}
+
+/* Spinner Animation */
+.spinner {
+  animation: spin 1s linear infinite;
+  margin-right: 8px;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Success Snackbar */
+.success-snackbar {
+  background: #4caf50 !important;
+  color: white !important;
+}
+
+/* Pre-filled demo fields */
+::ng-deep .mat-form-field-filled .mat-form-field-flex {
+  background-color: #fafafa;
+}
+
+/* Rest of your existing CSS remains the same */
 mat-horizontal-stepper {
   background-color: #f5f5f5;
   border-radius: 8px;
@@ -8,25 +66,23 @@ mat-horizontal-stepper {
   margin: 2rem auto;
 }
 
-/* Step headers */
 .mat-step-header .mat-step-icon {
   background-color: #757575;
   color: white;
 }
 
 .mat-step-header .mat-step-icon-selected {
-  background-color: #3f51b5; /* Primary color */
+  background-color: #3f51b5;
 }
 
 .mat-step-header .mat-step-icon-state-edit {
-  background-color: #ff4081; /* Accent color */
+  background-color: #ff4081;
 }
 
 .mat-step-label {
   font-weight: 500;
 }
 
-/* Form styling */
 .payment-container {
   padding: 20px;
   background: white;
@@ -55,7 +111,6 @@ mat-horizontal-stepper {
   background-color: #f5f7ff;
 }
 
-/* Card form styling */
 .card-form {
   display: flex;
   flex-direction: column;
@@ -72,13 +127,11 @@ mat-horizontal-stepper {
   flex: 1;
 }
 
-/* Error messages */
 mat-error {
   font-size: 12px;
   margin-top: 4px;
 }
 
-/* Stepper navigation buttons */
 .stepper-actions {
   display: flex;
   justify-content: flex-end;
@@ -86,7 +139,6 @@ mat-error {
   margin-top: 24px;
 }
 
-/* Review section */
 .review-section {
   background: white;
   padding: 24px;
@@ -99,7 +151,6 @@ mat-error {
   color: #3f51b5;
 }
 
-/* Order confirmation */
 .order-confirmed {
   text-align: center;
   padding: 40px 20px;
@@ -121,7 +172,6 @@ mat-error {
   margin-bottom: 10px;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
   mat-horizontal-stepper {
     padding: 16px;
@@ -138,7 +188,6 @@ mat-error {
   }
 }
 
-/* Form field overrides */
 mat-form-field {
   width: 100%;
 }
@@ -155,7 +204,6 @@ mat-form-field {
   caret-color: #3f51b5;
 }
 
-/* Button overrides */
 button[mat-raised-button] {
   padding: 0 24px;
   height: 42px;

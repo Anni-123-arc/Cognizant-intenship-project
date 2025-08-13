@@ -4,6 +4,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
+  background: linear-gradient(135deg, #d0e7ff, #98c9ff);
   background-color: #FFFFFF;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: sticky;
@@ -72,7 +73,7 @@
   align-items: center;
   gap: 0.5rem;
   text-decoration: none;
-  color: #212529;
+  color: #003366;
   font-weight: 500;
   font-size: 1rem;
   padding: 0.5rem;
@@ -107,7 +108,7 @@
 }
 
 .help-link {
-  font-weight: 600;
+  font-weight: 450;
   text-transform: uppercase;
 }
 

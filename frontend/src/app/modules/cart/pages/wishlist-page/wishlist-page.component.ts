@@ -4,12 +4,12 @@ import { WishlistItemComponent } from '../../components/wishlist-item/wishlist-i
 import { RouterLink } from '@angular/router';
 import { Router } from '@angular/router';
 import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
-import { FooterComponent } from '../../shared/components/footer/footer.component';
+import { Footer } from '../../../../shared/components/footer/footer';
 
 @Component({
   selector: 'app-wishlist-page',
   standalone: true,
-  imports: [CommonModule, WishlistItemComponent, RouterLink , NavbarComponent, FooterComponent ,],
+  imports: [CommonModule, WishlistItemComponent, RouterLink , NavbarComponent, Footer ,],
   templateUrl: './wishlist-page.component.html',
   styleUrls: ['./wishlist-page.component.css']
 })
