@@ -95,3 +95,11 @@ form {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   animation: fadeIn 0.3s ease-in-out;
 }
+
+
+.form-row input[type="file"] {
+  flex: 2;
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}

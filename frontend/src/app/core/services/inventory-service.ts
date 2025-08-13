@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { type PRO } from '../../modules/admin/admin-dashboard/admin-type.model'
 import {type Item} from  '../../modules/admin/admin-dashboard/admin-type.model'
 import {type UPRO} from '../../modules/admin/admin-dashboard/admin-type.model'
-
+import axios from 'axios';
 
 @Injectable({
   providedIn: 'root'
@@ -49,16 +49,18 @@ export class InventoryService {
 
   constructor() { }
 
-  addItems(product: PRO) {
-    const newItem: Item = {
-      product_id: `000000 + ${this.inventory.length}`,
-      product_name: product.Product_Name,
-      category: 'Electronics', 
-      price: product.Price,
-      Quantity:product.Quantity
-    };
+  addItems(product: any) {
 
-    this.inventory.push(newItem);
+    axios.post('http://localhost:3000/api/Uploadproducts', product)
+    // const newItem: Item = {
+    //   product_id: `000000 + ${this.inventory.length}`,
+    //   product_name: product.Product_Name,
+    //   category: 'Electronics', 
+    //   price: product.Price,
+    //   Quantity:product.Quantity
+    // };
+
+    // this.inventory.push(newItem);
 
   }
 

@@ -38,7 +38,7 @@ export class AdminDashboard {
     this.isUpdateVisible = visible;
   }
 
-  AddToInventory(product: PRO) {
+  AddToInventory(product: any) {
     this.inventoryService.addItems(product)
   }
   UpdateToInventory(product: UPRO) {

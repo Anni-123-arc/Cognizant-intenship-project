@@ -25,6 +25,9 @@ import { OrderHRoute } from "./routes/orderHistoryRouter.js";
 import { replyToUserQueryRouter } from "./routes/replyToUserQuery.js";
 import {getQueryRouter} from './routes/getUserQueries.js';
 
+//product upload route
+import {uploadProductRoute} from "./routes/uploadProduct.js";
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -54,6 +57,7 @@ app.use("/api", orderRouter);
 app.use("/api", OrderHRoute);
 app.use('/api', replyToUserQueryRouter);
 app.use('/api', getQueryRouter);
+app.use('/api', uploadProductRoute);
 
 // Health check
 app.get("/", (req, res) => res.json({ status: "ok" }));
