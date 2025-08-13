@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../core/services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -58,15 +59,37 @@ export class RegisterComponent {
 
       this.authService.register(formData).subscribe({
         next: () => {
-          alert('Registration successful!');
-          this.router.navigate(['/login']);
+          Swal.fire({
+            title: 'Welcome to NextBuy! 🎉',
+            html: `<strong>${formData.firstName} ${formData.lastName}</strong>, your account has been created successfully!<br><br>
+                   <em>Login now to start shopping for your favorite products.</em>`,
+            icon: 'success',
+            confirmButtonText: 'Go to Login',
+            confirmButtonColor: '#1976d2',
+            background: '#f8fbff',
+            color: '#0d47a1',
+            timer: 3000,
+            timerProgressBar: true
+          }).then(() => {
+            this.router.navigate(['/login']);
+          });
         },
         error: (err) => {
-          alert(err.error?.message || 'Registration failed');
+          Swal.fire({
+            title: 'Registration Failed',
+            text: err.error?.message || 'Something went wrong. Please try again.',
+            icon: 'error',
+            confirmButtonColor: '#d33'
+          });
         }
       });
     } else {
-      alert('Please fill in all required fields correctly.');
+      Swal.fire({
+        title: 'Form Incomplete',
+        text: 'Please fill in all required fields correctly.',
+        icon: 'warning',
+        confirmButtonColor: '#f6c23e'
+      });
     }
   }
 

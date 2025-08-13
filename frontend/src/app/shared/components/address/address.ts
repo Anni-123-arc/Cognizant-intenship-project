@@ -13,7 +13,7 @@ export class Address implements OnInit {
   addresses: any[] = [
     // Static fallback/demo addresses
     { name: 'Home', line1: '123 Main Street', line2: 'Apt 4B', city: 'New York', state: 'NY', zip: '10001' },
-    { name: 'Office', line1: '456 Business Rd', line2: '', city: 'Los Angeles', state: 'CA', zip: '90001' }
+    { name: 'Office', line1: '456 Business Rd', line2: 'Apt 6A', city: 'Los Angeles', state: 'CA', zip: '90001' }
   ];
 
   newAddress = { street: '', city: '', state: '', zip: '' };

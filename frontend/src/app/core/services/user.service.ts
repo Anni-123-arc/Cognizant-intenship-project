@@ -10,12 +10,14 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
-  getProfile(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/users/me`);
+  // ✅ Matches backend route: GET /users/me
+  getProfile(): Observable<{ user: any }> {
+    return this.http.get<{ user: any }>(`${this.baseUrl}/users/me`);
   }
 
-  updateProfile(data: any): Observable<any> {
-    return this.http.put(`${this.baseUrl}/users/me`, data);
+  // ✅ Matches backend route: PUT /users/me
+  updateProfile(data: any): Observable<{ user: any }> {
+    return this.http.put<{ user: any }>(`${this.baseUrl}/users/me`, data);
   }
 
   // Address CRUD
