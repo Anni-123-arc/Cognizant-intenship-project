@@ -1,41 +1,66 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { AuthService } from '../../../core/services/auth.service';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-change-password',
-  imports: [ReactiveFormsModule, CommonModule],
   standalone: true,
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './change-password.html',
   styleUrls: ['./change-password.css']
 })
 export class ChangePasswordComponent {
-  passwordForm: FormGroup;
+  changePasswordForm!: FormGroup;
+  message: string = '';
+  loading: boolean = false;
+  success: boolean = false;
 
-  constructor(private fb: FormBuilder, private router: Router) {
-    this.passwordForm = this.fb.group({
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {
+    this.changePasswordForm = this.fb.group({
+      currentPassword: ['', [Validators.required]],
       newPassword: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required]
+      confirmPassword: ['', [Validators.required]]
     });
   }
 
-  onChangePassword() {
-    const { newPassword, confirmPassword } = this.passwordForm.value;
+  onSubmit() {
+    if (this.changePasswordForm.invalid) return;
 
-    if (this.passwordForm.valid && newPassword === confirmPassword) {
-      alert('Password changed successfully!');
-      this.router.navigate(['/login']); // redirect to login
-    } else {
-      alert('Passwords do not match!');
+    const { currentPassword, newPassword, confirmPassword } = this.changePasswordForm.value;
+
+    if (newPassword !== confirmPassword) {
+      this.message = 'New password and confirm password do not match.';
+      return;
     }
-  }
 
-  get newPassword() {
-    return this.passwordForm.get('newPassword');
-  }
+    this.loading = true;
+    this.message = '';
+    this.success = false;
 
-  get confirmPassword() {
-    return this.passwordForm.get('confirmPassword');
+    this.authService.changePassword({ currentPassword, newPassword }).subscribe({
+      next: (res: any) => {
+        this.message = res.message || 'Password changed successfully.';
+        this.success = true;
+        this.loading = false;
+
+        //  Log out and redirect to login after short delay
+        setTimeout(() => {
+          this.authService.logout();
+          this.router.navigate(['/login'], {
+            queryParams: { message: 'Password changed successfully. Please log in again.' }
+          });
+        }, 1500);
+      },
+      error: (err: any) => {
+        this.message = err.error?.message || 'Something went wrong. Try again later.';
+        this.loading = false;
+      }
+    });
   }
 }

@@ -5,7 +5,6 @@ import { HomeHeader } from '../../shared/components/home-header/home-header';
 import { Footer } from '../../shared/components/footer/footer';
 import { UserService } from '../../core/services/user.service';
 
-
 @Component({
   selector: 'app-profile',
   standalone: true,
@@ -20,13 +19,14 @@ export class ProfileComponent implements OnInit {
     email: 'john@example.com',
     phone: '9876543210',
     address1: '123 Main Street',
-    address2: 'Apartment 4B'
+    address2: 'Apartment 4B',
+    profileImageUrl: ''
   };
 
   constructor(private router: Router, private userService: UserService) {}
 
   ngOnInit() {
-    // API call: fetch user profile from backend
+    // API call: fetch user profile
     this.userService.getProfile().subscribe({
       next: (res) => {
         this.userData = res.user;
@@ -35,12 +35,28 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (!input.files || input.files.length === 0) return;
+
+    const file = input.files[0];
+
+    // Preview image
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.userData.profileImageUrl = reader.result as string;
+    };
+    reader.readAsDataURL(file);
+
+    // TODO: Upload to backend API
+    // this.userService.uploadProfileImage(file).subscribe(...)
+  }
+
   navigateTo(path: string) {
     this.router.navigate([path], { state: { user: this.userData } });
   }
 
   updateProfile() {
-    // API call: send updated profile data to backend
     this.userService.updateProfile(this.userData).subscribe({
       next: () => alert('Profile updated!'),
       error: (err) => alert(err.error.message || 'Error updating profile')
@@ -48,11 +64,7 @@ export class ProfileComponent implements OnInit {
   }
 
   logout() {
-    // API call: optional logout API call could be here
-
-    // Clear user token or session data from localStorage
     localStorage.removeItem('token');
-
     this.router.navigate(['']);
   }
 }

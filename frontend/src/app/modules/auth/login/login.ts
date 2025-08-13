@@ -3,11 +3,12 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../core/services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule], 
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './login.html',
   styleUrls: ['./login.css']
 })
@@ -33,7 +34,6 @@ export class Login {
   get password() {
     return this.loginForm.get('password');
   }
-  
 
   onSubmit() {
     if (this.loginForm.valid) {
@@ -43,16 +43,32 @@ export class Login {
         next: (res) => {
           localStorage.setItem('token', res.token);
 
-          if (role === 'admin') {
-            alert('Admin login successful!');
-            this.router.navigate(['/admin']);
-          } else {
-            alert('User login successful!');
-            this.router.navigate(['/home']);
-          }
+          // 🎨 SweetAlert2 styled popup
+          Swal.fire({
+            title: 'Welcome to NextBuy! 🎉',
+            html: `<strong>${email}</strong> logged in successfully as <strong>${role}</strong>.<br>Start shopping for your favorite products today!`,
+            icon: 'success',
+            confirmButtonText: 'Start Shopping',
+            confirmButtonColor: '#1976d2',
+            background: '#f8fbff',
+            color: '#0d47a1',
+            timer: 2500,
+            timerProgressBar: true
+          }).then(() => {
+            if (role === 'admin') {
+              this.router.navigate(['/admin']);
+            } else {
+              this.router.navigate(['/home']);
+            }
+          });
         },
         error: (err) => {
-          alert(err.error?.message || 'Login failed');
+          Swal.fire({
+            title: 'Login Failed',
+            text: err.error?.message || 'Something went wrong',
+            icon: 'error',
+            confirmButtonColor: '#d33'
+          });
         }
       });
     }

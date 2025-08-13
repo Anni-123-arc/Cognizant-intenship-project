@@ -6,29 +6,34 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private baseUrl = 'http://localhost:3000/api/auth'; // base auth route
+  private baseUrl = 'http://localhost:3000/api'; // Your backend base URL
 
   constructor(private http: HttpClient) {}
 
   register(data: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/register`, data);
+    return this.http.post(`${this.baseUrl}/auth/register`, data);
   }
 
   login(data: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/login`, data);
+    return this.http.post(`${this.baseUrl}/auth/login`, data);
   }
 
-  // For forgot password component
   forgotPassword(email: string): Observable<any> {
-    return this.http.post(`${this.baseUrl}/forgot-password`, { email });
+    return this.http.post(`${this.baseUrl}/auth/forgot-password`, { email });
   }
 
-  // For reset password with OTP
-  resetPassword(data: { email: string; otp: string; newPassword: string; confirmPassword: string }): Observable<any> {
-    return this.http.post(`${this.baseUrl}/reset-password`, data);
+  resetPassword(data: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/auth/reset-password`, data);
   }
 
-  changePassword(data: { currentPassword: string; newPassword: string; confirmPassword: string }): Observable<any> {
-    return this.http.put(`${this.baseUrl}/change-password`, data);
+  changePassword(data: { currentPassword: string; newPassword: string }): Observable<any> {
+  return this.http.put(`${this.baseUrl}/auth/change-password`, data);
+}
+
+
+  //  Added logout method
+  logout(): void {
+    localStorage.removeItem('token'); // adjust token key if different
   }
 }
+

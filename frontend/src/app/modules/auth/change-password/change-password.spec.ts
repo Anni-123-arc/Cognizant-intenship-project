@@ -1,18 +1,26 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { ChangePasswordComponent } from './change-password';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RouterTestingModule } from '@angular/router/testing';
+import { Router } from '@angular/router';
+import { of, throwError } from 'rxjs';
+import { AuthService } from '../../../core/services/auth.service';
+import { CommonModule } from '@angular/common';
 
 describe('ChangePasswordComponent', () => {
   let component: ChangePasswordComponent;
   let fixture: ComponentFixture<ChangePasswordComponent>;
+  let authServiceSpy: jasmine.SpyObj<AuthService>;
+  let routerSpy: jasmine.SpyObj<Router>;
 
   beforeEach(async () => {
+    authServiceSpy = jasmine.createSpyObj('AuthService', ['changePassword', 'logout']);
+    routerSpy = jasmine.createSpyObj('Router', ['navigate']);
+
     await TestBed.configureTestingModule({
-      declarations: [ChangePasswordComponent],
-      imports: [
-        ReactiveFormsModule,      // Required for formGroup
-        RouterTestingModule       // For router navigation mocking
+      imports: [ReactiveFormsModule, CommonModule, ChangePasswordComponent],
+      providers: [
+        { provide: AuthService, useValue: authServiceSpy },
+        { provide: Router, useValue: routerSpy }
       ]
     }).compileComponents();
 
@@ -26,35 +34,64 @@ describe('ChangePasswordComponent', () => {
   });
 
   it('form should be invalid initially', () => {
-    expect(component.passwordForm.valid).toBeFalse();
+    expect(component.changePasswordForm.valid).toBeFalse();
   });
 
-  it('should show error if passwords do not match', () => {
-    spyOn(window, 'alert');
-
-    component.passwordForm.setValue({
+  it('should set message if passwords do not match', () => {
+    component.changePasswordForm.setValue({
+      currentPassword: 'oldpass',
       newPassword: 'password123',
-      confirmPassword: 'password321'
+      confirmPassword: 'different'
     });
 
-    component.onChangePassword();
+    component.onSubmit();
 
-    expect(window.alert).toHaveBeenCalledWith('Passwords do not match!');
+    expect(component.message).toBe('New password and confirm password do not match.');
+    expect(authServiceSpy.changePassword).not.toHaveBeenCalled();
   });
 
-  it('should alert success and navigate on valid match', () => {
-    spyOn(window, 'alert');
-    const router = TestBed.inject(RouterTestingModule);
-    const navigateSpy = spyOn(component['router'], 'navigate');
+  it('should call AuthService.changePassword and handle success', fakeAsync(() => {
+    authServiceSpy.changePassword.and.returnValue(of({ message: 'Password changed successfully.' }));
 
-    component.passwordForm.setValue({
-      newPassword: 'password123',
-      confirmPassword: 'password123'
+    component.changePasswordForm.setValue({
+      currentPassword: 'oldpass',
+      newPassword: 'newpass123',
+      confirmPassword: 'newpass123'
     });
 
-    component.onChangePassword();
+    component.onSubmit();
 
-    expect(window.alert).toHaveBeenCalledWith('Password changed successfully!');
-    expect(navigateSpy).toHaveBeenCalledWith(['/login']);
+    expect(component.loading).toBeTrue();
+    expect(authServiceSpy.changePassword).toHaveBeenCalledWith({
+      currentPassword: 'oldpass',
+      newPassword: 'newpass123'
+    });
+
+    // Simulate async complete
+    expect(component.success).toBeTrue();
+    expect(component.message).toBe('Password changed successfully.');
+    tick(1500);
+    expect(authServiceSpy.logout).toHaveBeenCalled();
+    expect(routerSpy.navigate).toHaveBeenCalledWith(['/login'], {
+      queryParams: { message: 'Password changed successfully. Please log in again.' }
+    });
+  }));
+
+  it('should handle error from AuthService.changePassword', () => {
+    authServiceSpy.changePassword.and.returnValue(
+      throwError(() => ({ error: { message: 'Server error' } }))
+    );
+
+    component.changePasswordForm.setValue({
+      currentPassword: 'oldpass',
+      newPassword: 'newpass123',
+      confirmPassword: 'newpass123'
+    });
+
+    component.onSubmit();
+
+    expect(component.loading).toBeFalse();
+    expect(component.message).toBe('Server error');
+    expect(component.success).toBeFalse();
   });
 });
