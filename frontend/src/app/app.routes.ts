@@ -28,7 +28,9 @@ import { ProfileComponent } from './modules/profile/profile';
 import { AccountInfoComponent } from './shared/components/account-info/account-info';
 import { Address } from './shared/components/address/address';
 import { HelpC } from './modules/help-c/help-c';
-
+import { ReturnOrderComponent } from './modules/orders/return-order/return-order';
+import { CancelOrderComponent } from './modules/orders/cancel-order/cancel-order';
+import { TrackOrder } from './modules/orders/track-order/track-order';
 // Import AuthGuard
 import { AuthGuard } from './core/guards/auth.guards';
 
@@ -60,6 +62,9 @@ export const routes: Routes = [
   { path: 'home', component: Home },
   { path: 'helpline', component: HelplineComponent },
   { path: 'help', component: HelpC },
+  {path: 'orders/:id/cancel',component:CancelOrderComponent},
+  {path:'orders/:id/return',component:ReturnOrderComponent},
+  {path:'orders/:id/track-order', component:TrackOrder},
 
   // Wildcard route for 404 or redirect to home
   { path: '**', redirectTo: '', pathMatch: 'full' }
