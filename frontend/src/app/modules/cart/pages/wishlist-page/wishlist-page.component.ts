@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { WishlistItemComponent } from '../../components/wishlist-item/wishlist-item.component';
 import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 
@@ -44,5 +45,11 @@ export class WishlistPageComponent {
     console.log('Moved to cart:', item);
     // UI-only action for demo
     this.handleRemove(item.id);
+  }
+
+  constructor(private router: Router) {}
+
+  navigateToCart() {
+    this.router.navigate(['/cart']);
   }
 }
