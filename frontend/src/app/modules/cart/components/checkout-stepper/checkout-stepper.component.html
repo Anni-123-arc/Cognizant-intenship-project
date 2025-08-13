@@ -1,4 +1,3 @@
-<!-- checkout-stepper.component.html -->
 <mat-horizontal-stepper linear>
   <!-- Address Step -->
   <mat-step>
@@ -19,18 +18,100 @@
   </mat-step>
 
   <!-- Payment Step -->
-  <mat-step>
+  <mat-step [stepControl]="paymentForm">
     <ng-template matStepLabel>Payment</ng-template>
-    <!-- Payment form will go here -->
+    
+    <form [formGroup]="paymentForm" class="payment-container">
+      <h3>Select Payment Method</h3>
+      
+      <mat-radio-group formControlName="method" class="payment-options">
+        <mat-radio-button value="credit_card" class="payment-option">
+          <mat-icon>credit_card</mat-icon> Credit/Debit Card
+        </mat-radio-button>
+        <mat-radio-button value="paypal" class="payment-option">
+          <mat-icon>account_balance_wallet</mat-icon> PayPal
+        </mat-radio-button>
+      </mat-radio-group>
+
+      <!-- Credit Card Form -->
+      <div *ngIf="paymentForm.get('method')?.value === 'credit_card' && paymentForm.get('method')?.valid" class="card-form">
+        
+        <mat-form-field appearance="outline">
+          <mat-label>Name on Card</mat-label>
+          <input matInput formControlName="nameOnCard" required>
+          <mat-error *ngIf="paymentForm.get('nameOnCard')?.invalid">
+            Name is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Card Number</mat-label>
+          <input matInput formControlName="cardNumber" placeholder="1234 5678 9012 3456">
+          <mat-error *ngIf="paymentForm.get('cardNumber')?.invalid">
+            Valid 16-digit card number required
+          </mat-error>
+        </mat-form-field>
+
+        <div class="row">
+          <mat-form-field appearance="outline">
+            <mat-label>Expiry Date (MM/YY)</mat-label>
+            <input matInput formControlName="expiry" placeholder="MM/YY">
+            <mat-error *ngIf="paymentForm.get('expiry')?.invalid">
+              Valid expiry date required (MM/YY)
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>CVV</mat-label>
+            <input matInput formControlName="cvv" type="password" placeholder="123">
+            <mat-icon matSuffix>lock</mat-icon>
+            <mat-error *ngIf="paymentForm.get('cvv')?.invalid">
+              3-digit security code required
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- PayPal Notice -->
+      <div *ngIf="paymentForm.get('method')?.value === 'paypal'" class="paypal-notice">
+        <p>You'll be redirected to PayPal to complete your payment</p>
+
+        <input type="hidden" formControlName="nameOnCard" value="PayPal User">
+        <input type="hidden" formControlName="cardNumber" value="paypal">
+        <input type="hidden" formControlName="expiry" value="01/99">
+        <input type="hidden" formControlName="cvv" value="000">
+      </div>
+    </form>
+
     <div class="stepper-actions">
       <button mat-button matStepperPrevious>Back</button>
-      <button mat-button matStepperNext>Continue</button>
+      <button mat-raised-button 
+        color="primary" 
+        matStepperNext
+        [disabled]="!paymentForm.valid"
+        (click)="debugForm()">
+         Review Order
+        </button>
     </div>
   </mat-step>
 
   <!-- Review Step -->
   <mat-step>
     <ng-template matStepLabel>Review</ng-template>
-    <button mat-raised-button color="primary">Place Order</button>
+    <div class="review-section" *ngIf="!orderConfirmed; else confirmation">
+      <h3>Order Summary</h3>
+      <!-- Add your order review content here -->
+      <button mat-raised-button color="primary" (click)="submitOrder()">
+        Place Order
+      </button>
+    </div>
+
+    <ng-template #confirmation>
+      <div class="order-confirmed">
+        <mat-icon class="success-icon">check_circle</mat-icon>
+        <h3>Order Confirmed!</h3>
+        <p>Your order has been placed successfully.</p>
+      </div>
+    </ng-template>
   </mat-step>
 </mat-horizontal-stepper>
