@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 //import { HttpClient } from '@angular/common/http';
+import axios from 'axios';
 
 export interface Product {
   id: number;
@@ -17,6 +18,8 @@ export interface Review {
   comment: string;
   rating: number;
 }
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -234,4 +237,7 @@ export class ProductService {
     //return this.http.get<Product>(`${this.baseUrl}/${id}`);
     return of(product);  // Use mock array
   }
+
+
+
 }
