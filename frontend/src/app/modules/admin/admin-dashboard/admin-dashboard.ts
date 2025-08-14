@@ -10,12 +10,13 @@ import { ReplyBox } from './reply-box/reply-box';
 import { InventoryService } from '../../../core/services/inventory-service';
 import { UserMessagesService } from '../../../core/services/user-messages-service';
 import { type PRO } from '../admin-dashboard/admin-type.model'
-import { type UPRO } from '../admin-dashboard/admin-type.model'
+import { type UPRO } from '../admin-dashboard/admin-type.model';
+
 
 
 @Component({
   selector: 'app-admin-dashboard',
-  imports: [AdminSidebar, AdminSalesStats, AdminOrderManagement, AdminUserReviews, AddForm, UpdateForm, AdminNav,ReplyBox],
+  imports: [AdminSidebar, AdminSalesStats, AdminOrderManagement, AdminUserReviews, AddForm, UpdateForm, AdminNav, ReplyBox],
   templateUrl: './admin-dashboard.html',
   styleUrl: './admin-dashboard.css'
 })
