@@ -5,16 +5,18 @@
     <h3 class="product-name">{{item.name}}</h3>
     <div class="price-section">
       <span class="current-price">₹{{item.price}}</span>
-      <span class="original-price">₹{{item.originalPrice}}</span>
+      @if (item.originalPrice) {
+        <span class="original-price">₹{{item.originalPrice}}</span>
+      }
     </div>
     <div class="delivery">Delivery by {{item.deliveryDate}}</div>
   </div>
 
   <div class="action-buttons">
-    <button class="move-to-cart" (click)="moveToCart.emit(item)">
+    <button class="move-to-cart" (click)="onMoveToCart()">
       Move to Cart
     </button>
-    <button class="remove" (click)="remove.emit(item.id)">
+    <button class="remove" (click)="onRemove()">
       Remove
     </button>
   </div>

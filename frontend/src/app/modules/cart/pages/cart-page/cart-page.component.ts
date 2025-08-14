@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { CartService } from '../../shared/services/cart.service';
 import { CommonModule } from '@angular/common';
-import { CartItemComponent } from '../../components/cart-item/cart-item.component';
-import { OrderSummaryComponent } from '../../components/order-summary/order-summary.component';
+import { OrderCartSummaryComponent } from '../../components/order-summary/order-summary.component';
 import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
 import { Footer } from '../../../../shared/components/footer/footer';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart-page',
@@ -12,33 +13,31 @@ import { Footer } from '../../../../shared/components/footer/footer';
     CommonModule,
     NavbarComponent,
     Footer,
-    CartItemComponent, 
-    OrderSummaryComponent
+    OrderCartSummaryComponent  // Removed CartItemComponent since we're not using it
   ],
   templateUrl: './cart-page.component.html',
   styleUrls: ['./cart-page.component.css']
 })
 export class CartPageComponent {
-  cartItems = [
-    { 
-      id: 1, 
-      name: 'Product 1', 
-      price: 29.99, 
-      quantity: 2, 
-      image: 'product1.jpg' 
-    },
-    { 
-      id: 2, 
-      name: 'Product 2', 
-      price: 49.99, 
-      quantity: 1, 
-      image: 'product2.jpg' 
-    }
-  ];
+  constructor(
+    public cartService: CartService,
+    private router: Router
+  ) {}
 
   handleRemove(itemId: number) {
-    console.log('Item removed:', itemId);
-    // UI-only removal for demo
-    this.cartItems = this.cartItems.filter(item => item.id !== itemId);
+    this.cartService.removeFromCart(itemId);
+  }
+
+  handleQuantityUpdate(event: {id: number, change: number}) {
+    this.cartService.updateQuantity(event.id, event.change);
+  }
+
+  getTotalItems() {
+    return this.cartService.cartItems.reduce((total, item) => 
+      total + item.quantity, 0);
+  }
+
+  navigateToHome() {
+    this.router.navigate(['/home']);
   }
 }

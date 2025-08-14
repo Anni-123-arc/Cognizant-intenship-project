@@ -1,15 +1,15 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule, FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { AddressSelectorComponent } from '../address-selector/address-selector.component';
-import { Router } from '@angular/router';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AddressSelectorComponent } from '../address-selector/address-selector.component';
 
 @Component({
   selector: 'app-checkout-stepper',
@@ -29,10 +29,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./checkout-stepper.component.css']
 })
 export class CheckoutStepperComponent {
-  private fb = inject(FormBuilder);
-  private router = inject(Router);
-  private snackBar = inject(MatSnackBar);
-  
   checkoutForm: FormGroup;
   selectedAddressId?: number;
   orderConfirmed = false;
@@ -46,7 +42,11 @@ export class CheckoutStepperComponent {
     { type: 'Amex', number: '3782 822463 10005' }
   ];
 
-  constructor() {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private snackBar: MatSnackBar
+  ) {
     this.checkoutForm = this.fb.group({
       address: [null, Validators.required],
       payment: this.fb.group({
@@ -81,16 +81,11 @@ export class CheckoutStepperComponent {
       this.processingPayment = false;
       this.orderConfirmed = true;
       
-      // this.snackBar.open('✅ Payment Successful! This is a demo transaction.', 'Close', {
-      //   duration: 5000,
-      //   panelClass: ['success-snackbar']
-      // });
-
       setTimeout(() => {
         this.router.navigate(['/home'], {
           state: {
             orderId: 'DEMO-' + Math.floor(100000 + Math.random() * 900000),
-            amount: 99.99 // Replace with your actual amount
+            amount: 99.99
           }
         });
       }, 2000);

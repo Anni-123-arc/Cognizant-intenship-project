@@ -12,4 +12,12 @@ export class WishlistItemComponent {
   @Input() item: any;
   @Output() remove = new EventEmitter<number>();
   @Output() moveToCart = new EventEmitter<any>();
+
+  onRemove() {
+    this.remove.emit(this.item.id);
+  }
+
+  onMoveToCart() {
+    this.moveToCart.emit(this.item);
+  }
 }
