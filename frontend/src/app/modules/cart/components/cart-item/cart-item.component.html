@@ -9,14 +9,15 @@
   
   <div class="quantity-section">
     <div class="quantity-control">
-      <button class="quantity-btn" (click)="updateQuantity(-1)">-</button>
+      <button class="quantity-btn" (click)="onUpdateQuantity(-1)">-</button>
       <span class="quantity">{{item.quantity}}</span>
-      <button class="quantity-btn" (click)="updateQuantity(1)">+</button>
+      <button class="quantity-btn" (click)="onUpdateQuantity(1)">+</button>
     </div>
   </div>
   
   <div class="price-section">
     <div class="total-amount">${{(item.price * item.quantity).toFixed(2)}}</div>
-    <button class="remove-btn">Remove</button>
+    <!-- cart-item.component.html -->
+    <button class="remove-btn" (click)="onRemove()">Remove</button>
   </div>
 </div>

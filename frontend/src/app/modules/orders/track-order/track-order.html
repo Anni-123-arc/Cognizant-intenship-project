@@ -1,30 +1,29 @@
-<div class="track-order-page" *ngIf="!error; else errorTpl">
-  <h2>Track Order - #{{ orderId }}</h2>
+<app-home-header></app-home-header>
+<div class="tracking-card">
+  <div class="order-header">
+    <img [src]="order.imageUrl" alt="{{ order.productName }}" class="order-img">
+    <div class="order-details">
+      <h2>{{ order.productName }}</h2>
+      <p>Order ID: <strong>{{ order.id }}</strong></p>
+      <p>Sold by: {{ order.seller }}</p>
+      <p>Price: ₹{{ order.price | number:'1.2-2' }}</p>
+    </div>
+  </div>
 
-  <div class="timeline" *ngIf="orderSteps.length > 0; else noStepsTpl">
-    <div *ngFor="let step of orderSteps; let i = index" class="timeline-item">
-      <div
-        class="circle"
-        [ngClass]="{'cancelled': step.status === 'Cancelled'}"
-      ></div>
-      <div class="content">
-        <p class="status">{{ step.status }}</p>
-        <p class="date">{{ step.date }}</p>
+  <div class="timeline" [class.cancelled-or-returned]="order.status === 'Cancelled' || order.status === 'Returned'">
+    <div
+      class="timeline-step"
+      *ngFor="let step of orderSteps; let i = index"
+      [class.active]="i <= animatedStepIndex"
+    >
+      <div class="circle"></div>
+      <div class="step-content">
+        <h4>{{ step.status }}</h4>
+        <span>{{ step.date }}</span>
       </div>
-      <div
-        *ngIf="i !== orderSteps.length - 1"
-        class="line"
-        [ngClass]="{'cancelled': orderSteps[i + 1].status === 'Cancelled'}"
-      ></div>
     </div>
   </div>
 </div>
 
-<ng-template #errorTpl>
-  <div class="error">{{ error }}</div>
-</ng-template>
 
-<ng-template #noStepsTpl>
-  <p>No tracking steps available.</p>
-</ng-template>
-
+<app-footer></app-footer>

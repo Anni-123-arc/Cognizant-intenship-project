@@ -1,24 +1,38 @@
-import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { CartService } from '../../shared/services/cart.service';
 import { Router } from '@angular/router';
-import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-order-cart-summary',
   standalone: true,
-  imports: [CommonModule , RouterModule],
+  imports: [CommonModule, CurrencyPipe],
   templateUrl: './order-summary.component.html',
   styleUrls: ['./order-summary.component.css']
 })
-export class OrderSummaryComponent {
-  @Input() totalItems: number = 0;
-  @Input() subtotal: number = 0;
-  @Input() discount: number = 0;
-  @Input() totalAmount: number = 0;
+export class OrderCartSummaryComponent {
+  constructor(
+    public cartService: CartService,
+    private router: Router
+  ) {}
 
-  constructor(private router: Router) {}
+  getTotalItems() {
+    return this.cartService.cartItems.reduce((total, item) => 
+      total + item.quantity, 0);
+  }
 
-  navigateToCheckout() {
-    this.router.navigate(['/checkout']);
+  getOrderTotal() {
+    const subtotal = this.cartService.getCartTotal();
+    const tax = subtotal * 0.18; // Assuming 18% tax
+    return subtotal + tax;
+  }
+
+  proceedToCheckout() {
+    if (this.cartService.cartItems.length > 0) {
+      this.router.navigate(['/checkout']);
+    } else {
+      alert('Your cart is empty. Please add items to proceed to checkout.');
+    }
   }
 }

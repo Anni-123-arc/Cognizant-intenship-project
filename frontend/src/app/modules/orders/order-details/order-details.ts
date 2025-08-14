@@ -3,6 +3,7 @@ import { ActivatedRoute , Router} from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { OrderService } from '../../../core/services/orderdata.service';
+import { OrderInvoiceService } from '../../../core/services/orderinvoiceservice';
 import { HomeHeader } from '../../../shared/components/home-header/home-header';
 import { Footer } from '../../../shared/components/footer/footer';
 @Component({
@@ -20,7 +21,7 @@ orderId: string = '';
   hoveredRating = 0;
   reviewText = '';
 
-  constructor(private route: ActivatedRoute, private router: Router, private orderService: OrderService) {}
+  constructor(private route: ActivatedRoute, private router: Router, private orderService: OrderService,private invoiceService: OrderInvoiceService) {}
 
   ngOnInit(): void {
     this.orderId = this.route.snapshot.paramMap.get('id') || '';
@@ -72,6 +73,10 @@ orderId: string = '';
     alert(`Thanks for rating ${this.selectedRating} stars!`);
     this.closeRatingModal();
   }
+  downloadInvoice(orderId: string) {
+    this.invoiceService.generateInvoice(orderId);
+  }
+  
   TrackOrder(){
      this.router.navigate(['/orders', this.orderId, 'track-order']);
   }

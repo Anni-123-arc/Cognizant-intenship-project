@@ -79,12 +79,12 @@
 }
 
 .move-to-cart {
-  background-color: #6563e9; /* Amazon-like cart button color */
+  background-color: #3f51b5 ; /* Amazon-like cart button color */
   color: white;
 }
 
 .move-to-cart:hover {
-  background-color: #fa8900;
+  background-color: #303f9f;
 }
 
 .remove {
