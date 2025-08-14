@@ -270,7 +270,7 @@ export class ProductService {
       ]
     },
     {
-      id: 16,
+      id: 18,
       name: 'Samsung QLED 65" TV',
       brand: 'Samsung',
       category: 'Televisions',
@@ -281,6 +281,34 @@ export class ProductService {
       reviews: [
         { user: 'Madhavi', rating: 5, comment: 'Good Visiblility screen.' },
         { user: 'Gagan', rating: 4, comment: 'Great Product.' }
+      ]
+    },
+    {
+      id: 19,
+      name: 'Boat Rockerz 255 Bluetooth Earphones',
+      brand: 'Boat',
+      category: 'Audio Devices',
+      price: 379,
+      description: 'Stylish Earphones with good sound quality.',
+      image: '../assets/Orders/Product 11.jpg',
+      rating: 3,
+      reviews: [
+        { user: 'Lucky', rating: 4, comment: 'Stylish Earphones!' },
+        { user: 'Alia', rating: 3, comment: 'Sound quality not as expected' }
+      ]
+    },
+    {
+      id: 20,
+      name: 'Canon EOS R50 Mirrorless Camera',
+      brand: 'Canon',
+      category: 'Smart Devices',
+      price: 50250,
+      description: 'Capture stunning photos and videos with the Canon EOS R50.',
+      image: '../assets/Orders/Product 7.jpg',
+      rating: 5,
+      reviews: [
+        { user: 'Satya', rating: 5, comment: 'Autofocus working well.' },
+        { user: 'Laxmi', rating: 4, comment: 'Good Product.' }
       ]
     }
   ];

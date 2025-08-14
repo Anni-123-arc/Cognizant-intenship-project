@@ -10,3 +10,17 @@
   padding: 12px;
   border-radius: 8px;
 }
+
+.stars {
+  margin-left: 5px;
+}
+
+.full-star {
+  color: rgb(241, 205, 4);
+  font-size: 24px;
+}
+
+.empty-star {
+  color: #ccc;
+  font-size: 24px;
+}

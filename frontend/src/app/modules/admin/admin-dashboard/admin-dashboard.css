@@ -1,3 +1,13 @@
+.home-layout {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 /* Global Styles */
 body {
   margin: 0;
@@ -13,6 +23,7 @@ body {
   grid-template-columns: 280px 1fr;
   min-height: 100vh;
   transition: all 0.3s ease;
+  margin-top: 50px;
 }
 
 /* Sidebar Styles */
