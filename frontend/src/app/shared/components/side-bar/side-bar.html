@@ -9,7 +9,7 @@
 <div class="sidebar" *ngIf="isSidebarOpen">
   <h2 class="sidebar-title">All Categories</h2>
 
-  <div *ngFor="let category of categories" class="category">
+  <div class="category" *ngFor="let category of categories" (click)="onCategorySelect(category.name)">
     <div class="category-header" (click)="toggleCategory(category.name)">
       <!-- Accordion icon -->
       <svg
@@ -19,6 +19,7 @@
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
+        (click)="onCategorySelect(category.name)"
       >
         <path
           stroke-linecap="round"
@@ -27,6 +28,7 @@
           d="M19 9l-7 7-7-7"
         />
       </svg>
+
       <svg
         *ngIf="activeCategory !== category.name"
         xmlns="http://www.w3.org/2000/svg"
@@ -34,6 +36,7 @@
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
+        (click)="onCategorySelect(category.name)"
       >
         <path
           stroke-linecap="round"
