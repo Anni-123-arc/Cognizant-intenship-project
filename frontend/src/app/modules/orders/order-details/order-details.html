@@ -31,13 +31,14 @@
         <p><strong>Recipient:</strong> {{ order.recipientName }}</p>
         <p><strong>Address:</strong> {{ order.deliveryAddress }}</p>
         <p><strong>Phone:</strong> {{ order.phone }}</p>
-        <p><strong>Expected Delivery:</strong> {{ order.deliveryDate }}</p>
+        <p><strong>Order Placed On:</strong>{{order.placedDate}}</p>
+        <p><strong>Delivery Date:</strong> {{ order.deliveredDate }}</p>
       </div>
     </div>
 
     <!-- Right Column: Price Section -->
     <div class="price-section">
-      <button class="download-btn">Download Invoice</button>
+      <button class="download-btn" (click)="downloadInvoice(order.id)">Download Invoice</button>
 
       <div class="price-box">
         <h4>Price Details</h4>
