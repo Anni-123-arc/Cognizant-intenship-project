@@ -27,7 +27,13 @@
           <p><strong>Category:</strong> {{ product.category }}</p>
           <p><strong>Price:</strong> ₹{{ product.price }}</p>
           <p><strong>Description:</strong> {{ product.description }}</p>
+          <!-- Action Buttons -->
+          <div class="action-buttons">
+            <button class="btn add-cart" (click)="addToCart()">Buy Now</button>
+            <button class="btn buy-now" (click)="wishlist()">Wishlist</button>
+          </div>
         </div>
+        
       </div>
 
       <app-review [reviews]="product.reviews"></app-review>

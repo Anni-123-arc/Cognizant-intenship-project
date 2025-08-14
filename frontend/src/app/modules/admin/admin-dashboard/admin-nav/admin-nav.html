@@ -14,7 +14,7 @@
 
         <div class="header-right">
             <button class="sync-btn" (click)="logout()">
-                 logout
+                 Logout
             </button>
             <button class="sync-btn" (click)="syncData()" [class.syncing]="isSyncing">
                 <i class="fas" [class.fa-sync]="!isSyncing" [class.fa-spinner]="isSyncing"
@@ -25,7 +25,6 @@
             <div class="last-sync">
                 Last synced: {{lastSyncTime}}
             </div>
-
             
         </div>
     </div>
