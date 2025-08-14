@@ -31,6 +31,7 @@ import { HelpC } from './modules/help-c/help-c';
 import { ReturnOrderComponent } from './modules/orders/return-order/return-order';
 import { CancelOrderComponent } from './modules/orders/cancel-order/cancel-order';
 import { TrackOrder } from './modules/orders/track-order/track-order';
+import { HelpL } from './shared/components/help-l/help-l';
 // Import AuthGuard
 import { AuthGuard } from './core/guards/auth.guards';
 
@@ -65,6 +66,7 @@ export const routes: Routes = [
   {path: 'orders/:id/cancel',component:CancelOrderComponent},
   {path:'orders/:id/return',component:ReturnOrderComponent},
   {path:'orders/:id/track-order', component:TrackOrder},
+  {path: 'help-l', component: HelpL},
 
   // Wildcard route for 404 or redirect to home
   { path: '**', redirectTo: '', pathMatch: 'full' }
