@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import axios from 'axios';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +17,8 @@ export class MessagingService {
     return this.conversation;
   }
 
-  pushConvo(message: { user: string, message: string }) {
-    this.conversation.push(message);
+  pushConvo(message: string) {
+     axios.post('http://localhost:3000/api/sendQuery', { userMessage: message })
   }
 
 }

@@ -16,7 +16,7 @@ import { Footer } from '../../../shared/components/footer/footer';
 
 @Component({
   selector: 'app-admin-dashboard',
-  imports: [AdminSidebar, AdminSalesStats, AdminOrderManagement, AdminUserReviews, AddForm, UpdateForm, AdminNav, ReplyBox, HomeHeader, Footer],
+  imports: [AdminSidebar, AdminSalesStats, AdminOrderManagement, AdminUserReviews, AddForm, UpdateForm, AdminNav, ReplyBox],
   templateUrl: './admin-dashboard.html',
   styleUrl: './admin-dashboard.css'
 })

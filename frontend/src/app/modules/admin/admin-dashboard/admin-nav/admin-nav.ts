@@ -32,4 +32,7 @@ export class AdminNav {
     localStorage.removeItem('token');
     this.router.navigate(['/']);
   }
+  navigateToHome(){
+    this.router.navigate(['/home']);
+  }
 }

@@ -5,7 +5,8 @@ const UserQuerySchema = new mongoose.Schema({
         type: String,
         required: true,
         unique: true,
-        match: [/\S+@\S+\.\S+/, 'Invalid email address']
+        match: [/\S+@\S+\.\S+/, 'Invalid email address'],
+        default:'user@ex.com'
     },
     userImage: {
         type: String,
@@ -13,7 +14,8 @@ const UserQuerySchema = new mongoose.Schema({
     },
     userName: {
         type: String,
-        required: true
+        required: true,
+        default:'unknown'
     },
     userMessage: {
         type: String,

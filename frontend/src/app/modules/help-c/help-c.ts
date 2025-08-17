@@ -6,10 +6,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { 
   faPaperPlane, faSearch, faUserCog, faTruck, 
   faChartLine, faHistory, faLaptop, faMobile, 
-  faTablet, faCheckCircle, faExclamationCircle 
+  faTablet, faCheckCircle, faExclamationCircle  , faMessage
 } from '@fortawesome/free-solid-svg-icons';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { OrderManagement } from '../../core/services/order-management';
 import { Router } from '@angular/router';
+//importing messaging service
+import { MessagingService } from '../../core/services/messaging-service';
 
 
 @Component({
@@ -25,6 +28,7 @@ export class HelpC {
   email = '';
   response: {success: boolean, message: string, details?: string} | null = null;
   orderHistory:any[] = [];
+  query:string = ''
 
   // Icons
   faPaperPlane = faPaperPlane;
@@ -38,12 +42,15 @@ export class HelpC {
   faTablet = faTablet;
   faCheckCircle = faCheckCircle;
   faExclamationCircle = faExclamationCircle;
+  faMessage = faMessage;
   status: string | null = null;
+  faHeadset: IconProp | undefined;
 
   constructor(
     private userMessagesService: UserMessagesService,
     private orderManagement: OrderManagement,
-    private router: Router
+    private router: Router , 
+    private messagingService: MessagingService
   ) {}
 
   setFlag(value: number) {
@@ -113,5 +120,10 @@ onTrack() {
 
   navigateToAccount() {
     this.router.navigate(['/profile']);
+  }
+
+  onPostQuery(){
+    this.messagingService.pushConvo(this.query);
+    this.query = ''; // Clear the input after sending 
   }
 }

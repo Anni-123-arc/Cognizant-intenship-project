@@ -24,6 +24,7 @@ import { OrderHRoute } from "./routes/orderHistoryRouter.js";
 //reply Route
 import { replyToUserQueryRouter } from "./routes/replyToUserQuery.js";
 import {getQueryRouter} from './routes/getUserQueries.js';
+import {sendMsg} from './routes/sendQuery.js';
 
 //product upload route
 import {uploadProductRoute} from "./routes/uploadProduct.js";
@@ -67,6 +68,7 @@ app.use('/api', uploadProductRoute);
 app.use('/api', getProductRoute);
 app.use('/api', deleteProdRoute);
 app.use('/api', updateProdRouter);
+app.use('/api', sendMsg);
 
 // Health check
 app.get("/", (req, res) => res.json({ status: "ok" }));

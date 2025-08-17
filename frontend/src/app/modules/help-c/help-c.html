@@ -31,10 +31,10 @@
 
     <div class="option-card" (click)="setFlag(4)">
       <div class="option-icon">
-        <fa-icon [icon]="faUserCog"></fa-icon>
+        <fa-icon [icon]="faMessage"></fa-icon>
       </div>
-      <h3>Account Settings</h3>
-      <p>Manage your profile</p>
+      <h3>Ask away!!</h3>
+      <p>Have a question? We're here to help!</p>
     </div>
   </div>
 
@@ -96,12 +96,15 @@
     }
 
     @if(flag === 4){
-      <div class="content-card">
-        <h3>Account Settings</h3>
-        <p>Redirecting you to account management...</p>
-        <button class="primary-btn" (click)="navigateToAccount()">
-          <fa-icon [icon]="faUserCog"></fa-icon> Go to Settings
-        </button>
+       <div class="content-card">
+        <h3>Write Ur query</h3>
+        <p>Enter your Email to receive your complete order history</p>
+        <div class="input-group">
+          <input type="email" [(ngModel)]="query" placeholder="write the message">
+          <button class="primary-btn" (click)="onPostQuery()">
+            <fa-icon [icon]="faPaperPlane"></fa-icon> send
+          </button>
+        </div>
       </div>
     }
 
