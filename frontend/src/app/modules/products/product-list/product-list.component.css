@@ -67,7 +67,7 @@
 .product-name {
   font-size: 1.1rem;
   font-weight: 600;
-  margin-bottom: 6px;
+  margin-bottom: 3px;
 }
 
 .brand {
@@ -76,23 +76,37 @@
 }
 
 .price {
-  color: #28a745;
+  color: #1a2a6c;
   font-weight: bold;
-  margin: 8px 0;
+  margin: 6px 0;
 }
 
 .rating {
-  color: #e90d32;
+  color: rgb(85, 62, 4);
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 5px;
 }
 
+.stars {
+  margin-left: 5px;
+}
+
+.full-star {
+  color: rgb(241, 205, 4);
+  font-size: 24px;
+}
+
+.empty-star {
+  color: #ccc;
+  font-size: 24px;
+}
+
 .view-btn {
   display: inline-block;
   text-decoration: none;
-  background-color: #007bff;
+  background: linear-gradient(to right, #1a2a6c, #3a7bd5);
   color: white;
   padding: 6px 12px;
   border-radius: 6px;
@@ -102,7 +116,7 @@
 }
 
 .view-btn:hover {
-  background-color: #0056b3;
+  background: linear-gradient(to right, #3a7bd5, #1a2a6c);
 }
 
 /* Responsive Layout */

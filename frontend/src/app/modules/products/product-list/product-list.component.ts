@@ -92,5 +92,12 @@ export class ProductListComponent implements OnInit {
     this.sortOption = '';
     this.filteredProducts = [...this.allproducts];
   }
+  
+  // Helper to generate an array for full and empty stars
+  getStarsArray(rating: number): { full: boolean }[] {
+    return Array.from({ length: 5 }, (_, index) => ({
+      full: index < rating
+    }));
+  }
 
 }

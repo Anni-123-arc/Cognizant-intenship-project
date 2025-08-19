@@ -1,18 +1,18 @@
 <section id="home-wrapper" class="home-layout">
   <app-home-header></app-home-header>
 
-  <!--<app-scrollable-menu-bar></app-scrollable-menu-bar>
+  <app-scrollable-menu-bar></app-scrollable-menu-bar>
 
   <div class="main-content">
     <aside class="sidebar">
       <app-side-bar></app-side-bar>
     </aside>
 
-    Reserved space for other main content
+    <!--Reserved space for other main content-->
     <section class="content-area">
        You can add content here later
     </section>
-  </div>-->
+  </div>
 
   <div class="product-detail container">
     <div *ngIf="product" class="product-card">
@@ -27,7 +27,15 @@
           <p><strong>Category:</strong> {{ product.category }}</p>
           <p><strong>Price:</strong> ₹{{ product.price }}</p>
           <p><strong>Description:</strong> {{ product.description }}</p>
-          <!-- Action Buttons -->
+          <p class="rating" *ngIf="product.rating">
+            <strong>Rating:</strong>
+            <span class="stars">
+              <ng-container *ngFor="let star of getStarsArray(product.rating)">     <!--(product?.rating ?? 0)-->
+                <span [ngClass]="star.full ? 'full-star' : 'empty-star'">&#9733;</span>
+              </ng-container>
+            </span>
+            ({{ product.rating | number:'1.1-1' }}/5)
+          </p>
           <div class="action-buttons">
             <button class="btn add-cart" (click)="addToCart()">Buy Now</button>
             <button class="btn buy-now" (click)="wishlist()">Wishlist</button>
@@ -37,6 +45,19 @@
       </div>
 
       <app-review [reviews]="product.reviews"></app-review>
+      <!--<app-review [reviews]="product?.reviews ?? []"></app-review>-->
+      
+      <div class="related-products">
+        <h3>Related Products</h3>
+        <div class="related-list">
+          <div *ngFor="let related of relatedProducts" class="related-item" [routerLink]="['/products', related?.id]">
+            <img [src]="related.image" alt="{{ related.name }}" class="related-image" />
+            <p class="related-name">{{ related.name }}</p>
+            <p class="related-price">₹{{ related.price }}</p>
+          </div>
+        </div>
+      </div>
+
     </div>
 
     <div *ngIf="!product">
