@@ -24,7 +24,13 @@
         <h3 class="product-name">{{ product.name }}</h3>
         <p class="brand">Brand: {{ product.brand }}</p>
         <p class="price">₹ {{ product.price }}</p>
-        <p class="rating">Rating: {{ product.rating }} ★</p>
+        <p class="rating">Rating:
+          <span class="stars">
+            <ng-container *ngFor="let star of getStarsArray(product.rating)">
+              <span [ngClass]="star.full ? 'full-star' : 'empty-star'">&#9733;</span>
+            </ng-container>
+          </span>
+        </p>
         <a [routerLink]="['/products', product.id]" class="view-btn">View Details</a>
       </div>
 

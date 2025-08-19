@@ -8,7 +8,7 @@
   box-sizing: border-box;
 }
 
-/* Sidebar layout
+/* Sidebar layout*/
 .main-content {
   display: flex;
   flex-direction: row;
@@ -30,7 +30,7 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-}*/
+}
 
 .container {
   max-width: 900px;
@@ -47,20 +47,18 @@
 
 .product-main {
   display: flex;
-  flex-direction: row;
-  gap: 24px;
+  gap: 20px;
   flex-wrap: wrap;
   align-items: flex-start;
 }
 
 .product-image {
   width: 100%;
-  max-width: 600px;
-  height: 400px;
+  max-width: 350px;
   object-fit: contain;
   display: block;
   margin: 0 auto;
-  background-color: #f9f9f9; /* optional */
+  background-color: #f9f9f9;
   border-radius: 8px;
 }
 
@@ -87,21 +85,89 @@
 }
 
 .add-cart {
-  background-color: #ff9800;
+  background: linear-gradient(to right, #1a2a6c, #3a7bd5);
   color: white;
 }
 
 .add-cart:hover {
-  background-color: #e68900;
+  background: linear-gradient(to right, #3a7bd5, #1a2a6c);
 }
 
 .buy-now {
-  background-color: #4caf50;
+  background: linear-gradient(to right, #1a2a6c, #3a7bd5);
   color: white;
 }
 
 .buy-now:hover {
-  background-color: #3e8e41;
+  background: linear-gradient(to right, #3a7bd5, #1a2a6c);
+}
+
+rating {
+  margin: 10px 0;
+  font-size: 15px;
+}
+
+.stars {
+  margin-left: 5px;
+}
+
+.full-star {
+  color: rgb(252, 214, 0);
+  font-size: 20px;
+}
+
+.empty-star {
+  color: #ccc;
+  font-size: 18px;
+}
+
+.related-products {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.related-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 24px;
+  justify-items: center;
+}
+
+.related-item {
+  width: 100%;
+  max-width: 280px; 
+  padding: 10px;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.related-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+}
+
+.related-image {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.related-name {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 8px 0 4px;
+}
+
+.related-price {
+  font-size: 15px;
+  font-weight: bold;
+  color: #1a2a6c;
 }
 
 /* Responsive Layout */
@@ -114,5 +180,13 @@
     width: 100%;
     border-right: none;
     border-bottom: 1px solid #ddd;
+  }
+  
+  .product-info {
+    width: 100%;
+  }
+
+  .related-grid {
+    grid-template-columns: 1fr;  /*single column on small screens*/ 
   }
 }

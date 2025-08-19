@@ -1,5 +1,4 @@
 #featured-items {
-    /* border: 5px solid; */
     padding: 10px;
 
 }
@@ -21,9 +20,15 @@
     position: relative;
     left: 90%;
     margin: 10px;
-   background: linear-gradient(to right, #1a2a6c, #3a7bd5);
-   color: white;
-   font: italic;
-   cursor: pointer;
-   border-radius: 10px;
+    background: linear-gradient(to right, #1a2a6c, #3a7bd5);
+    color: white;
+    font: italic;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+#more-op-btn:hover {
+    background: linear-gradient(to right, #3a7bd5, #1a2a6c);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(26, 42, 108, 0.3);
 }
