@@ -23,9 +23,16 @@ orderId: string = '';
 
   constructor(private route: ActivatedRoute, private router: Router, private orderService: OrderService,private invoiceService: OrderInvoiceService) {}
 
-  ngOnInit(): void {
+ ngOnInit(): void {
     this.orderId = this.route.snapshot.paramMap.get('id') || '';
-    this.order = this.orderService.getOrderById(this.orderId);
+    this.loadOrder();
+  }
+
+  loadOrder() {
+    this.orderService.getOrderById(this.orderId).subscribe({
+      next: (data) => this.order = data,
+      error: (err) => console.error(err)
+    });
   }
   canCancelOrder(): boolean {
     if (!this.order || this.order.status === 'Cancelled' || this.order.status === 'Returned') return false;
@@ -73,9 +80,16 @@ orderId: string = '';
     alert(`Thanks for rating ${this.selectedRating} stars!`);
     this.closeRatingModal();
   }
-  downloadInvoice(orderId: string) {
-    this.invoiceService.generateInvoice(orderId);
+  async downloadInvoice(orderId: string) {
+  try {
+    // Wait for the invoice to be generated after fetching the order from backend
+    await this.invoiceService.generateInvoice(orderId);
+    console.log(`Invoice for ${orderId} generated successfully.`);
+  } catch (err) {
+    console.error('Error generating invoice:', err);
+    alert('Failed to generate invoice. Please try again.');
   }
+}
   
   TrackOrder(){
      this.router.navigate(['/orders', this.orderId, 'track-order']);

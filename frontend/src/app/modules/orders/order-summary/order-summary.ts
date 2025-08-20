@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component , OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -11,7 +11,7 @@ import { Footer } from '../../../shared/components/footer/footer';
   templateUrl: './order-summary.html',
   styleUrl: './order-summary.css'
 })
-export class OrderSummary {
+export class OrderSummary implements OnInit {
  selectedFilter: string = 'All';
   selectedYear: string = 'All';
   searchText: string = '';
@@ -20,8 +20,18 @@ export class OrderSummary {
   filters = ['All','Shipped','Delivered', 'Cancelled', 'Returned'];
   years = ['All', '2025', '2024', '2023'];
 
-  constructor(private router: Router, private orderService: OrderService) {
-    this.orders = this.orderService.getOrders();
+ constructor(private router: Router, private orderService: OrderService) {}
+
+  ngOnInit(): void {
+    this.orders = [];
+    this.loadOrders();
+  }
+
+  loadOrders() {
+    this.orderService.getOrders().subscribe({
+      next: (data) => this.orders = data,
+      error: (err) => console.error(err)
+    });
   }
 
   setFilter(filter: string): void {

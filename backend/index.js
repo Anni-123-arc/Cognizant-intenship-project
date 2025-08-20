@@ -35,6 +35,12 @@ import { deleteProdRoute } from "./routes/deleteProd.js";
 //router to update product details
 import { updateProdRouter } from "./routes/updateProd.js";
 
+import orderRoutes from "./routes/OrderRoutes.js";
+
+
+
+
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -69,6 +75,9 @@ app.use('/api', getProductRoute);
 app.use('/api', deleteProdRoute);
 app.use('/api', updateProdRouter);
 app.use('/api', sendMsg);
+
+
+app.use("/api/orders", orderRoutes);
 
 // Health check
 app.get("/", (req, res) => res.json({ status: "ok" }));

@@ -30,15 +30,16 @@ export class TrackOrder implements OnInit {
   }
 
   loadOrder() {
-    this.order = this.orderService.getOrderById(this.orderId);
-
-    if (!this.order) {
-      this.error = 'Order not found.';
-      return;
-    }
-
-    this.buildTrackingSteps();
-    this.animateTimeline();
+    this.orderService.getOrderById(this.orderId).subscribe({
+      next: (res) => {
+        this.order = res;
+        this.buildTrackingSteps();
+        this.animateTimeline();
+      },
+      error: () => {
+        this.error = 'Order not found.';
+      }
+    });
   }
 
   buildTrackingSteps() {
