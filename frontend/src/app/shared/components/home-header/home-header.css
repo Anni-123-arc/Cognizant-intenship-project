@@ -29,6 +29,7 @@ body {
   max-width: 1400px;
   margin: 0 auto;
   width: 100%;
+  flex-wrap: wrap;
 }
 
 #inner-nav {
@@ -70,7 +71,6 @@ body {
   max-width: 420px;
   min-width: 200px;
   padding: 0 15px;
-  z-index: 1;
 }
 
 #nav-search form {
@@ -153,7 +153,6 @@ body {
 .nav-icon-link i {
   font-size: 16px;
   transition: color 0.3s ease;
-  text-decoration: none !important;
 }
 
 /* === Cart Count Badge === */
@@ -172,10 +171,6 @@ body {
 
 /* === Responsive Design === */
 @media (max-width: 992px) {
-  #inner-nav {
-    gap: 15px;
-  }
-
   #nav-search {
     order: 3;
     flex: 1 1 100%;
@@ -213,9 +208,31 @@ body {
     padding: 10px 15px;
   }
 
+  #main-nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  #inner-nav {
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+  }
+
   #nav-search {
+    order: 2;
+    width: 100%;
     max-width: 100%;
     padding: 6px 0;
+  }
+
+  #nav-links {
+    order: 3;
+    justify-content: flex-start;
+    width: 100%;
+    gap: 10px;
+    flex-wrap: wrap;
   }
 
   #search {
@@ -228,24 +245,24 @@ body {
     font-size: 13px;
   }
 
-  .nav-icon-link a {
-    display: none;
-  }
-
-  .nav-icon-link {
-    font-size: 13px;
-  }
-
-  .nav-icon-link i {
-    font-size: 16px;
-  }
-
   #logo-text {
     display: none;
   }
 }
 
 @media (max-width: 480px) {
+  #main-nav {
+    align-items: center;
+  }
+
+  #inner-nav {
+    gap: 8px;
+  }
+
+  #nav-search {
+    padding: 5px 0;
+  }
+
   #search {
     font-size: 12px;
     padding: 6px 10px;
