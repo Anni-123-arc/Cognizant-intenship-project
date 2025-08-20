@@ -204,3 +204,47 @@
     align-self: flex-end;
   }
 }
+/* Extra small devices (phones ≤480px) */
+@media screen and (max-width: 480px) {
+  .order-container {
+    margin-top: 0; /* remove extra gap */
+  }
+
+  .sidebar {
+    display: none; /* hide sidebar, can be toggled with hamburger */
+  }
+
+  .toolbar {
+    gap: 6px;
+  }
+
+  .search-bar,
+  .year-dropdown {
+    font-size: 0.9rem;
+    padding: 6px;
+  }
+
+  .order-card {
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .product-image {
+    width: 120px;  /* smaller image for mobile */
+  }
+
+  .order-info {
+    font-size: 0.9rem;
+  }
+
+  .view-btn {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+  }
+
+  .status {
+    font-size: 0.75rem;
+    min-width: 70px;
+  }
+}
+
