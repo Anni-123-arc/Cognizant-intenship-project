@@ -70,14 +70,16 @@ export class ReturnOrderComponent implements OnInit {
     // Here you can send the images + reasons to backend if needed
     // For now, just updating order status and showing alert
 
-     this.orderService.updateOrderStatus(this.order.id, 'Returned', selectedReasons).subscribe({
-      next: () => {
-        alert('Order returned successfully!');
-        this.imagePreviews = [];
-        this.imageFiles = [];
-        this.router.navigate(['/orders', this.order.id]);
-      },
-      error: () => alert('Failed to return order.')
-    });
+     const reasonsStr = selectedReasons.join(', '); // convert array to string
+
+this.orderService.updateOrderStatus(this.order.id, 'Returned', reasonsStr).subscribe({
+  next: () => {
+    alert('Order returned successfully!');
+    this.imagePreviews = [];
+    this.imageFiles = [];
+    this.router.navigate(['/orders', this.order.id]);
+  },
+  error: () => alert('Failed to return order.')
+});
   }
 }

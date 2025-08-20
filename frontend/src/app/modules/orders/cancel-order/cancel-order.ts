@@ -68,8 +68,10 @@ export class CancelOrderComponent implements OnInit {
       .map(reason => reason === 'other' ? this.reasons.otherReason : reason);
 
     // You can also send imageFiles here to backend if needed
+     const reasonsStr = selectedReasons.join(', '); // convert array to string
 
-    this.orderService.updateOrderStatus(this.order.id, 'Cancelled', selectedReasons).subscribe({
+
+    this.orderService.updateOrderStatus(this.order.id, 'Cancelled', reasonsStr).subscribe({
       next: () => {
         alert('Order cancelled successfully!');
         this.imagePreviews = [];
