@@ -8,6 +8,7 @@ import { HomeHeader } from '../../../shared/components/home-header/home-header';
 import { Footer } from '../../../shared/components/footer/footer';
 import { ScrollableMenuBar } from '../../../shared/components/scrollable-menu-bar/scrollable-menu-bar';
 import { SideBar } from '../../../shared/components/side-bar/side-bar';
+import { CartService } from '../../cart/shared/services/cart.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -26,7 +27,8 @@ export class ProductDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute, 
     private productService: ProductService, 
-    private router: Router
+    private router: Router,
+    private cartService: CartService
   ) {}
 
   //product: any;
@@ -63,7 +65,8 @@ export class ProductDetailComponent implements OnInit {
   addToCart() {
     if (this.product) {
       // Here you could store the product in a CartService or localStorage
-      console.log('Buying now:', this.product);
+      this.cartService.addToCart(this.product);
+      console.log('Added to cart:', this.product);
       this.router.navigate(['/cart']); // Navigate to cart page
     }
   }
@@ -71,6 +74,7 @@ export class ProductDetailComponent implements OnInit {
   wishlist() {
     if (this.product) {
       // Optional: Add to cart before redirecting
+      this.cartService.addToWishlist(this.product);
       console.log('Product added to wishlist:', this.product);
       this.router.navigate(['/wishlist']); // Navigate to cart page directly
     }
