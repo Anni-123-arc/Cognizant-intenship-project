@@ -32,6 +32,10 @@
   gap: 20px;
 }
 
+.page-wrap {
+  margin-top: -10px;
+}
+
 .product-grid {
   display: flex;
   flex-wrap: wrap;
