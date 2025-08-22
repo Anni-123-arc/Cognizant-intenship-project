@@ -11,7 +11,7 @@
         <div class="product-info">
           <h4>Product Name: {{ order.productName }}</h4>
           <p>Product Price: ₹{{ order.price }}</p>
-          <p>Seller Brand: {{ order.seller }}</p>
+          <p>Quantity: {{ order.quantity }}</p>
 
           <!-- Buttons -->
           <div class="action-buttons">
@@ -31,7 +31,7 @@
         <p><strong>Recipient:</strong> {{ order.recipientName }}</p>
         <p><strong>Address:</strong> {{ order.deliveryAddress }}</p>
         <p><strong>Phone:</strong> {{ order.phone }}</p>
-        <p><strong>Order Placed On:</strong>{{order.placedDate}}</p>
+        <p><strong>Order Placed On:</strong> {{ order.placedDate }}</p>
         <p><strong>Delivery Date:</strong> {{ order.deliveredDate }}</p>
       </div>
     </div>
@@ -54,13 +54,16 @@
       <!-- Cancel & Return Section -->
       <div class="cancel-return-section">
         <div class="cancel-return-buttons">
+          <!-- Cancel button only appears if order can be cancelled -->
           <button class="cancel-btn"
-          [disabled]="!canCancelOrder()"
+                  *ngIf="canCancelOrder()"
                   (click)="goToCancelPage()">
             Cancel Order
           </button>
+
+          <!-- Return button only appears if order can be returned -->
           <button class="return-btn"
-          [disabled]="!canReturnOrder()"
+                  *ngIf="canReturnOrder()"
                   (click)="goToReturnPage()">
             Return Order
           </button>
@@ -75,6 +78,8 @@
     </div>
   </div>
 </div>
+
+<!-- Rating Modal -->
 <div class="modal-overlay" *ngIf="showRatingModal">
   <div class="modal-content">
     <h3>Rate this Product</h3>
@@ -107,4 +112,5 @@
     </div>
   </div>
 </div>
+
 <app-footer></app-footer>
