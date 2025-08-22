@@ -35,11 +35,9 @@ export class ReturnOrderComponent implements OnInit {
 
   ngOnInit() {
     const orderId = this.route.snapshot.paramMap.get('id');
-    this.orderService.getOrderById(orderId!).subscribe({
-      next: (res) => this.order = res,
-      error: () => alert('Order not found!')
-    });
+    this.order = this.orderService.getOrderById(orderId!);
   }
+
   onImagesSelected(event: any) {
     const files: FileList = event.target.files;
     if (files) {
@@ -70,16 +68,13 @@ export class ReturnOrderComponent implements OnInit {
     // Here you can send the images + reasons to backend if needed
     // For now, just updating order status and showing alert
 
-     const reasonsStr = selectedReasons.join(', '); // convert array to string
-
-this.orderService.updateOrderStatus(this.order.id, 'Returned', reasonsStr).subscribe({
-  next: () => {
+    this.orderService.updateOrderStatus(this.order.id, 'Returned', selectedReasons);
     alert('Order returned successfully!');
+
+    // Reset images after return
     this.imagePreviews = [];
     this.imageFiles = [];
+
     this.router.navigate(['/orders', this.order.id]);
-  },
-  error: () => alert('Failed to return order.')
-});
   }
 }

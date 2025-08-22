@@ -33,12 +33,8 @@ export class CancelOrderComponent implements OnInit {
 
   ngOnInit() {
     const orderId = this.route.snapshot.paramMap.get('id');
-    this.orderService.getOrderById(orderId!).subscribe({
-      next: (res) => this.order = res,
-      error: () => alert('Order not found!')
-    });
+    this.order = this.orderService.getOrderById(orderId!);
   }
-
 
   onImagesSelected(event: any) {
     const files: FileList = event.target.files;
@@ -68,17 +64,14 @@ export class CancelOrderComponent implements OnInit {
       .map(reason => reason === 'other' ? this.reasons.otherReason : reason);
 
     // You can also send imageFiles here to backend if needed
-     const reasonsStr = selectedReasons.join(', '); // convert array to string
 
+    this.orderService.updateOrderStatus(this.order.id, 'Cancelled', selectedReasons);
+    alert('Order cancelled successfully!');
 
-    this.orderService.updateOrderStatus(this.order.id, 'Cancelled', reasonsStr).subscribe({
-      next: () => {
-        alert('Order cancelled successfully!');
-        this.imagePreviews = [];
-        this.imageFiles = [];
-        this.router.navigate(['/orders', this.order.id]);
-      },
-      error: () => alert('Failed to cancel order.')
-    });
+    // Clear images after confirmation
+    this.imagePreviews = [];
+    this.imageFiles = [];
+
+    this.router.navigate(['/orders', this.order.id]);
   }
 }
