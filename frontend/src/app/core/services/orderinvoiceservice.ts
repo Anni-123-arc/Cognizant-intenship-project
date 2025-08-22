@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import jsPDF from 'jspdf';
-import { OrderService } from './orderdata.service';
 import html2canvas from 'html2canvas';
-import { firstValueFrom } from 'rxjs'; // to convert observable to promise
-
+import { OrderService } from './orderdata.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,8 +10,7 @@ export class OrderInvoiceService {
   constructor(private orderService: OrderService) {}
 
   async generateInvoice(orderId: string) {
-    // ✅ Fetch order from backend
-    const order = await firstValueFrom(this.orderService.getOrderById(orderId));
+    const order = this.orderService.getOrderById(orderId);
     if (!order) return;
 
     const doc = new jsPDF('p', 'mm', 'a4');
@@ -54,7 +51,7 @@ export class OrderInvoiceService {
     doc.text(`Phone: ${order.phone}`, 20, yPos);
     yPos += 7;
     doc.text(`Placed: ${order.placedDate}`, 20, yPos);
-    yPos += 7;
+     yPos += 7;
     doc.text(`Payment Mode: ${order.paymentMode}`, 20, yPos);
     yPos += 10;
 
@@ -91,8 +88,12 @@ export class OrderInvoiceService {
     doc.setFontSize(14);
     doc.setFont('helvetica', 'bold');
     doc.text('Total:', 150, tableStartY);
+
+    // Reduce spacing between digits for neatness
     doc.setCharSpace(0);  
     doc.text(`${order.price.toFixed(2)} ₹`, 190, tableStartY, { align: 'right' });
+
+    // Reset char spacing to default
     doc.setCharSpace(0);
 
     tableStartY += 10;
