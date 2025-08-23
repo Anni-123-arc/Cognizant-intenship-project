@@ -43,7 +43,7 @@ export class Login {
         next: (res) => {
           localStorage.setItem('token', res.token);
 
-          // 🎨 SweetAlert2 styled popup
+          //  SweetAlert2 styled popup
           Swal.fire({
             title: 'Welcome to NextBuy! 🎉',
             html: `<strong>${email}</strong> logged in successfully as <strong>${role}</strong>.<br>Start shopping for your favorite products today!`,
