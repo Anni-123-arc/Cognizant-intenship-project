@@ -4,7 +4,7 @@ import Product from '../models/Product.js';
 const updateProdRouter = express.Router();
 
 updateProdRouter.post('/update-product', async (req, res) => {
-    const { Product_ID, Product_Name, Category, Price, Quantity } = req.body;
+    const { Product_ID, Price, Quantity } = req.body;
 
     try {
         // Find the product by Product_ID and update it
