@@ -1,21 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-reset-password',
-  imports: [ReactiveFormsModule , CommonModule],
+  imports: [ReactiveFormsModule, CommonModule],
   standalone: true,
   templateUrl: './reset-password.html',
   styleUrls: ['./reset-password.css']
 })
 export class ResetPasswordComponent implements OnInit {
   resetForm!: FormGroup;
-  message: string = '';
   loading: boolean = false;
-  success: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -46,23 +45,30 @@ export class ResetPasswordComponent implements OnInit {
     const data = this.resetForm.value;
 
     this.loading = true;
-    this.message = '';
-    this.success = false;
 
     this.authService.resetPassword(data).subscribe({
       next: (res: any) => {
-        this.message = res.message || 'Password reset successfully!';
-        this.success = true;
         this.loading = false;
 
-        // Redirect after 3 seconds
-        setTimeout(() => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Password Reset',
+          text: res.message || 'Password reset successfully!',
+          confirmButtonText: 'OK'
+        }).then(() => {
+          // ✅ Redirect only after clicking OK
           this.router.navigate(['/login']);
-        }, 3000);
+        });
       },
       error: (err: any) => {
-        this.message = err.error?.message || 'Something went wrong. Try again later.';
         this.loading = false;
+
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: err.error?.message || 'Something went wrong. Try again later.',
+          confirmButtonText: 'OK'
+        });
       }
     });
   }
