@@ -4,6 +4,8 @@ import { AuthService } from '../../../core/services/auth.service';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-change-password',
   standalone: true,
@@ -30,37 +32,50 @@ export class ChangePasswordComponent {
   }
 
   onSubmit() {
-    if (this.changePasswordForm.invalid) return;
+  if (this.changePasswordForm.invalid) return;
 
-    const { currentPassword, newPassword, confirmPassword } = this.changePasswordForm.value;
+  const { currentPassword, newPassword, confirmPassword } = this.changePasswordForm.value;
 
-    if (newPassword !== confirmPassword) {
-      this.message = 'New password and confirm password do not match.';
-      return;
-    }
-
-    this.loading = true;
-    this.message = '';
-    this.success = false;
-
-    this.authService.changePassword({ currentPassword, newPassword }).subscribe({
-      next: (res: any) => {
-        this.message = res.message || 'Password changed successfully.';
-        this.success = true;
-        this.loading = false;
-
-        //  Log out and redirect to login after short delay
-        setTimeout(() => {
-          this.authService.logout();
-          this.router.navigate(['/login'], {
-            queryParams: { message: 'Password changed successfully. Please log in again.' }
-          });
-        }, 1500);
-      },
-      error: (err: any) => {
-        this.message = err.error?.message || 'Something went wrong. Try again later.';
-        this.loading = false;
-      }
+  if (newPassword !== confirmPassword) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Mismatch',
+      text: 'New password and confirm password do not match.'
     });
+    return;
   }
+
+  this.loading = true;
+  this.success = false;
+
+  this.authService.changePassword({ currentPassword, newPassword, confirmPassword }).subscribe({
+    next: (res: any) => {
+      this.loading = false;
+      this.success = true;
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Success',
+        text: res.message || 'Password changed successfully.'
+      });
+
+      //  Log out and redirect to login after short delay
+      setTimeout(() => {
+        this.authService.logout();
+        this.router.navigate(['/login'], {
+          queryParams: { message: 'Password changed successfully. Please log in again.' }
+        });
+      }, 1500);
+    },
+    error: (err: any) => {
+      this.loading = false;
+
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: err.error?.message || 'Something went wrong. Try again later.'
+      });
+    }
+  });
+}
 }

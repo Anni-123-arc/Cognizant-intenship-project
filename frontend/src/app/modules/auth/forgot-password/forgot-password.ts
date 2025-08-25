@@ -3,6 +3,7 @@ import { FormBuilder, Validators, FormGroup, ReactiveFormsModule } from '@angula
 import { AuthService } from '../../../core/services/auth.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-forgot-password',
@@ -13,9 +14,7 @@ import { CommonModule } from '@angular/common';
 })
 export class ForgotPasswordComponent {
   forgotForm!: FormGroup;
-  message: string = '';
   loading: boolean = false;
-  success: boolean = false; 
 
   constructor(
     private fb: FormBuilder,
@@ -28,30 +27,36 @@ export class ForgotPasswordComponent {
   }
 
   onSubmit() {
-    if (this.forgotForm.invalid) return;
+  if (this.forgotForm.invalid) return;
 
-    this.loading = true;
-    this.message = '';
-    this.success = false;
+  this.loading = true;
 
-    const email = this.forgotForm.value.email || '';
+  const email = this.forgotForm.value.email || '';
 
-    this.authService.forgotPassword(email).subscribe({
-      next: (res: any) => {
-        this.message = res.message || 'If an account exists, you will receive an OTP.';
-        this.success = true; //  show success box
-        this.loading = false;
+  this.authService.forgotPassword(email).subscribe({
+    next: (res: any) => {
+      this.loading = false;
 
-        // Redirect to reset-password after 2s
-        setTimeout(() => {
-          this.router.navigate(['/reset-password'], { queryParams: { email } });
-        }, 2000);
-      },
-      error: (err: any) => {
-        this.message = err.error?.message || 'Something went wrong. Try again later.';
-        this.success = false;
-        this.loading = false;
-      }
-    });
-  }
+      Swal.fire({
+        icon: 'success',
+        title: 'OTP Sent',
+        text: res.message || 'If an account exists, you will receive an OTP.',
+        confirmButtonText: 'OK'   // ✅ User must click OK
+      }).then(() => {
+        // ✅ Only after user clicks OK → redirect
+        this.router.navigate(['/reset-password'], { queryParams: { email } });
+      });
+    },
+    error: (err: any) => {
+      this.loading = false;
+
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: err.error?.message || 'Something went wrong. Try again later.',
+        confirmButtonText: 'OK'
+      });
+    }
+  });
+}
 }

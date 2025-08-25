@@ -26,7 +26,7 @@ export class AuthService {
     return this.http.post(`${this.baseUrl}/auth/reset-password`, data);
   }
 
-  changePassword(data: { currentPassword: string; newPassword: string }): Observable<any> {
+  changePassword(data: { currentPassword: string; newPassword: string; confirmPassword: string }): Observable<any> {
   return this.http.put(`${this.baseUrl}/auth/change-password`, data);
 }
 
