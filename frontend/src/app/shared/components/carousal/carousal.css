@@ -6,18 +6,18 @@
   overflow: hidden;
 }
 
+/* === Carousel Container === */
 #carousel-container {
   position: relative;
-  width: 90%; /*  Decreased width from 100% to 90% */
-  max-width: 1200px; /* Optional: limits size on large screens */
-  height: 420px; /* Slightly smaller than 450px for proportion */
+  width: 90%;             
+  max-width: 1200px;      
+  height: 420px;          /* Default (Desktop / Laptop) */
   overflow: hidden;
-  margin: 10px auto; /*  Centers the container & adds top/bottom space */
-  border-radius: 16px; /*  Rounded corners */
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /*  Soft shadow for depth */
-  background: #fff; /* Optional: background color to look clean */
+  margin: 10px auto;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  background: #fff;
 }
-
 
 .carousel-slides {
   width: 100%;
@@ -30,7 +30,7 @@
   object-fit: cover;
 }
 
-/* Navigation Arrows */
+/* === Navigation Arrows === */
 .prev,
 .next {
   position: absolute;
@@ -44,6 +44,7 @@
   user-select: none;
   z-index: 1;
   transition: background-color 0.3s;
+  border-radius: 50%; 
 }
 
 .prev:hover,
@@ -51,14 +52,10 @@
   background-color: rgba(0, 0, 0, 0.6);
 }
 
-.prev {
-  left: 10px;
-}
-.next {
-  right: 10px;
-}
+.prev { left: 10px; }
+.next { right: 10px; }
 
-/* Indicator Dots */
+/* === Indicator Dots === */
 #indicator-group {
   position: absolute;
   bottom: 15px;
@@ -74,34 +71,69 @@
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.5);
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 .indicator.active,
 .indicator:hover {
-  background-color: #0059b3; /* Blue shade */
+  background-color: #0059b3;
+  transform: scale(1.2); 
 }
 
-/* Responsive */
-@media (max-width: 768px) {
+/* === Tablet (769px–1024px) === */
+@media (max-width: 1024px) and (min-width: 769px) {
   #carousel-container {
-    height: 300px;
+    width: 95%;
+    height: 320px;   /* Reduced height */
+    border-radius: 14px;
   }
 
-  .prev,
-  .next {
-    font-size: 24px;
+  .prev, .next {
+    font-size: 26px;
+    padding: 10px;
+  }
+
+  .indicator {
+    width: 11px;
+    height: 11px;
+  }
+}
+
+/* === Mobile (481px–768px) === */
+@media (max-width: 768px) and (min-width: 481px) {
+  #carousel-container {
+    width: 100%;
+    height: 250px;   /* Smaller height */
+    border-radius: 12px;
+  }
+
+  .prev, .next {
+    font-size: 22px;
     padding: 8px;
-  }
-}
-
-@media (max-width: 480px) {
-  #carousel-container {
-    height: 220px;
   }
 
   .indicator {
     width: 10px;
     height: 10px;
+  }
+}
+
+/* === Small Mobile (≤480px) === */
+@media (max-width: 480px) {
+  #carousel-container {
+    width: 100%;
+    height: 200px;   /* Compact height */
+    border-radius: 8px;
+    margin: 5px auto;
+  }
+
+  .prev, .next {
+    font-size: 18px;
+    padding: 6px;
+  }
+
+  .indicator {
+    width: 8px;
+    height: 8px;
   }
 }

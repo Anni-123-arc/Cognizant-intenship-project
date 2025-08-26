@@ -15,11 +15,12 @@
   padding: 10px 20px;
   height: 55px;
   position: fixed;
-  top: 50px;
+  top: 50px; /* sits below main navbar */
   width: 100%;
   z-index: 1000;
   font-family: 'Segoe UI', 'Roboto', sans-serif;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  overflow: hidden; /* ensures no text overflow */
 }
 
 /* === Menu Button === */
@@ -56,6 +57,10 @@
   white-space: nowrap;
 }
 
+.message-wrapper:hover {
+  animation-play-state: paused; /* pause on hover */
+}
+
 /* === Individual Message === */
 .message-wrapper span {
   margin-right: 80px;
@@ -73,15 +78,13 @@
 
 /* === Scroll Animation === */
 @keyframes scroll-messages {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
 }
 
 /* === Responsive Adjustments === */
+
+/*  Tablet (≤768px) */
 @media (max-width: 768px) {
   .navbar {
     height: 50px;
@@ -97,8 +100,13 @@
     font-size: 14.5px;
     margin-right: 60px;
   }
+
+  .message-wrapper {
+    animation-duration: 20s; /*  slightly faster scroll */
+  }
 }
 
+/*  Small Mobile (≤480px) */
 @media (max-width: 480px) {
   .navbar {
     justify-content: space-between;
@@ -111,5 +119,9 @@
   .message-wrapper span {
     font-size: 13.5px;
     margin-right: 50px;
+  }
+
+  .message-wrapper {
+    animation-duration: 18s; /*  faster scroll on tiny screens */
   }
 }

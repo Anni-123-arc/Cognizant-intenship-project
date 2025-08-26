@@ -1,8 +1,8 @@
 #featured-items {
     padding: 10px;
-
 }
-#featured-items h3{
+
+#featured-items h3 {
     font-size: 30px;
     text-align: center;
 }
@@ -15,20 +15,62 @@
     align-items: center;
 }
 
-#more-op-btn{
+#more-op-btn {
     padding: 10px;
     position: relative;
     left: 90%;
     margin: 10px;
     background: linear-gradient(to right, #1a2a6c, #3a7bd5);
     color: white;
-    font: italic;
+    font-style: italic;
     cursor: pointer;
     border-radius: 10px;
+    transition: 0.3s ease;
 }
 
 #more-op-btn:hover {
     background: linear-gradient(to right, #3a7bd5, #1a2a6c);
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(26, 42, 108, 0.3);
+}
+
+/* ------------------------------------------------ */
+/* Tablet (769px – 1024px) */
+@media (max-width: 1024px) and (min-width: 769px) {
+    #featured-items h3 {
+        font-size: 26px;
+    }
+
+    .featured-product-container {
+        flex-wrap: wrap;    /* allow wrapping if items overflow */
+        justify-content: center;
+    }
+
+    #more-op-btn {
+        left: auto;
+        display: block;
+        margin: 15px auto 0 auto; /* center button */
+    }
+}
+
+/*  Mobile (≤768px) */
+@media (max-width: 768px) {
+    #featured-items h3 {
+        font-size: 22px;
+    }
+
+    .featured-product-container {
+        flex-direction: column;   /* stack items vertically */
+        align-items: center;
+        gap: 10px;
+    }
+
+    #more-op-btn {
+        left: auto;
+        width: 100%;             /* full width button */
+        max-width: 250px;
+        text-align: center;
+        margin: 15px auto 0 auto; /* center it */
+        font-size: 14px;
+    }
 }
