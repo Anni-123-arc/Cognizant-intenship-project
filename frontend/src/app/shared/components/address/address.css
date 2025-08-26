@@ -1,136 +1,175 @@
-/* ===== Container ===== */
+/* Container */
 .saved-address-container {
-  background: #ffffff;
-  padding: 20px;
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1.25rem;
+  background: #fff;
   border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.05);
-  max-width: 1000px;
-  margin: 100px auto 40px;
-  font-family: "Poppins", sans-serif;
-  border: 1px solid #e0e6f1;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+  border: 1px solid #edf0f4;
 }
 
 .saved-address-container h3 {
-  margin-bottom: 18px;
-  color: #0d47a1; /* Deep blue */
+  margin: 0 0 1rem 0;
+  font-size: 1.5rem;
   font-weight: 700;
-  font-size: 1.6rem;
-  border-bottom: 2px solid #1976d2; /* Primary blue underline */
-  padding-bottom: 8px;
+  color: #1e3a8a; /* blue-900 */
 }
 
-/* ===== Address List ===== */
+/* Address list grid */
 .address-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 18px;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1rem;
 }
 
-/* ===== Address Card ===== */
+@media (min-width: 600px) {
+  .address-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 992px) {
+  .address-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Address card */
 .address-card {
-  background: linear-gradient(145deg, #f9fbff, #eef4ff);
-  border-radius: 12px;
-  padding: 16px;
-  border: 1px solid #cfdaf1;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.04);
-  transition: all 0.25s ease;
+  position: relative;
+  padding: 1rem;
+  border-radius: 14px;
+  border: 1px solid #dbeafe; /* blue-100 */
+  background: linear-gradient(180deg, #ffffff 0%, #f0f9ff 100%);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
 }
 
 .address-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(25,118,210,0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(30, 64, 175, 0.15); /* blue-800 shadow */
+  border-color: #bfdbfe; /* blue-200 */
 }
 
 .address-card p {
-  margin: 4px 0;
-  font-size: 0.9rem;
-  color: #2f3a57;
+  margin: 0.25rem 0;
+  color: #1e40af; /* blue-800 */
+  line-height: 1.4;
+  word-break: break-word;
 }
 
-/* ===== Actions ===== */
+.address-card p strong {
+  font-size: 1rem;
+  color: #1e3a8a; /* blue-900 */
+}
+
+/* Default badge next to label */
+.address-card p strong + span {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 0.5rem;
+  padding: 0.15rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #1e3a8a;           /* blue-900 */
+  background: #dbeafe;      /* blue-100 */
+  border: 1px solid #bfdbfe; /* blue-200 */
+  border-radius: 999px;
+  vertical-align: middle;
+}
+
+/* Actions */
 .address-actions {
-  margin-top: 12px;
   display: flex;
-  gap: 8px;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
 }
 
-.address-actions button {
-  flex: 1;
-  padding: 8px 10px;
-  font-size: 0.85rem;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-  font-weight: 600;
-  transition: all 0.2s ease;
-}
-
-/* Edit button style (light blue) */
-.edit-btn {
-  background: #42a5f5;
-  color: white;
-}
-.edit-btn:hover {
-  background: #1e88e5;
-}
-
-/* Delete button style (darker navy tone instead of red) */
-.delete-btn {
-  background: #1565c0;
-  color: white;
-}
-.delete-btn:hover {
-  background: #0d47a1;
-}
-
-/* ===== Add Address Button ===== */
+.address-actions .edit-btn,
+.address-actions .delete-btn,
 .add-address-btn {
-  margin-top: 20px;
-  padding: 14px;
-  background: linear-gradient(135deg, #1976d2, #0d47a1);
-  color: white;
-  border: none;
-  border-radius: 8px;
+  appearance: none;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  padding: 0.5rem 0.8rem;
+  font-size: 0.9rem;
   font-weight: 600;
-  font-size: 15px;
   cursor: pointer;
-  transition: background 0.25s ease, transform 0.2s ease;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease, border-color 0.12s ease;
+}
+
+/* Edit button */
+.address-actions .edit-btn {
+  color: #1d4ed8;             /* blue-700 */
+  background: #dbeafe;        /* blue-100 */
+  border-color: #bfdbfe;      /* blue-200 */
+}
+
+.address-actions .edit-btn:hover {
+  background: #bfdbfe;
+  box-shadow: 0 4px 12px rgba(29, 78, 216, 0.18);
+  transform: translateY(-1px);
+}
+
+/* Delete button (blue tone instead of red) */
+.address-actions .delete-btn {
+  color: #1e40af;             /* blue-800 */
+  background: #e0f2fe;        /* light blue-100 */
+  border-color: #bae6fd;      /* light blue-200 */
+}
+
+.address-actions .delete-btn:hover {
+  background: #bae6fd;
+  box-shadow: 0 4px 12px rgba(30, 64, 175, 0.18);
+  transform: translateY(-1px);
+}
+
+/* Add New Address button */
+.add-address-btn {
+  margin-top: 1rem;
   width: 100%;
+  color: #ffffff;
+  background: #1e3a8a; /* blue-900 */
+  border-color: #1e3a8a;
+  padding: 0.75rem 1rem;
 }
 
 .add-address-btn:hover {
-  background: linear-gradient(135deg, #1565c0, #0b3c91);
-  transform: translateY(-2px);
+  background: #1d4ed8; /* blue-700 */
+  box-shadow: 0 6px 18px rgba(29, 78, 216, 0.25);
+  transform: translateY(-1px);
 }
 
-/* ===== Empty Message ===== */
-.empty-message {
-  color: #5f6f8e;
-  font-style: italic;
+/* Subtle focus states */
+.address-actions .edit-btn:focus,
+.address-actions .delete-btn:focus,
+.add-address-btn:focus,
+.address-card:focus-within {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.35); /* blue-500 ring */
 }
 
-/* ===== Responsive Adjustments ===== */
-@media (max-width: 768px) {
+/* Empty state */
+.address-list:empty::before {
+  content: "No saved addresses yet.";
+  display: block;
+  padding: 1.25rem;
+  text-align: center;
+  color: #1e40af; /* blue-800 */
+  border: 1px dashed #bfdbfe;
+  border-radius: 12px;
+  background: #f0f9ff;
+}
+
+/* Compact spacing on small screens */
+@media (max-width: 400px) {
   .saved-address-container {
-    margin: 60px 12px;
-    padding: 16px;
+    padding: 0.9rem;
   }
-
   .address-card {
-    padding: 14px;
+    padding: 0.85rem;
   }
-
   .add-address-btn {
-    font-size: 14px;
-    padding: 12px;
-  }
-}
-
-@media (max-width: 480px) {
-  .address-actions {
-    flex-direction: column;
-  }
-  .address-actions button {
-    width: 100%;
+    padding: 0.65rem 0.9rem;
   }
 }

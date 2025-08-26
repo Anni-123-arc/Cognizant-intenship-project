@@ -27,7 +27,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
     return next.handle(req).pipe(
       catchError((error: HttpErrorResponse) => {
-        // ✅ If token expired or unauthorized, log out & redirect
+        //  If token expired or unauthorized, log out & redirect
         if (error.status === 401 || error.status === 403) {
           localStorage.removeItem('token');
           alert('Session expired. Please log in again.');

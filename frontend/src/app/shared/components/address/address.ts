@@ -10,13 +10,33 @@ import { UserService } from '../../../core/services/user.service';
   styleUrls: ['./address.css']
 })
 export class Address implements OnInit {
-  addresses: any[] = [
-    // Static fallback/demo addresses
-    { name: 'Home', line1: '123 Main Street', line2: 'Apt 4B', city: 'New York', state: 'NY', zip: '10001' },
-    { name: 'Office', line1: '456 Business Rd', line2: 'Apt 6A', city: 'Los Angeles', state: 'CA', zip: '90001' }
-  ];
+  addresses: any[] = [];
 
-  newAddress = { street: '', city: '', state: '', zip: '' };
+  //  fallback static addresses
+  staticAddresses = [
+    {
+      _id: '1',
+      label: 'Home',
+      addressLine1: '123 Main Street',
+      addressLine2: 'Apt 4B',
+      city: 'New York',
+      state: 'NY',
+      country: 'USA',
+      postalCode: '10001',
+      isDefault: true
+    },
+    {
+      _id: '2',
+      label: 'Office',
+      addressLine1: '456 Business Rd',
+      addressLine2: 'Suite 210',
+      city: 'Los Angeles',
+      state: 'CA',
+      country: 'USA',
+      postalCode: '90001',
+      isDefault: false
+    }
+  ];
 
   constructor(private userService: UserService) {}
 
@@ -25,46 +45,58 @@ export class Address implements OnInit {
   }
 
   loadAddresses() {
-    // API call: Fetch addresses from backend
     this.userService.getAddresses().subscribe({
       next: (res) => {
-        this.addresses = res;
+        this.addresses = res.addresses && res.addresses.length > 0 
+          ? res.addresses 
+          : this.staticAddresses; // fallback
       },
       error: () => {
-        // Optionally handle error or keep static fallback addresses
+        console.warn('⚠️ Using static fallback addresses');
+        this.addresses = this.staticAddresses;
       }
     });
   }
 
   addAddress() {
-    // API call: Add new address to backend
-    this.userService.addAddress(this.newAddress).subscribe({
-      next: () => {
-        alert('Address added');
-        this.loadAddresses(); // Reload updated list
-      },
-      error: () => alert('Failed to add address')
+    const newAddr = {
+      label: "Home",
+      addressLine1: "789 Test Blvd",
+      city: "Chicago",
+      state: "IL",
+      country: "USA",
+      postalCode: "60007",
+      isDefault: false
+    };
+
+    this.userService.addAddress(newAddr).subscribe({
+      next: (res) => this.addresses = res.addresses,
+      error: () => {
+        alert('Failed to add address — using static demo instead');
+        this.addresses.push({ ...newAddr, _id: String(Date.now()) });
+      }
     });
   }
 
-  editAddress(index: number) {
-    // For demo purposes: static alert, implement edit UI/API as needed
-    alert(`Edit address #${index + 1}`);
+  editAddress(address: any) {
+    const updated = { ...address, label: "Updated" };
+    this.userService.updateAddress(address._id, updated).subscribe({
+      next: (res) => this.addresses = res.addresses,
+      error: () => {
+        alert('Failed to update — updating static address');
+        const idx = this.addresses.findIndex(a => a._id === address._id);
+        if (idx > -1) this.addresses[idx] = updated;
+      }
+    });
   }
 
-  deleteAddress(idOrIndex: string | number) {
-    // API call: Delete address by id (string) or static delete by index (number)
-    if (typeof idOrIndex === 'string') {
-      this.userService.deleteAddress(idOrIndex).subscribe({
-        next: () => {
-          alert('Address deleted');
-          this.loadAddresses(); // Reload updated list
-        },
-        error: () => alert('Failed to delete address')
-      });
-    } else if (typeof idOrIndex === 'number') {
-      // Static deletion from local array (fallback/demo)
-      this.addresses.splice(idOrIndex, 1);
-    }
+  deleteAddress(id: string) {
+    this.userService.deleteAddress(id).subscribe({
+      next: (res) => this.addresses = res.addresses,
+      error: () => {
+        alert('Failed to delete — removing static address');
+        this.addresses = this.addresses.filter(a => a._id !== id);
+      }
+    });
   }
 }
