@@ -39,7 +39,7 @@ export class InventoryService {
 
    //Method to retrive order details
    test(){
-    axios.get('https://ecom-backend-ak0w.onrender.com/api/get-products').then((response)=>{
+    axios.get('http://backend:3000/api/get-products').then((response)=>{
           const items = response.data.data;
           console.log("Items fetched from backend:", items);
           for(let item of items) {
@@ -58,7 +58,7 @@ export class InventoryService {
    // Method to add a new product to the inventory
   addItems(product: any) {
 
-    axios.post('https://ecom-backend-ak0w.onrender.com/api/Uploadproducts', product)
+    axios.post('http://backend:3000//api/Uploadproducts', product)
 
 
 
@@ -75,9 +75,9 @@ export class InventoryService {
 
   //Method to delete a product from the inventory
   dltItem(product_id: string) {
- 
-    axios.post(`https://ecom-backend-ak0w.onrender.com/api/delete-product/${product_id}`)
-  
+
+    axios.post(`http://backend:3000/api/delete-product/${product_id}`)
+
     return this.inventory
   }
 
@@ -85,8 +85,7 @@ export class InventoryService {
   //Method to update a product in the inventory
   updateItem(product:UPRO){
 
-    axios.post(`https://ecom-backend-ak0w.onrender.com/api/update-product`, product )
-
+    axios.post(`http://backend:3000/api/update-product`, product )
 
    
   }

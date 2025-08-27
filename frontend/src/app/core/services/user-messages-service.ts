@@ -76,8 +76,8 @@ export class UserMessagesService {
 async test(){
 
       //get api call
-      await axios.get('https://ecom-backend-ak0w.onrender.com/api/getUserQueries').then((response) => {
-     
+      await axios.get('http://backend:3000/api/getUserQueries').then((response) => {
+
       let res = response.data.data;
       for(let obj of res){
         this.DBcustomerMessages.push({
@@ -106,7 +106,7 @@ async test(){
   async setReply(id:string , reply:string){
 
     try {
-      const response = await axios.post(`https://ecom-backend-ak0w.onrender.com/api/reply/${id}`, { reply });
+      const response = await axios.post(`http://backend:3000//api/reply/${id}`, { reply });
       //console.log('Reply sent successfully:', response.data);
     } catch (error) {
       console.error('Error sending reply:', error);
