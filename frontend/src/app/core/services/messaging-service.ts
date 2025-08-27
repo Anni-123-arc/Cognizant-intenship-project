@@ -18,7 +18,7 @@ export class MessagingService {
   }
 
   pushConvo(message: string) {
-     axios.post('http://localhost:3000/api/sendQuery', { userMessage: message })
+     axios.post('https://ecom-backend-ak0w.onrender.com/api/sendQuery', { userMessage: message })
   }
 
 }
