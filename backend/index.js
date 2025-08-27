@@ -36,6 +36,7 @@ import { deleteProdRoute } from "./routes/deleteProd.js";
 import { updateProdRouter } from "./routes/updateProd.js";
 
 import orderRoutes from "./routes/OrderRoutes.js";
+import { all } from "axios";
 
 
 
@@ -43,6 +44,7 @@ import orderRoutes from "./routes/OrderRoutes.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const allowedOrigin = ['https://ecom-1b-team.netlify.app/' , 'https://ecom-team-1b.netlify.app/' , 'http://localhost:3000']
 
 // Connect to database
 dbConnection();
@@ -50,7 +52,7 @@ dbConnection();
 // Security & middleware
 app.use(helmet());
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || "*"
+  origin: allowedOrigin || "*"
 }));
 app.use(express.json());
 app.use(morgan("dev"));
