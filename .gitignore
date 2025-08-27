@@ -1,6 +1,6 @@
 # Local Netlify folder
 .netlify
 # Local environment variables file
-./backend/.env
+backend/.env
 # Local node modules
-./backend/node_modules/
+backend/node_modules/
