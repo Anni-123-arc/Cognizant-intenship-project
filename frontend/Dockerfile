@@ -22,7 +22,9 @@ RUN npm run build -- --configuration production
 
 FROM nginx:stable-alpine
 
-COPY --from=build /app/dist/Ecom-frontend/browser /usr/share/nginx/html
+# Copy built Angular app to Nginx html folder
+COPY --from=build /app/dist/Ecom-FrontEnd/browser /usr/share/nginx/html
+
 
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 

@@ -18,7 +18,7 @@ export class MessagingService {
   }
 
   pushConvo(message: string) {
-     axios.post('http://backend:3000//api/sendQuery', { userMessage: message })
+     axios.post('http://localhost:3000/api/sendQuery', { userMessage: message })
   }
 
 }

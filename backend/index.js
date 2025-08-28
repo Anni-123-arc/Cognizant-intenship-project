@@ -44,7 +44,7 @@ import { all } from "axios";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const allowedOrigin = ['https://ecom-1b-team.netlify.app/' , 'https://ecom-team-1b.netlify.app/' , 'http://localhost:3000']
+const allowedOrigin = ['https://ecom-1b-team.netlify.app/' , 'https://ecom-team-1b.netlify.app/' , 'http://localhost:8080']
 
 // Connect to database
 dbConnection();
