@@ -1,10 +1,22 @@
-This is created by git app
-Remote url for application: https://ecom-1b-team.netlify.app/
+🛒 E-commerce Platform – Team 1B
 
-In order to clone and run this repository u'll need to add .env file in ur backend
-Include following attributes in ur .env file
+🚀 Live Demo: https://ecom-1b-team.netlify.app/
 
-#Port to ru  ur application
+This is a full-stack E-commerce platform built with MongoDB, Express.js, Angular, and Node.js (MEAN stack).
+It supports user authentication, product management, secure payments, and OTP verification.
+
+You can run this application locally using Docker Compose.
+
+📂 Project Setup
+🔹 Step 1: Clone the repository
+git clone <your-repo-url>
+cd e-commerce-platform_ttp1dema2512_team-1b
+
+🔹 Step 2: Create .env file for the backend
+
+Inside the backend folder, create a file named .env and add the following configuration:
+
+# Port to run your application
 PORT=XXXX
 
 # MongoDB connection string
@@ -17,8 +29,70 @@ JWT_EXPIRES_IN=Expiration time
 # Email configuration
 EMAIL_USER=Sender's Email
 EMAIL_PASS=Email_password
+
 # OTP settings
 OTP_EXPIRES_MINUTES=OTP Expiration time
 
 # CORS configuration
-CORS_ORIGIN=allowed cors origin
+CORS_ORIGIN=allowed_cors_origin
+
+
+⚠️ Make sure to replace the placeholder values with your actual credentials.
+
+🐳 Run with Docker
+
+Ensure Docker and Docker Compose are installed on your machine.
+
+🔹 Step 3: Build and run containers
+docker-compose up --build -d
+
+
+This will:
+
+Build and start the backend service
+
+Build and start the frontend service
+
+Set up the network for communication between services
+
+🌐 Access the Application
+
+Frontend: http://localhost:4200
+ (or mapped port)
+
+Backend API: http://localhost:XXXX/api
+ (based on PORT in .env)
+
+📦 Deployment
+
+The application is also deployed online:
+
+Frontend (Netlify): https://ecom-1b-team.netlify.app/
+
+Backend (Render/other service): [Your Backend URL]
+
+⚙️ Tech Stack
+
+Frontend: Angular
+
+Backend: Node.js, Express.js
+
+Database: MongoDB
+
+Authentication: JWT, OTP Verification
+
+Deployment: Netlify, Docker, Render
+
+🤝 Contribution
+
+Fork the repository
+
+Create a feature branch (git checkout -b feature-name)
+
+Commit changes (git commit -m "Added new feature")
+
+Push to branch (git push origin feature-name)
+
+Create a Pull Request
+
+✨ Built with ❤️ by Team 1B
