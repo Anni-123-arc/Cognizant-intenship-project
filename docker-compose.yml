@@ -5,6 +5,7 @@ services:
     build:
       context: ./backend   # path to your backend folder
       dockerfile: Dockerfile
+      image: annikhandare/ecom-backend:0.0
     container_name: ecom-backend
     ports:
       - "3000:3000"
@@ -15,6 +16,7 @@ services:
     build:
       context: ./frontend   # path to your frontend folder
       dockerfile: Dockerfile
+      image: annikhandare/ecom-frontend:0.0
     container_name: ecom-frontend
     ports:
       - "8080:80"
