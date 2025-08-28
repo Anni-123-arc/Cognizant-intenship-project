@@ -92,7 +92,7 @@ export class OrderManagement {
 
 async getOrderDetails(orderID: string) {
   try {
-    const response = await axios.get(`http://localhost:3000/api/track/${orderID}`).then(res => res.data);
+    const response = await axios.get(`https://ecom-backend-ak0w.onrender.com/api/track/${orderID}`).then(res => res.data);
 
     // This will store only your res.json object
     console.log('Order details fetched successfully:', response);
@@ -107,7 +107,7 @@ async getOrderDetails(orderID: string) {
 async getOrderHistory(email: string) {
 
    try {
-    const response = await axios.get(`http://localhost:3000/api/history/${email}`).then(res => res.data);
+    const response = await axios.get(`https://ecom-backend-ak0w.onrender.com/api/history/${email}`).then(res => res.data);
 
     // This will store only your res.json object
     console.log('Order history fetched successfully:', response);
