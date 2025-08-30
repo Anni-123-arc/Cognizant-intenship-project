@@ -12,10 +12,13 @@ You can run this application locally using Docker Compose.
 git clone <your-repo-url>
 cd e-commerce-platform_ttp1dema2512_team-1b
 
-🔹 Step 2: Create .env file for the backend
+🔹 Step 2: bind mount volume in docker-compose.yml file
 
-Inside the backend folder, create a file named .env and add the following configuration:
+Inside docker-compose file configure the volumes:
+	ex:volumes:
+	    -  <path in local system where .env file is stored>:<path inside container whr u want to store .env file>
 
+#.env file should contain following attribure.
 # Port to run your application
 PORT=XXXX
 
