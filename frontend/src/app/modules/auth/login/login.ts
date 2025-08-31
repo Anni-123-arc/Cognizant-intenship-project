@@ -14,6 +14,7 @@ import Swal from 'sweetalert2';
 })
 export class Login {
   loginForm: FormGroup;
+  loading: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -36,11 +37,13 @@ export class Login {
   }
 
   onSubmit() {
+    this.loading = true;
     if (this.loginForm.valid) {
       const { email, password, role } = this.loginForm.value;
 
       this.authService.login({ email, password }).subscribe({
         next: (res) => {
+          this.loading = false;
           localStorage.setItem('token', res.token);
 
           //  SweetAlert2 styled popup
