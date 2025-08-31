@@ -8,6 +8,7 @@ services:
     image: annikhandare/ecom-backend:0.1
     container_name: ecom-backend
     volumes:
+      -   new-vol:/app/uploads
       -  /home/kayden/.env:/app/.env
     ports:
       - "3000:3000"
@@ -30,3 +31,8 @@ services:
 networks:
   ecom-network:
     driver: bridge
+
+# adding storage
+volumes:
+  new-vol:
+    external: true
