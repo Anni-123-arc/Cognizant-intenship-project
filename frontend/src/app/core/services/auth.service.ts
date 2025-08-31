@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private baseUrl = 'https://ecom-backend-ak0w.onrender.com/api'; // Your backend base URL
+  private baseUrl = 'http://localhost:3000/api'; // Your backend base URL
 
   constructor(private http: HttpClient) {}
 
