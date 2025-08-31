@@ -37,4 +37,4 @@ networks:
 
 volumes:
   new-vol:
-    - external:  true
+    external:  true
