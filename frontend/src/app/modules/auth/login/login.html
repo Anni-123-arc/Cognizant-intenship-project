@@ -37,7 +37,13 @@
         </select>
 
         <!-- Submit Button -->
-        <button type="submit" [disabled]="loginForm.invalid">Login</button>
+        <button type="submit" [disabled]="loginForm.invalid">
+          @if (loading) {
+            <span class="spinner"></span> Logging in...
+          } @else {
+            Login
+          }
+        </button>
       </form>
 
       <!-- Forgot Password Link -->
