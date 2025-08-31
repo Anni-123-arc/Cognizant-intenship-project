@@ -1,4 +1,7 @@
-
+#docker compose file -- remember to change volume config while running on other systems
+#  volumes:
+#    -  <path in local system>:<path in container>
+#  *****  we use volumes as add on storage utilities on top of containers , simple words volumes === hard disk for containers *****
 
 services:
   backend:
@@ -10,6 +13,7 @@ services:
     volumes:
       -   new-vol:/app/uploads
       -  /home/kayden/.env:/app/.env
+      -  new-vol:/app/uploads
     ports:
       - "3000:3000"
     networks:
@@ -32,7 +36,6 @@ networks:
   ecom-network:
     driver: bridge
 
-# adding storage
 volumes:
   new-vol:
-    external: true
+    - external:  true
