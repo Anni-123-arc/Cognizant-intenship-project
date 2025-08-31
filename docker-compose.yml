@@ -13,7 +13,6 @@ services:
     volumes:
       -   new-vol:/app/uploads
       -  /home/kayden/.env:/app/.env
-      -  new-vol:/app/uploads
     ports:
       - "3000:3000"
     networks:
